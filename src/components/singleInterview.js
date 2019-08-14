@@ -1,9 +1,11 @@
 import React from 'react';
-import './singleInterview.css';
+import './SingleInterview.css';
 import {Card, Button} from 'react-bootstrap';
-function singleInterview() {
+
+class SingleInterview extends React.Component {
+  render() {
   return (
-    <div className="singleInterview">
+    <div className="SingleInterview">
       <Card style={{ width: '18rem', borderRadius: '20px'}}>
           <Card.Body>
            <Card.Title>Interview</Card.Title>
@@ -15,11 +17,12 @@ function singleInterview() {
               Interviewer:
              </Card.Text>
              {/* This button will BOOK the meeting */}
-             <Button variant="primary">Book Mock Interview</Button>
+             <Button variant="primary">BOOK</Button>
            </Card.Body>
         </Card>
     </div>
   );
+  }
 }
 
-export default singleInterview;
+export default SingleInterview;

@@ -1,0 +1,14 @@
+.dashboard {
+    display: flex;
+    align-content: space-between;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.heading {
+    background-color: rgba(46, 77, 216, 0.281);
+    margin: 5px;
+    display: flex;
+    align-content: space-between;
+    flex-wrap: wrap;
+    justify-content: center;
+}

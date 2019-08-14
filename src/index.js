@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import Login from './Login';
-import singleInterview from './components/singleInterview';
+import SingleInterview from './components/SingleInterview';
+import dashboard from './components/dashboard';
 import * as serviceWorker from './serviceWorker';
 import {Route, Link, BrowserRouter as Router} from 'react-router-dom';
 
@@ -14,7 +15,8 @@ const routing = (
       <Route path="/" component={App} />
       <Route path="/login" component={Login} />
       {/* the singleInterview link is temporary so we can see how the components looks like */}
-      <Route path="/singleInterview" component={singleInterview} />
+      <Route path="/SingleInterview" component={SingleInterview} />
+      <Route path="/dashboard" component={dashboard} />
     </div>
   </Router>
 )
