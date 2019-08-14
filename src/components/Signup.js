@@ -15,7 +15,7 @@ class Signup extends React.Component {
     }
     this.authenticateLogin = this.authenticateLogin.bind(this);
   }
-
+  
   authenticateLogin(e) {
     e.preventDefault();
     console.log("Submitted");

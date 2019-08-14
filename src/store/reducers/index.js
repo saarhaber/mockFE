@@ -11,7 +11,7 @@ const userReducer = (users = [], action) => {
   }
 }
 
-const userSelectReducer = (user = undefined, action) => {
+const userSelectReducer = (user = {}, action) => {
   switch(action.type) {
     case "SELECT_USER":
       return action.payload;
