@@ -42,7 +42,7 @@ class Login extends React.Component {
         <Card className="login-card">
           <Card.Header>Login</Card.Header>
           <Card.Body>
-            <Form className="login-form" onSubmit={this.authenticateLogin}>
+            <Form onSubmit={this.authenticateLogin}>
               <Form.Group controlId="formBasicEmail">
                 <Form.Control className="form-element" name="username" type="email" placeholder="username" />
                 <Form.Text className="text-muted">
