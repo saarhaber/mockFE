@@ -8,7 +8,9 @@ import SingleInterview from './components/SingleInterview';
 import dashboard from './components/dashboard';
 import * as serviceWorker from './serviceWorker';
 import {Route, Link, BrowserRouter as Router} from 'react-router-dom';
-
+import {Provider} from 'react-redux';
+import {createStore} from 'redux';
+import reducers from './store/reducers/index.js';
 
 const routing = (
   <Router>
@@ -22,7 +24,9 @@ const routing = (
     </div>
   </Router>
 )
-ReactDOM.render(routing, document.getElementById('root'));
+
+// See the routing object
+ReactDOM.render(<Provider store={createStore(reducers)}>routing</Provider>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
