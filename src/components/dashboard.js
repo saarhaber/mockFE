@@ -1,12 +1,16 @@
 import React from 'react';
 import './dashboard.css';
-import singleInterview from './singleInterview';
+import SingleInterview from './SingleInterview';
 function dashboard() {
   return (
     <div className="dashboard">
-        <singleInterview/>
-        <singleInterview/>
-        <singleInterview/>
+        <SingleInterview/>
+        <SingleInterview/>
+        <SingleInterview/>
+        <SingleInterview/>
+        <SingleInterview/>
+        <SingleInterview/>
+        <SingleInterview/>
     </div>
   );
 }

@@ -1,11 +1,11 @@
 import React from 'react';
-import './singleInterview.css';
+import './SingleInterview.css';
 import {Card, Button} from 'react-bootstrap';
 
-class singleInterview extends React.Component {
+class SingleInterview extends React.Component {
   render() {
   return (
-    <div className="singleInterview">
+    <div className="SingleInterview">
       <Card style={{ width: '18rem', borderRadius: '20px'}}>
           <Card.Body>
            <Card.Title>Interview</Card.Title>
@@ -25,4 +25,4 @@ class singleInterview extends React.Component {
   }
 }
 
-export default singleInterview;
+export default SingleInterview;
