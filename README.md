@@ -1,3 +1,6 @@
+to run, type on Node.js terminal:
+npm i react react-dom react-router react-router-dom bootstrap react-bootstrap
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
