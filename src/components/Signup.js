@@ -70,14 +70,14 @@ class Signup extends React.Component {
                 <Form.Check
                     className="text-muted"
                     type="radio"
-                    label="first radio"
+                    label="Employer"
                     name="formHorizontalRadios"
                     id="formHorizontalRadios1"
                 />
                 <Form.Check
                     className="text-muted"
                     type="radio"
-                    label="second radio"
+                    label="Student"
                     name="formHorizontalRadios"
                     id="formHorizontalRadios2"
                 />
