@@ -17,7 +17,7 @@ class SingleInterview extends React.Component {
               Interviewer:
              </Card.Text>
              {/* This button will BOOK the meeting */}
-             <Button variant="primary">Book Mock Interview</Button>
+             <Button variant="primary">BOOK</Button>
            </Card.Body>
         </Card>
     </div>
