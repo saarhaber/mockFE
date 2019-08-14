@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import Login from './Login';
+import Login from './components/Login';
 import SingleInterview from './components/SingleInterview';
 import dashboard from './components/dashboard';
 import * as serviceWorker from './serviceWorker';
