@@ -1,7 +1,9 @@
 import React from 'react';
 import './singleInterview.css';
 import {Card, Button} from 'react-bootstrap';
-function singleInterview() {
+
+class singleInterview extends React.Component {
+  render() {
   return (
     <div className="singleInterview">
       <Card style={{ width: '18rem', borderRadius: '20px'}}>
@@ -20,6 +22,7 @@ function singleInterview() {
         </Card>
     </div>
   );
+  }
 }
 
 export default singleInterview;
