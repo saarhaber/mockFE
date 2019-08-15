@@ -1,6 +1,6 @@
 import React from "react";
 import {Card, Form, Button, Col, Alert} from 'react-bootstrap';
-import {Redirect} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import './Login.css';
 import './Signup.css';
@@ -152,6 +152,11 @@ class Signup extends React.Component {
               <Button variant="primary" type="submit">
                 Submit
               </Button>
+              <Form.Group>
+                <Form.Text className="text-muted">
+                  Don't have an account? Sign Up
+                </Form.Text>
+              </Form.Group>
             </Form>
           </Card.Body>
         </Card>
