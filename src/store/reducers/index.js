@@ -22,5 +22,5 @@ const userSelectReducer = (user = {}, action) => {
 
 export default combineReducers({
   users: userReducer,
-  selectedUser: userSelectReducer
+  user: userSelectReducer
 });
