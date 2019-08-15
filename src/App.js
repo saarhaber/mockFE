@@ -1,10 +1,10 @@
 import React from 'react';
 import './App.css';
-import {  } from "module";
+import {Redirect} from 'react-router';
+
 function App() {
   return (
-    <div className="App">
-    </div>
+    <Redirect to="/signup"/>
   );
 }
 
