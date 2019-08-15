@@ -4,7 +4,7 @@ import {combineReducers} from 'redux';
 const userReducer = (users = [], action) => {
   switch(action.type) {
     case "ADD_USER":
-      users.append(action.payload);
+      users.push(action.payload);
       return users;
     default:
       return users;

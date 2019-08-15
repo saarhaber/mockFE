@@ -2,6 +2,7 @@ import React from "react";
 import {Card, Form, Button, Col, Alert} from 'react-bootstrap';
 import {Link, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
+import {addUser} from '../store/actions/index';
 import './Login.css';
 import './Signup.css';
 
@@ -77,8 +78,8 @@ class Signup extends React.Component {
 
     // If a valid input is received, create user
     if (errorCodes.length == 0) {
-      this.setState({redirect: true});
-
+      this.props.addUser(newUser);
+      this.setState({redirect: false});
     } else {
       // Show 2 errors
       if (errorCodes.length > 2) {
@@ -114,7 +115,7 @@ class Signup extends React.Component {
               </Form.Row>
               <Form.Group controlId="formBasicEmail">
                 <Form.Control name="email" type="email" placeholder="Email" />
-                <Form.Text className="text-muted">
+                <Form.Text className="text-muted" style={{marginLeft: '3px'}}>
                   We'll never share your email with anyone.
                 </Form.Text>
               </Form.Group>
@@ -152,9 +153,9 @@ class Signup extends React.Component {
               <Button variant="primary" type="submit">
                 Submit
               </Button>
-              <Form.Text className="text-muted" style={{marginTop: '10px'}}>
+              <Form.Text className="text-muted" style={{marginTop: '10px', marginLeft: '1px'}}>
                 Already have an account?
-                <Link to="/login" style={{marginLeft: '5px'}}>Log in</Link>
+                <Link to="/login" style={{marginLeft: '3px'}}>Log in</Link>
               </Form.Text>
             </Form>
           </Card.Body>
@@ -170,4 +171,4 @@ const getStateToProps = (state) => {
     user: state.user
   }
 }
-export default connect(getStateToProps)(Signup);
+export default connect(getStateToProps, {addUser})(Signup);
