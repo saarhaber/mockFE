@@ -6,6 +6,8 @@ import {addUser} from '../store/actions/index';
 import './Login.css';
 import './Signup.css';
 
+const TAG = "COMPONENTS/SIGNUP_JS"
+
 class Signup extends React.Component {
   constructor(props) {
     super(props);
@@ -28,7 +30,7 @@ class Signup extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log("Submitted");
+    console.log(TAG, "Submitted");
 
     let errorCodes = [];
 
@@ -97,9 +99,6 @@ class Signup extends React.Component {
   }
 
   render() {
-    console.log("Users: ", this.props.users);
-    console.log("User: ", this.props.user);
-
     if (this.state.redirect) {
       return(
         <Redirect to="/login"/>
@@ -173,9 +172,5 @@ class Signup extends React.Component {
 }
 
 const getStateToProps = (state) => {
-  return {
-    users: state.users,
-    user: state.user
-  }
 }
 export default connect(getStateToProps, {addUser})(Signup);
