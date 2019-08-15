@@ -2,8 +2,11 @@ import React from "react";
 import {Card, Form, Button, Alert} from 'react-bootstrap';
 import {Link, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {selectUser} from '../store/actions/index';
+import {selectUser, updateUserList} from '../store/actions/index';
+import axios from 'axios';
 import './Login.css';
+
+const TAG = "COMPONENTS/LOGIN_JS";
 
 class Login extends React.Component {
   constructor() {
@@ -13,6 +16,20 @@ class Login extends React.Component {
       loginFailed: false
     }
     this.authenticateLogin = this.authenticateLogin.bind(this);
+  }
+
+  componentDidMount() {
+    this.getUsers();
+  }
+
+  async getUsers() {
+    await axios.get("https://jsonplaceholder.typicode.com/todos/")
+    .then(response => {
+      this.props.updateUserList(response.data);
+    })
+    .catch(error => {
+      console.log(TAG, "Can not GET users from API", error);
+    });
   }
 
   authenticateLogin(e) {
@@ -33,11 +50,11 @@ class Login extends React.Component {
       this.setState({loginFailed: true});
     }
   }
-  
 
   render() {
-    console.log("users: ", this.props.users);
-    console.log("user: ", this.props.user);   
+    console.log(TAG, "users: ", this.props.users);
+    console.log(TAG, "user: ", this.props.user);
+
     if (this.state.redirect) {
       return(
         <Redirect to="/user"/>
@@ -88,4 +105,4 @@ const getStateToProps = (state) => {
   }
 }
 
-export default connect(getStateToProps, {selectUser})(Login);
+export default connect(getStateToProps, {selectUser, updateUserList})(Login);

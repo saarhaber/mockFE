@@ -1,3 +1,5 @@
+const TAG = "ACTIONS/INDEX_JS";
+
 // Adds a new user to the store
 export const addUser = (user) => {
   return {
@@ -11,6 +13,13 @@ export const selectUser = (user) => {
   return {
     type: "SELECT_USER",
     payload: user,
+  }
+}
+
+export const updateUserList = (users) => {
+  return {
+    type: "UPDATE_USER_LIST",
+    payload: users
   }
 }
 
