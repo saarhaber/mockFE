@@ -33,6 +33,7 @@ class Signup extends React.Component {
     let errorCodes = [];
 
     let newUser = {
+      id: this.props.users.length,
       firstname: undefined,
       lastname: undefined,
       email: undefined,
@@ -79,7 +80,7 @@ class Signup extends React.Component {
     // If a valid input is received, create user
     if (errorCodes.length == 0) {
       this.props.addUser(newUser);
-      this.setState({redirect: false});
+      this.setState({redirect: true});
     } else {
       // Show 2 errors
       if (errorCodes.length > 2) {
