@@ -1,9 +1,6 @@
 import axios from 'axios';
 
-<<<<<<< HEAD
-=======
 const TAG = "ACTIONS/INDEX_JS";
->>>>>>> d92cbd75aad9c554ff0708a77963cb9ab8b9a627
 
 // Adds a new user to the store
 export const addUser = (user) => {
@@ -21,26 +18,6 @@ export const selectUser = (user) => {
   }
 }
 
-<<<<<<< HEAD
-// Fetch Interviews
-export const fetchInterviews = (interviews) => {
-  return {
-    type: "FETCH_INTERVIEWS",
-    payload: interviews,
-  }
-}
-
-// THUNK CREATOR;
-export const fetchInterviewsThunk = () => (dispatch) => {
-  axios.get(`https://frozen-spire-39361.herokuapp.com/api/interviews`)
-  .then(res => {
-      console.log(res)
-    dispatch(fetchInterviews(res.data));
-  })
-  .catch(err => {
-    console.log(err);
-  })
-=======
 export const fetchUsers = (users) => {
   return(dispatch) => {
     axios.get('https://jsonplaceholder.typicode.com/todos/')
@@ -70,5 +47,4 @@ export const selectInterview = (interview) => {
     type: "SELECT_INTERVIEW",
     payload: interview,
   }
->>>>>>> d92cbd75aad9c554ff0708a77963cb9ab8b9a627
 }
