@@ -26,29 +26,7 @@ console.log(this.props.users),
         {/* the singleInterview link is temporary so we can see how the components looks like */}
         <Route path="/SingleInterview" component={SingleInterview} />
         <Route path="/dashboard" component={dashboard} />
-        {this.props.users.map(user => {
-              return (
-                <Route exact path={"/user/" + user.id}
-                  render={() => {
-                    return (
-                      <User
-                        user_id={user.id}
-                        user_firstName={user.firstName}
-                        user_lastName={user.lastName}
-                        user_imageUrl={user.imageUrl}
-                        user_email={user.email}
-                        user_organization={user.organization}
-                        user_description={user.description}
-                        user_profession={user.profession}
-                        user_interviewAmount={user.interviewAmount}
-                        user_lastInterview={user.lastInterview}
-                        user_isInterviewer={user.isInterviewer}
-                        />
-                    )
-                  }}
-                />
-              )
-            })}
+        <Route path="/user" component={User} />
       </div>
     </Router> 
     );
