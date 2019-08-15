@@ -1,23 +1,26 @@
 import React from 'react';
-import './dashboard.css';
+import './Dashboard.css';
 import SingleInterview from './SingleInterview';
-function dashboard() {
-  return (
-  <div>
-    <div className="heading">
-      <h1> Click "BOOK" to set up an Interview</h1>
-    </div>
-    <div className="dashboard">
-        <SingleInterview/>
-        <SingleInterview/>
-        <SingleInterview/>
-        <SingleInterview/>
-        <SingleInterview/>
-        <SingleInterview/>
-        <SingleInterview/>
-    </div>
-  </div>
-  );
+
+class Dashboard extends React.Component {
+  render () {
+    return (
+      <div>
+        <div className="heading">
+          <h1> Click "BOOK" to set up an Interview</h1>
+        </div>
+        <div className="dashboard">
+          <SingleInterview/>
+          <SingleInterview/>
+          <SingleInterview/>
+          <SingleInterview/>
+          <SingleInterview/>
+          <SingleInterview/>
+          <SingleInterview/>
+        </div>
+      </div>
+    );
+  }
 }
 
-export default dashboard;
+export default Dashboard;
