@@ -152,11 +152,10 @@ class Signup extends React.Component {
               <Button variant="primary" type="submit">
                 Submit
               </Button>
-              <Form.Group>
-                <Form.Text className="text-muted">
-                  Don't have an account? Sign Up
-                </Form.Text>
-              </Form.Group>
+              <Form.Text className="text-muted" style={{marginTop: '10px'}}>
+                Already have an account?
+                <Link to="/login" style={{marginLeft: '5px'}}>Log in</Link>
+              </Form.Text>
             </Form>
           </Card.Body>
         </Card>
