@@ -1,6 +1,7 @@
 import React from "react";
 import {Card, Form, Button, Col, Alert} from 'react-bootstrap';
 import {Redirect} from 'react-router-dom';
+import {connect} from 'react-redux';
 import './Login.css';
 import './Signup.css';
 
@@ -8,15 +9,12 @@ class Signup extends React.Component {
   constructor() {
     super();
     this.state = {
-      username: "pokiki@myhunter.cuny.edu",
-      password: "Add211",
-      redirect: false,
-      loginFailed: false
+      redirect: false
     }
-    this.authenticateLogin = this.authenticateLogin.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
   
-  authenticateLogin(e) {
+  handleSubmit(e) {
     e.preventDefault();
     console.log("Submitted");
     const login_success = (
@@ -31,6 +29,12 @@ class Signup extends React.Component {
     }
   }
   
+  error = {
+    1: "Passwords do not match",
+    2: "Enter a valid email address",
+    3: "First name cannot be empty",
+    4: "Last name cannot be empty"
+  }
 
   render() {
     if (this.state.redirect) {
@@ -93,4 +97,10 @@ class Signup extends React.Component {
   }
 }
 
-export default Signup;
+const getStateToProps = (state) => {
+  return {
+    users: state.users,
+    user: state.user
+  }
+}
+export default connect()(Signup);
