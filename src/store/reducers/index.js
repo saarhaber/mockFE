@@ -50,7 +50,17 @@ const userSelectReducer = (user = {}, action) => {
   }
 }
 
+const interviewsReducer = (interviews = [], action) => {
+  switch(action.type) {
+    case "FETCH_INTERVIEWS":
+      return action.payload;
+    default:
+      return interviews;
+  }
+}
+
 export default combineReducers({
   users: userReducer,
-  user: userSelectReducer
+  user: userSelectReducer,
+  interviews: interviewsReducer
 });

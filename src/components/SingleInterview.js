@@ -10,11 +10,11 @@ class SingleInterview extends React.Component {
           <Card.Body>
            <Card.Title>Interview</Card.Title>
             <Card.Text>
-              TIme:
+              Time: time here;
               <br></br>
-              Location:
+              Location: location here
               <br></br>
-              Interviewer:
+              Interviewer: name here
              </Card.Text>
              {/* This button will BOOK the meeting */}
              <Button variant="primary">BOOK</Button>
