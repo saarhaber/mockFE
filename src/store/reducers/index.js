@@ -28,7 +28,13 @@ const users_ = [
     interviewAmount: 10,
     lastInterview: (Date.now()/1000),
     isInterviewer: true
-  }]
+  }
+];
+
+const interviews_ = [
+
+];
+
 
 // reducer: list of users
 const userReducer = (users = users_, action) => {
@@ -41,6 +47,7 @@ const userReducer = (users = users_, action) => {
   }
 }
 
+// reducer: selected user
 const userSelectReducer = (user = {}, action) => {
   switch(action.type) {
     case "SELECT_USER":
@@ -50,7 +57,30 @@ const userSelectReducer = (user = {}, action) => {
   }
 }
 
+// reducer: list of interviews
+const interviewReducer = (interviews = interviews_, action) => {
+  switch(action.type) {
+    case "ADD_INTERVIEW":
+      interviews.push(action.payload);
+      return interviews;
+    default:
+      return interviews;
+  }
+}
+
+// reducer: selected interview
+const interviewSelectReducer = (interview = {}, action) => {
+  switch(action.type) {
+    case "SELECT_INTERVIEW":
+      return action.payload;
+    default:
+      return interview;
+  }
+}
+
 export default combineReducers({
   users: userReducer,
-  user: userSelectReducer
+  user: userSelectReducer,
+  interviews: interviewReducer,
+  interview: interviewSelectReducer
 });
