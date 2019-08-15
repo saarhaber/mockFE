@@ -40,7 +40,7 @@ class Login extends React.Component {
     console.log("user: ", this.props.user);   
     if (this.state.redirect) {
       return(
-        <Redirect to="/dashboard"/>
+        <Redirect to="/user"/>
       );
     }
     return (
