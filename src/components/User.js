@@ -1,46 +1,48 @@
 import React from 'react';
 import './User.css';
 import {Card, Button} from 'react-bootstrap';
+import {connect} from 'react-redux';
+import {Redirect} from 'react-router';
 
 class User extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            id: this.props.user_id,
-            firstName: this.props.user_firstName,
-            lastName: this.props.user_lastName,
-            imageUrl: this.props.user_imageUrl,
-            email: this.props.user_email,
-            organization: this.props.user_organization,
-            description: this.props.user_description,
-            profession: this.props.user_student,
-            interviewAmount: this.props.user_interviewAmount,
-            lastInterview: this.props.user_lastInterview,
-            isInterviewer: this.props.user_isInterviewer
-        }
     }
   render() {
-  return (
-    <div className="User">
-      <Card style={{ width: '18rem', borderRadius: '20px'}}>
+    if (!this.props.user.id) {
+      // User not logged in, redirect
+      return (
+        <Redirect to="/login"></Redirect>
+      )
+    } 
+    return (
+      <div className="User">
+        <Card style={{ width: '18rem', borderRadius: '20px'}}>
           <Card.Body>
-           <Card.Title>{this.state.firstName} {this.state.lastName}</Card.Title>
-           <img src={this.state.imageUrl}/>
-           <Card.Text>
-               <br></br>
-            {this.state.email} <br></br> 
-            {this.state.organization} <br></br> 
-            {this.state.description} <br></br> 
-            {this.state.student} <br></br> 
-           </Card.Text>
-           <Card.Title>Interviews</Card.Title>
-             {/* This button will ADD an interview the meeting */}
-             <Button variant="primary">ADD</Button>
-           </Card.Body>
+          <Card.Title>{this.props.user.firstName} {this.props.user.lastName}</Card.Title>
+          <img src={this.props.user.imageUrl}/>
+          <Card.Text>
+            <br></br>
+            {this.props.user.email} <br></br> 
+            {this.props.user.organization} <br></br> 
+            {this.props.user.description} <br></br> 
+            {this.props.user.student} <br></br> 
+          </Card.Text>
+          <Card.Title>Interviews</Card.Title>
+            {/* This button will ADD an interview the meeting */}
+            <Button variant="primary">ADD</Button>
+          </Card.Body>
         </Card>
-    </div>
-  );
+      </div>
+    );
   }
 }
 
-export default User;
+const getStateToProps = (state) => {
+  return {
+    users: state.users,
+    user: state.user
+  }
+}
+
+export default connect(getStateToProps)(User);

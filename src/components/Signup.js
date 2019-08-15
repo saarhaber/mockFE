@@ -38,7 +38,13 @@ class Signup extends React.Component {
       lastname: undefined,
       email: undefined,
       password: undefined,
-      isEmployer: undefined
+      imageUrl: "https://pngimage.net/wp-content/uploads/2018/06/student-logo-png-2.png",
+      isInterviewer: undefined,
+      organization: "None",
+      description: "None",
+      profession: "None",
+      interviewAmount: 0,
+      lastInterview: (Date.now()/1000)
     }
 
     // Check inputs
@@ -72,7 +78,7 @@ class Signup extends React.Component {
     }
 
     if(e.target.formRadio.value) {
-      newUser.isEmployer= e.target.formRadio.value;
+      newUser.isInterviewer = e.target.formRadio.value;
     } else {
       errorCodes.push(6);
     }
