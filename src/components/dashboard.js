@@ -4,7 +4,7 @@ import SingleInterview from './SingleInterview';
 
 function Dashboard(props) {
   const {interviews} = props;
-  console.log(interviews);
+  console.log(props);
   return (
   <div>
     <div className="heading">

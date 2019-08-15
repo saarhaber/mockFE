@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './App.css';
 import {Redirect} from 'react-router';
 import {connect} from 'react-redux';
@@ -11,12 +11,17 @@ import {Route, BrowserRouter as Router} from 'react-router-dom';
 import {fetchInterviewsThunk} from "./store/actions";
 
 
-class App extends React.Component {
+class App extends Component {
   constructor() {
     super();
     this.state = {
     }
   }
+
+  componentDidMount() {
+    this.props.fetchAllInterviews();
+  }
+
 render(){
   const Interviews = () => (<Dashboard interviews = {this.props.interviews}/>);
  return (
