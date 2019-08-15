@@ -1,8 +1,7 @@
 import React from 'react';
 import './App.css';
-// import {Redirect} from 'react-router';
+import {Redirect} from 'react-router';
 import {connect} from 'react-redux';
-
 import Login from './components/Login';
 import Signup from './components/Signup';
 import User from './components/User';
@@ -15,12 +14,9 @@ class App extends React.Component {
 
 render(){
  return (
-    //UNCOMMENT THIS LATER
-    // <Redirect to="/signup"/>
-    
-console.log(this.props.users),
-<Router>
+    <Router>
       <div>
+      <Redirect to="/signup" component={Signup}/>
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         {/* the singleInterview link is temporary so we can see how the components looks like */}
