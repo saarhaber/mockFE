@@ -2,7 +2,7 @@ import React from "react";
 import {Card, Form, Button, Alert} from 'react-bootstrap';
 import {Link, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {selectUser, updateUserList} from '../store/actions/index';
+import {selectUser, fetchUsers} from '../store/actions/index';
 import axios from 'axios';
 import './Login.css';
 
@@ -18,18 +18,8 @@ class Login extends React.Component {
     this.authenticateLogin = this.authenticateLogin.bind(this);
   }
 
-  componentDidMount() {
-    this.getUsers();
-  }
-
-  async getUsers() {
-    await axios.get("https://jsonplaceholder.typicode.com/todos/")
-    .then(response => {
-      this.props.updateUserList(response.data);
-    })
-    .catch(error => {
-      console.log(TAG, "Can not GET users from API", error);
-    });
+  componentWillMount() {
+    this.props.fetchUsers();
   }
 
   authenticateLogin(e) {
@@ -105,4 +95,4 @@ const getStateToProps = (state) => {
   }
 }
 
-export default connect(getStateToProps, {selectUser, updateUserList})(Login);
+export default connect(getStateToProps, {selectUser, fetchUsers})(Login);

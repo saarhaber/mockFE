@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 const TAG = "ACTIONS/INDEX_JS";
 
 // Adds a new user to the store
@@ -16,10 +18,18 @@ export const selectUser = (user) => {
   }
 }
 
-export const updateUserList = (users) => {
-  return {
-    type: "UPDATE_USER_LIST",
-    payload: users
+export const fetchUsers = (users) => {
+  return(dispatch) => {
+    axios.get('https://jsonplaceholder.typicode.com/todos/')
+    .then(response => {
+      dispatch({
+        type: "FETCH_USERS",
+        payload: response.data
+      })
+    })
+    .catch(error => {
+      console.log(TAG, "Cannot fetch data from api", error);
+    })
   }
 }
 

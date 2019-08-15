@@ -11,7 +11,7 @@ const userReducer = (users = [], action) => {
     case "ADD_USER":
       users.push(action.payload);
       return users;
-    case "UPDATE_USER_LIST":
+    case "FETCH_USERS":
       return action.payload;
     default:
       return users;
