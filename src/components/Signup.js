@@ -99,9 +99,6 @@ class Signup extends React.Component {
   }
 
   render() {
-    console.log(TAG, "Users: ", this.props.users);
-    console.log(TAG, "User: ", this.props.user);
-
     if (this.state.redirect) {
       return(
         <Redirect to="/login"/>
@@ -175,9 +172,5 @@ class Signup extends React.Component {
 }
 
 const getStateToProps = (state) => {
-  return {
-    users: state.users,
-    user: state.user
-  }
 }
 export default connect(getStateToProps, {addUser})(Signup);
