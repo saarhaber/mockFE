@@ -19,6 +19,7 @@ class App extends Component {
   }
 
   componentDidMount() {
+    console.log(this.props)
     this.props.fetchAllInterviews();
   }
 
@@ -39,13 +40,7 @@ render(){
     );
 }
 }
-const getStateToProps = (state) => {
-  return {
-    users: state.users,
-    user: state.user,
-    interviews: state.interviews
-  }
-}
+
 
 const mapState = (state) => {
   return {
@@ -60,4 +55,4 @@ fetchAllInterviews: () => dispatch(fetchInterviewsThunk())
 }
 }
 
-export default connect(mapState, mapDispatch, getStateToProps)(App)
+export default connect(mapState, mapDispatch)(App)

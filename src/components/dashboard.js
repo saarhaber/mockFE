@@ -3,6 +3,7 @@ import './Dashboard.css';
 import SingleInterview from './SingleInterview';
 
 function Dashboard(props) {
+  
   const {interviews} = props;
   console.log(props);
   return (
@@ -11,7 +12,7 @@ function Dashboard(props) {
       <h1> Click "BOOK" to set up an Interview</h1>
     </div>
     <div className="dashboard">
-      {interviews.map(interview => <SingleInterview
+      {interviews.map(interview =>  <SingleInterview
       props = {interview}
       />)
       }
