@@ -18,6 +18,26 @@ export const selectUser = (user) => {
   }
 }
 
+// Fetch Interviews
+export const fetchInterviews = (interviews) => {
+  return {
+    type: "FETCH_INTERVIEWS",
+    payload: interviews,
+  }
+}
+
+// THUNK CREATOR;
+export const fetchInterviewsThunk = () => (dispatch) => {
+  axios.get(`https://frozen-spire-39361.herokuapp.com/api/interviews`)
+  .then(res => {
+      console.log(res)
+    dispatch(fetchInterviews(res.data));
+  })
+  .catch(err => {
+    console.log(err);
+  })
+
+}
 export const fetchUsers = (users) => {
   return(dispatch) => {
     axios.get('https://jsonplaceholder.typicode.com/todos/')

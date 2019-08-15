@@ -28,7 +28,7 @@ render(){
  return (
     <Router>
       <div>
-      {/* <Redirect to="/signup" component={Signup}/> */}
+      <Redirect to="/signup" component={Signup}/>
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         {/* the singleInterview link is temporary so we can see how the components looks like */}
@@ -56,4 +56,4 @@ fetchAllInterviews: () => dispatch(fetchInterviewsThunk())
 }
 }
 
-export default connect(mapState, mapDispatch)(App)
+export default connect(mapState,  mapDispatch)(App)
