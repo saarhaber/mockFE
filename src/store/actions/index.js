@@ -2,6 +2,29 @@ import axios from 'axios';
 
 const TAG = "ACTIONS/INDEX_JS";
 
+// Stores an user
+export const selectUser = (user) => {
+  return {
+    type: "SELECT_USER",
+    payload: user,
+  }
+}
+
+export const fetchUsers = () => {
+  return(dispatch) => {
+    axios.get('https://frozen-spire-39361.herokuapp.com/api/users/')
+    .then(response => {
+      dispatch({
+        type: "FETCH_USERS",
+        payload: response.data
+      })
+    })
+    .catch(error => {
+      console.log(TAG, "Cannot fetch users from api", error);
+    })
+  }
+}
+
 // Adds a new user to the store
 export const addUser = (user) => {
   return(dispatch) => {
@@ -50,29 +73,7 @@ export const editUser = (user, newUser) => {
   }
 }
 
-
-// Stores an user
-export const selectUser = (user) => {
-  return {
-    type: "SELECT_USER",
-    payload: user,
-  }
-}
-
-export const fetchUsers = () => {
-  return(dispatch) => {
-    axios.get('https://frozen-spire-39361.herokuapp.com/api/users/')
-    .then(response => {
-      dispatch({
-        type: "FETCH_USERS",
-        payload: response.data
-      })
-    })
-    .catch(error => {
-      console.log(TAG, "Cannot fetch users from api", error);
-    })
-  }
-}
+// ---------- Interview action creators ----------
 
 export const fetchInterviews = () => {
   return(dispatch) => {

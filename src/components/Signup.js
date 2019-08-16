@@ -35,29 +35,28 @@ class Signup extends React.Component {
     let errorCodes = [];
 
     let newUser = {
-      id: this.props.users.length,
-      firstname: undefined,
-      lastname: undefined,
-      email: undefined,
+      firstName: undefined,
+      lastName: undefined,
       password: undefined,
       imageUrl: "https://pngimage.net/wp-content/uploads/2018/06/student-logo-png-2.png",
-      isInterviewer: undefined,
+      email: undefined,
       organization: "None",
       description: "None",
       profession: "None",
       interviewAmount: 0,
-      lastInterview: (Date.now()/1000)
+      lastInterview: "2019-08-16T18:46:08.921Z",
+      isInterviewer: undefined
     }
 
     // Check inputs
     if(e.target.firstname.value) {
-      newUser.firstname= e.target.firstname.value;
+      newUser.firstName= e.target.firstname.value;
     } else {
       errorCodes.push(4);
     }
 
     if(e.target.lastname.value) {
-      newUser.lastname= e.target.lastname.value;
+      newUser.lastName= e.target.lastname.value;
     } else {
       errorCodes.push(5);
     }
@@ -88,6 +87,7 @@ class Signup extends React.Component {
     // If a valid input is received, create user
     if (errorCodes.length == 0) {
       this.props.addUser(newUser);
+      console.log(TAG, newUser);
       this.setState({redirect: true});
     } else {
       // Show 2 errors
