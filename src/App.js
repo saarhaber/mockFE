@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
-import {Redirect} from 'react-router';
-import {connect} from 'react-redux';
+
 import Login from './components/Login';
 import Signup from './components/Signup';
 import User from './components/User';
