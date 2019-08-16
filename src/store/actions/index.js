@@ -18,27 +18,7 @@ export const selectUser = (user) => {
   }
 }
 
-// Fetch Interviews
-export const fetchInterviews = (interviews) => {
-  return {
-    type: "FETCH_INTERVIEWS",
-    payload: interviews,
-  }
-}
-
-// THUNK CREATOR;
-export const fetchInterviewsThunk = () => (dispatch) => {
-  axios.get(`https://frozen-spire-39361.herokuapp.com/api/interviews`)
-  .then(res => {
-      console.log(res)
-    dispatch(fetchInterviews(res.data));
-  })
-  .catch(err => {
-    console.log(err);
-  })
-
-}
-export const fetchUsers = (users) => {
+export const fetchUsers = () => {
   return(dispatch) => {
     axios.get('https://jsonplaceholder.typicode.com/todos/')
     .then(response => {
@@ -48,7 +28,22 @@ export const fetchUsers = (users) => {
       })
     })
     .catch(error => {
-      console.log(TAG, "Cannot fetch data from api", error);
+      console.log(TAG, "Cannot fetch users from api", error);
+    })
+  }
+}
+
+export const fetchInterviews = () => {
+  return(dispatch) => {
+    axios.get('https://jsonplaceholder.typicode.com/todos/')
+    .then(response => {
+      dispatch({
+        type: "FETCH_INTERVIEWS",
+        payload: response.data
+      })
+    })
+    .catch(error => {
+      console.log(TAG, "Cannot fetch interviews from api", error);
     })
   }
 }

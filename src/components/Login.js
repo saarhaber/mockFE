@@ -18,7 +18,7 @@ class Login extends React.Component {
     this.authenticateLogin = this.authenticateLogin.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchUsers();
   }
 

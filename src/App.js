@@ -8,7 +8,6 @@ import User from './components/User';
 import SingleInterview from './components/SingleInterview';
 import Dashboard from './components/Dashboard';
 import {Route, BrowserRouter as Router} from 'react-router-dom';
-import {fetchInterviewsThunk} from "./store/actions";
 
 
 class App extends Component {
@@ -19,41 +18,23 @@ class App extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props)
-    this.props.fetchAllInterviews();
+    console.log(this.props);
   }
 
-render(){
-  const Interviews = () => (<Dashboard interviews = {this.props.interviews}/>);
- return (
-    <Router>
-      <div>
-      <Redirect to="/signup" component={Signup}/>
-        <Route path="/login" component={Login} />
-        <Route path="/signup" component={Signup} />
-        {/* the singleInterview link is temporary so we can see how the components looks like */}
-        <Route path="/SingleInterview" component={SingleInterview} />
-        <Route path="/dashboard" render={Interviews} />
-        <Route path="/user" component={User} />
-      </div>
-    </Router> 
-
+  render(){
+    return (
+      <Router>
+        <div>
+          <Route path="/login" component={Login} />
+          <Route path="/signup" component={Signup} />
+          {/* the singleInterview link is temporary so we can see how the components looks like */}
+          <Route path="/SingleInterview" component={SingleInterview} />
+          <Route path="/dashboard" component={Dashboard} />
+          <Route path="/user" component={User} />
+        </div>
+      </Router> 
     );
   }
 }
 
-
-const mapState = (state) => {
-  return {
-    users: state.users,
-    user: state.user,
-    interviews: state.interviews
-  }
-}
-
-const mapDispatch = (dispatch) => { return {
-fetchAllInterviews: () => dispatch(fetchInterviewsThunk())
-}
-}
-
-export default connect(mapState,  mapDispatch)(App)
+export default App;

@@ -29,8 +29,10 @@ const userSelectReducer = (user = {}, action) => {
 }
 
 // reducer: list of interviews
-const interviewReducer = (interviews = interviews_, action) => {
+const interviewReducer = (interviews = [], action) => {
   switch(action.type) {
+    case "FETCH_INTERVIEWS":
+      return action.payload;
     case "ADD_INTERVIEW":
       interviews.push(action.payload);
       return interviews;
