@@ -1,10 +1,5 @@
 import {combineReducers} from 'redux';
 
-const interviews_ = [
-
-];
-
-
 // reducer: list of users
 const userReducer = (users = [], action) => {
   switch(action.type) {

@@ -20,7 +20,7 @@ export const selectUser = (user) => {
 
 export const fetchUsers = () => {
   return(dispatch) => {
-    axios.get('https://jsonplaceholder.typicode.com/todos/')
+    axios.get('https://frozen-spire-39361.herokuapp.com/api/users/')
     .then(response => {
       dispatch({
         type: "FETCH_USERS",
@@ -35,7 +35,7 @@ export const fetchUsers = () => {
 
 export const fetchInterviews = () => {
   return(dispatch) => {
-    axios.get('https://jsonplaceholder.typicode.com/todos/')
+    axios.get('https://frozen-spire-39361.herokuapp.com/api/interviews/')
     .then(response => {
       dispatch({
         type: "FETCH_INTERVIEWS",
