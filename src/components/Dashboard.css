@@ -3,12 +3,17 @@
     align-content: space-between;
     flex-wrap: wrap;
     justify-content: center;
+    margin: 60px;
 }
-.heading {
-    background-color: rgba(46, 77, 216, 0.281);
-    margin: 5px;
+
+.button {
+    background-color: white;
     display: flex;
     align-content: space-between;
     flex-wrap: wrap;
     justify-content: center;
+    position: absolute;
+    right:0;
+    margin: 10px 10px;
 }
+
