@@ -5,6 +5,8 @@ import {connect} from 'react-redux';
 import {addUser} from '../store/actions/index';
 import './Login.css';
 import './Signup.css';
+import faker from 'faker';
+
 
 const TAG = "COMPONENTS/SIGNUP_JS"
 
@@ -38,7 +40,7 @@ class Signup extends React.Component {
       firstName: undefined,
       lastName: undefined,
       password: undefined,
-      imageUrl: "https://pngimage.net/wp-content/uploads/2018/06/student-logo-png-2.png",
+      imageUrl: faker.image.avatar(),
       email: undefined,
       organization: "None",
       description: "None",

@@ -25,6 +25,7 @@ class Login extends React.Component {
     e.preventDefault();
     console.log("Submitted");
 
+    console.log(this.props.users)
     // Search for user in the store
     const user = this.props.users.find(a_user => (
       a_user.email == e.target.username.value &&
