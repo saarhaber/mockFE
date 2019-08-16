@@ -12,7 +12,8 @@ class User extends React.Component {
     if (!this.props.user.id) {
       // User not logged in, redirect
       return (
-        <Redirect to="/login"></Redirect>
+        // <Redirect to="/login"></Redirect>
+       null
       )
     } 
     return (

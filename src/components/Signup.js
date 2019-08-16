@@ -101,7 +101,7 @@ class Signup extends React.Component {
   render() {
     if (this.state.redirect) {
       return(
-        <Redirect to="/login"/>
+        <Redirect to="/login"/> 
       );
     }
 
@@ -172,5 +172,7 @@ class Signup extends React.Component {
 }
 
 const getStateToProps = (state) => {
-}
+  return {
+  users: state.users
+}}
 export default connect(getStateToProps, {addUser})(Signup);
