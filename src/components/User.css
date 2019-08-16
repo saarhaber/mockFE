@@ -16,4 +16,15 @@ img {
     border-radius: 50%;
 
 }
-    
+
+.button {
+    background-color: white;
+    display: flex;
+    align-content: space-between;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: absolute;
+    right:0;
+    margin: 10px 10px;
+}
+
