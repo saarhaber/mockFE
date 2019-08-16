@@ -3,7 +3,6 @@ import {Card, Form, Button, Alert} from 'react-bootstrap';
 import {Link, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {selectUser, fetchUsers} from '../store/actions/index';
-import axios from 'axios';
 import './Login.css';
 
 const TAG = "COMPONENTS/LOGIN_JS";

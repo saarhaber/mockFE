@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {Card, Form, Button, Col, Alert} from 'react-bootstrap';
 import {Link, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
@@ -69,7 +69,7 @@ class Signup extends React.Component {
     }
 
     // Check passwords
-    if(e.target.password.value) {
+    if(e.target.password) {
       if (e.target.confirm.value != e.target.password.value) {
         errorCodes.push(1);
       } else {

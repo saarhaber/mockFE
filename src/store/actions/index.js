@@ -3,12 +3,31 @@ import axios from 'axios';
 const TAG = "ACTIONS/INDEX_JS";
 
 // Adds a new user to the store
-export const addUser = (user) => {
-  return {
-    type: "ADD_USER",
-    payload: user
+export const addUser = (user) => async (dispatch) => {
+  await axios.post('https://frozen-spire-39361.herokuapp.com/api/users/', {
+    firstName: user.firstname,
+    lastName: user.lastname,
+    imageUrl: user.imageUrl,
+    email: user.email,
+    password: user.password,
+    organization: user.organization,
+    description: user.description,
+    profession: user.profession,
+    interviewAmount: user.interviewAmount,
+    lastInterview: user.lastInterview,
+    isInterviewer: user.isInterviewer
+  })
+    .then(user => {
+      dispatch({
+        type: "ADD_USER",
+        payload: user.sata
+      })
+    })
+    .catch(error => {
+      console.log(TAG, "Cannot add user to api", error);
+    })
   }
-}
+
 
 // Stores an user
 export const selectUser = (user) => {
