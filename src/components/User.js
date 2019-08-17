@@ -26,9 +26,9 @@ class User extends React.Component {
     } 
     return (
       <div className="userPage">
-        <Row style={{margin: "10vh 0", width: "90%"}}>
-          <Col>
-            <Card style={{height: "750px", width: "300px", float: "right"}}>
+        <Row style={{margin: "10vh 0"}}>
+          <Col md="auto" style={{marginLeft: "auto"}}>
+            <Card style={{height: "750px", width: "300px", float: "right",}}>
               <img src={this.props.user.imageUrl} />
               <Card.Body>
                 <Card.Title>{this.props.user.firstName + " " + this.props.user.lastName}</Card.Title>
@@ -42,9 +42,9 @@ class User extends React.Component {
               </Card.Body>
             </Card>
           </Col>
-          <Col>
+          <Col md="auto" style={{marginRight: "auto"}}>
             <Row>
-              <Card style={{height: "180px", width: "650px"}}>
+              <Card style={{height: "180px", width: "650px", float: "left"}}>
                 <Card.Body>
                   <Card.Title>My account</Card.Title>
                   <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>
