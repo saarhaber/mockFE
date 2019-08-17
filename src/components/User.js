@@ -28,7 +28,7 @@ class User extends React.Component {
       <div className="userPage">
         <Row style={{margin: "10vh 0", width: "90%"}}>
           <Col>
-            <Card style={{height: "720px", width: "300px", float: "right"}}>
+            <Card style={{height: "750px", width: "300px", float: "right"}}>
               <img src={this.props.user.imageUrl} />
               <Card.Body>
                 <Card.Title>{this.props.user.firstName + " " + this.props.user.lastName}</Card.Title>
@@ -58,7 +58,7 @@ class User extends React.Component {
               </Card>
             </Row>
             <Row>
-              <Card style={{height: "540px", width: "650px"}}>
+              <Card style={{height: "570px", width: "650px"}}>
                 <Card.Body>
                   <Card.Title>My schedual</Card.Title>
                   <Card.Subtitle className="mb-2 text-muted">Check your upcoming interviews</Card.Subtitle>
