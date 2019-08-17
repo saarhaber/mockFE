@@ -8,7 +8,6 @@ class BookedInterview extends React.Component {
     <div className="SingleInterview">
       <Card style={{ width: '18rem', borderRadius: '20px'}}>
           <Card.Body>
-           <Card.Title>Interview</Card.Title>
             <Card.Text>
               Time: time here;
               <br></br>
