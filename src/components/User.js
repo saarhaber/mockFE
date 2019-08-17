@@ -27,7 +27,7 @@ class User extends React.Component {
     return (
       <div>
       <Card>
-        <div className="heading">
+        <div>
           <Button className="button" variant="primary"> <Link to='/dashboard'>
             Dashboard
           </Link> </Button>
