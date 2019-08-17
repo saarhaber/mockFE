@@ -25,14 +25,13 @@ class Dashboard extends React.Component {
     console.log(TAG, "All interviews", this.props.interviews);
     console.log(TAG, "Selected interview", this.props.interview);
     return (
-      <div> <Card>
-        <div className="heading">
-          <Button className="button" variant="primary"> <Link to='/user'>
+        <div> <div className="heading1">
+          <Button className="button"> <Link to='/user'>
             Back to Profile
           </Link> </Button>
-        </div> </Card> 
+          </div>
         <div className="dashboard">
-          {this.props.interviews.map(interview =><SingleInterview props = {interview}/>)}          
+          {this.props.interviews.map(interview =><SingleInterview props = {interview}/>)}       
         </div>
       </div>
     );
