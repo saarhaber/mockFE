@@ -1,0 +1,24 @@
+
+
+.heading {
+    margin: 30vh;
+    margin-left: 210px;
+    margin-right: 210px;
+    background-color: rgba(240, 251, 255, 0.148);
+    padding-bottom: 65px;
+    padding-top: 15px;
+    border-style: outset;
+    border-radius: 5px;
+    border-width: 1px 1px 1px 1px;
+}  
+  .button {
+    text-align: center;
+    width: 20%;
+    left: 40%;
+    right: 40%;
+  }
+
+.headtext {
+    width: 100%;
+    text-align: center;
+}
