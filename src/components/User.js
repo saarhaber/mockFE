@@ -25,6 +25,13 @@ class User extends React.Component {
       )
     } 
     return (
+      <div>
+      <Card>
+        <div className="heading">
+          <Button className="button" variant="primary"> <Link to='/dashboard'>
+            Dashboard
+          </Link> </Button>
+        </div> </Card> 
       <div className="userPage">
         <Row style={{margin: "10vh 0"}}>
           <Col md="auto" style={{marginLeft: "auto"}}>
@@ -72,6 +79,7 @@ class User extends React.Component {
             </Row>
           </Col>
         </Row>
+      </div>
       </div>
     );
   }
