@@ -2,7 +2,7 @@ import React from "react";
 import {Card, Form, Button, Alert} from 'react-bootstrap';
 import {Link, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {fetchUsers, login} from '../store/actions/index';
+import {fetchUsers, login, getUser} from '../store/actions/index';
 import './Login.css';
 
 const TAG = "COMPONENTS/LOGIN_JS";
@@ -10,10 +10,6 @@ const TAG = "COMPONENTS/LOGIN_JS";
 class Login extends React.Component {
   constructor() {
     super();
-    this.state = {
-      redirect: false,
-      loginFailed: false
-    }
     this.authenticateLogin = this.authenticateLogin.bind(this);
   }
 
@@ -31,19 +27,18 @@ class Login extends React.Component {
 
     // make a post request using the action creator
     await this.props.login(loginInfo);
-
-    // Select student if found
-    if (this.props.user) {
-      this.setState({redirect: true});
-    } else {
-      this.setState({loginFailed: true});
-    }
   }
 
   render() {
     console.log(TAG, "users: ", this.props.users);
-    console.log(TAG, "user: ", this.props.user);
+    console.log(TAG, "response: ", this.props.serverResponse);
 
+    // Get user from api/auth/me
+    if (this.props.serverResponse) {
+      this.props.getUser();
+    }
+
+    // Redirect if already logged in
     if (this.props.user.id) {
       return(
         <Redirect to="/user"/>
@@ -67,9 +62,9 @@ class Login extends React.Component {
               <Form.Group controlId="formBasicChecbox">
                 <Form.Check type="checkbox" label="Remember Me" style={{marginLeft: '3px'}}/>
               </Form.Group>
-              {this.props.user.message &&
+              {this.props.serverResponse.message &&
                 <Alert variant={"warning"}>
-                  {this.props.user.message}
+                  {this.props.serverResponse.message}
                 </Alert>
               }
               <Button className="form-element" variant="primary" type="submit">
@@ -90,8 +85,9 @@ class Login extends React.Component {
 const getStateToProps = (state) => {
   return {
     users: state.users,
-    user: state.user
+    user: state.user,
+    serverResponse: state.serverResponse
   }
 }
 
-export default connect(getStateToProps, {fetchUsers, login})(Login);
+export default connect(getStateToProps, {fetchUsers, login, getUser})(Login);

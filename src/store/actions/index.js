@@ -8,12 +8,18 @@ export const login = (login) => {
     axios.post('https://frozen-spire-39361.herokuapp.com/api/auth/login', login)
     .then(response => {
       dispatch({
-        type: 'SELECT_USER',
+        type: 'SAVE_RESPONSE',
         payload: response.data
       })
     })
     .catch(error => {
       console.log(TAG, "Cannot login", error);
+      dispatch({
+        type: 'SAVE_RESPONSE',
+        payload: {
+          message: 'Error communicating with server'
+        }
+      })
     })
   }
 }
@@ -24,8 +30,8 @@ export const signup = (user) => {
     axios.post('https://frozen-spire-39361.herokuapp.com/api/auth/signup', user)
     .then(response => {
       dispatch({
-        type: 'SELECT_USER',
-        payload: user
+        type: 'SAVE_RESPONSE',
+        payload: response.body
       })
     })
     .catch(error => {
@@ -37,10 +43,18 @@ export const signup = (user) => {
 // ---------- User action creators ----------
 
 // Stores an user
-export const selectUser = (user) => {
-  return {
-    type: "SELECT_USER",
-    payload: user,
+export const getUser = () => {
+  return (dispatch) => {
+    axios.get('https://frozen-spire-39361.herokuapp.com/api/auth/me')
+    .then(response => {
+      dispatch({
+        type: 'SELECT_USER',
+        payload: response.body
+      })
+    })
+    .catch(error => {
+      console.log(TAG, "Can't get user", error);
+    })
   }
 }
 

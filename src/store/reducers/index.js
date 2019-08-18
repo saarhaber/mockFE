@@ -23,6 +23,15 @@ const userSelectReducer = (user = {}, action) => {
   }
 }
 
+const serverResponseReducer = (serverResponse = {}, action) => {
+  switch(action.type) {
+    case "SAVE_RESPONSE":
+      return action.payload;
+    default:
+      return serverResponse;
+  }
+}
+
 // reducer: list of interviews
 const interviewReducer = (interviews = [], action) => {
   switch(action.type) {
@@ -50,5 +59,6 @@ export default combineReducers({
   users: userReducer,
   user: userSelectReducer,
   interviews: interviewReducer,
-  interview: interviewSelectReducer
+  interview: interviewSelectReducer,
+  serverResponse: serverResponseReducer
 });
