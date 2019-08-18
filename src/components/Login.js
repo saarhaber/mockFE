@@ -2,7 +2,7 @@ import React from "react";
 import {Card, Form, Button, Alert} from 'react-bootstrap';
 import {Link, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {selectUser, fetchUsers} from '../store/actions/index';
+import {fetchUsers, login} from '../store/actions/index';
 import './Login.css';
 
 const TAG = "COMPONENTS/LOGIN_JS";
@@ -21,20 +21,19 @@ class Login extends React.Component {
     this.props.fetchUsers();
   }
 
-  authenticateLogin(e) {
+  async authenticateLogin(e) {
     e.preventDefault();
-    console.log("Submitted");
 
-    console.log(this.props.users)
-    // Search for user in the store
-    const user = this.props.users.find(a_user => (
-      a_user.email == e.target.username.value &&
-      a_user.password == e.target.password.value 
-    ));
+    const loginInfo = {
+      email: e.target.username.value,
+      password: e.target.password.value
+    }
+
+    // make a post request using the action creator
+    await this.props.login(loginInfo);
 
     // Select student if found
-    if (user) {
-      this.props.selectUser(user);
+    if (this.props.user) {
       this.setState({redirect: true});
     } else {
       this.setState({loginFailed: true});
@@ -45,7 +44,7 @@ class Login extends React.Component {
     console.log(TAG, "users: ", this.props.users);
     console.log(TAG, "user: ", this.props.user);
 
-    if (this.state.redirect) {
+    if (this.props.user.id) {
       return(
         <Redirect to="/user"/>
       );
@@ -68,9 +67,9 @@ class Login extends React.Component {
               <Form.Group controlId="formBasicChecbox">
                 <Form.Check type="checkbox" label="Remember Me" style={{marginLeft: '3px'}}/>
               </Form.Group>
-              {this.state.loginFailed &&
+              {this.props.user.message &&
                 <Alert variant={"warning"}>
-                  Username and password do not match
+                  {this.props.user.message}
                 </Alert>
               }
               <Button className="form-element" variant="primary" type="submit">
@@ -95,4 +94,4 @@ const getStateToProps = (state) => {
   }
 }
 
-export default connect(getStateToProps, {selectUser, fetchUsers})(Login);
+export default connect(getStateToProps, {fetchUsers, login})(Login);

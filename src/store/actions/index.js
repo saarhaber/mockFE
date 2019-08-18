@@ -2,6 +2,24 @@ import axios from 'axios';
 
 const TAG = "ACTIONS/INDEX_JS";
 
+// login
+export const login = (login) => {
+  return(dispatch) => {
+    axios.post('https://frozen-spire-39361.herokuapp.com/api/auth/login', login)
+    .then(response => {
+      dispatch({
+        type: 'SELECT_USER',
+        payload: response.data
+      })
+    })
+    .catch(error => {
+      console.log(TAG, "Cannot login", error);
+    })
+  }
+}
+
+// ---------- User action creators ----------
+
 // Stores an user
 export const selectUser = (user) => {
   return {
