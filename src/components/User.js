@@ -6,14 +6,22 @@ import {Redirect} from 'react-router';
 import {Link} from 'react-router-dom';
 import BookedInterview from './BookedInterview';
 import {fetchInterviews} from '../store/actions/index';
+import {deleteUser, selectUser, fetchUsers} from '../store/actions/index';
 
 class User extends React.Component {
     constructor(props) {
         super(props);
+        this.deleteUser = this.deleteUser.bind(this);
     }
 
     componentDidMount() {
       this.props.fetchInterviews();
+    }
+
+    deleteUser() {
+      this.props.deleteUser(this.props.user);
+      this.props.selectUser({});
+      this.props.fetchUsers();
     }
 
 
@@ -60,7 +68,7 @@ class User extends React.Component {
                     the card's content.
                   </Card.Text>
                   <Card.Link href="#">Edit Account</Card.Link>
-                  <Card.Link href="#">Delete Account</Card.Link>
+                  <Card.Link href="#" onClick={this.deleteUser}>Delete Account</Card.Link>
                 </Card.Body>
               </Card>
             </Row>
@@ -93,4 +101,4 @@ const getStateToProps = (state) => {
   }
 }
 
-export default connect(getStateToProps, {fetchInterviews})(User);
+export default connect(getStateToProps, {fetchInterviews, deleteUser, selectUser, fetchUsers})(User);
