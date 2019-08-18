@@ -2,7 +2,7 @@ import React from 'react';
 import {Card, Form, Button, Col, Alert} from 'react-bootstrap';
 import {Link, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {addUser} from '../store/actions/index';
+import {signup} from '../store/actions/index';
 import './Login.css';
 import './Signup.css';
 import faker from 'faker';
@@ -88,8 +88,7 @@ class Signup extends React.Component {
 
     // If a valid input is received, create user
     if (errorCodes.length == 0) {
-      this.props.addUser(newUser);
-      console.log(TAG, newUser);
+      this.props.signup(newUser);
       this.setState({redirect: true});
     } else {
       // Show 2 errors
@@ -177,4 +176,4 @@ const getStateToProps = (state) => {
   return {
   users: state.users
 }}
-export default connect(getStateToProps, {addUser})(Signup);
+export default connect(getStateToProps, {signup})(Signup);

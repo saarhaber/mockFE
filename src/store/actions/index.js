@@ -18,6 +18,22 @@ export const login = (login) => {
   }
 }
 
+// Signup
+export const signup = (user) => {
+  return (dispatch) => {
+    axios.post('https://frozen-spire-39361.herokuapp.com/api/auth/signup', user)
+    .then(response => {
+      dispatch({
+        type: 'SELECT_USER',
+        payload: user
+      })
+    })
+    .catch(error => {
+      console.log(TAG, "Cannot create user", error);
+    })
+  }
+}
+
 // ---------- User action creators ----------
 
 // Stores an user
@@ -39,22 +55,6 @@ export const fetchUsers = () => {
     })
     .catch(error => {
       console.log(TAG, "Cannot fetch users from api", error);
-    })
-  }
-}
-
-// Adds a new user to the store
-export const addUser = (user) => {
-  return(dispatch) => {
-    axios.post('https://frozen-spire-39361.herokuapp.com/api/users/', user)
-    .then(response => {
-      dispatch({
-        type: "FETCH_USERS",
-        payload: response.data
-      })
-    })
-    .catch(error => {
-      console.log(TAG, "Cannot post user to api", error);
     })
   }
 }
