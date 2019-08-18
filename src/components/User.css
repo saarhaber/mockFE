@@ -19,3 +19,16 @@ img {
     right:0;
     margin: 10px 10px;
 }
+
+.profileTab {
+    margin-top: 15px;
+}
+
+.nav-tabs {
+    border-bottom: 1px solid #dee2e6;
+    margin:  0px;
+}
+
+.edit-form-btn {
+    margin-top: 15px;
+}
