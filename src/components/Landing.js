@@ -12,14 +12,12 @@ render(){
                 <Card.Text className="headtext"><h3>Welcome to MockUp</h3>
                     <h5> Where you can ... </h5>
                 </Card.Text>
-                <Button className="button" variant="primary">
+                <Button className="button1" variant="primary">
                     <Link to='/login'>
                         Login
                     </Link>
                 </Button>
-                <br></br>
-                <br></br>
-                <Button className="button" variant="primary">
+                <Button className="button1" variant="primary">
                     <Link to='/signup'>
                         Sign Up
                     </Link>
@@ -34,4 +32,4 @@ render(){
 
 
 
-export default Landing;
+export default Landing; 
