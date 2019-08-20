@@ -94,12 +94,12 @@ export const deleteUser = (user) => {
 }
 
 // Edits an user
-export const editUser = (user, newUser) => {
+export const editUser = (newUser) => {
   return(dispatch) => {
-    axios.put('https://frozen-spire-39361.herokuapp.com/api/users/' + user.id, newUser)
+    axios.put('http://localhost:5000/api/users/' + newUser.id, newUser)
     .then(response => {
       dispatch({
-        type: "NONE",
+        type: "SERVER_RESPONSE",
         payload: response.data
       })
     })

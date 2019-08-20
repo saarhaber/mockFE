@@ -1,7 +1,7 @@
 import React from "react";
 import {Navbar, Nav, NavDropdown, Button} from "react-bootstrap";
 import {connect} from "react-redux";
-
+import {Link} from 'react-router-dom';
 class NavMain extends React.Component {
   render() {
     return(
@@ -10,8 +10,8 @@ class NavMain extends React.Component {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link href="/user">Profile</Nav.Link>
-            <Nav.Link href="/dashboard">Bulletin</Nav.Link>
+            <Link to="/user">Profile</Link>
+            <Link to="/dashboard">Bulletin</Link>
           </Nav>
         </Navbar.Collapse>
         {this.props.user.id &&

@@ -15,21 +15,20 @@ class EditAccount extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      redirect: false,
       profileErrors: [],
       contactErrors: [],
       passwordErrors: [],
-      id: 1,
-      firstName: "Ajani",
-      lastName: "Stewart",
-      imageUrl: "http://i.imgur.com/AItCxSs.jpg",
-      email: "ajani@gmail.com",
-      organization: "Hunter College",
-      description: "Student Web Developer paitentily waiting for the heat death of the universe",
-      profession: "student",
-      interviewAmount: 3,
-      lastInterview: "2019-08-19T15:46:24.399Z",
-      isInterviewer: false
+      id: undefined,
+      firstName: undefined,
+      lastName: undefined,
+      imageUrl: undefined,
+      email: undefined,
+      organization: undefined,
+      description: undefined,
+      profession: undefined,
+      interviewAmount: undefined,
+      lastInterview: undefined,
+      isInterviewer: undefined
     }
     this.handleChange = this.handleChange.bind(this);
   }
@@ -52,6 +51,22 @@ class EditAccount extends React.Component {
     "Select student or employee"
   ];
 
+  componentDidMount() {
+    this.setState({
+      id: this.props.user.id,
+      firstName: this.props.user.firstName,
+      lastName: this.props.user.lastName,
+      imageUrl: this.props.user.lastName,
+      email: this.props.user.email,
+      organization: this.props.user.organization,
+      description: this.props.user.description,
+      profession: this.props.user.profession,
+      interviewAmount: this.props.user.interviewAmount,
+      lastInterview: this.props.user.lastInterview,
+      isInterviewer: this.props.user.isInterviewer
+    })
+  }
+
   profileSubmit(e) {
     e.preventDefault();
 
@@ -68,6 +83,7 @@ class EditAccount extends React.Component {
     }
 
     if (errorCodes.length == 0) {
+      this.props.editUser(this.state);
     } else {
       // Show 2 errors
       if (errorCodes.length > 2) {
@@ -123,9 +139,9 @@ class EditAccount extends React.Component {
   }
 
   render() {
-    if (this.state.redirect) {
+    if (!this.props.user.id) {
       return(
-        <Redirect to="/user"/> 
+        <Redirect to="/login"/> 
       );
     }
 
