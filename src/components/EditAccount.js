@@ -6,6 +6,7 @@ import {editUser} from '../store/actions/index';
 import './Login.css';
 import './Signup.css';
 import faker from 'faker';
+import NavMain from "./NavMain";
 
 
 const TAG = "COMPONENTS/SIGNUP_JS"
@@ -130,6 +131,7 @@ class EditAccount extends React.Component {
 
     return (
       <div className="Login">
+        <NavMain/>
         <Card className="login-card" style={{margin: "10vh 20vh"}}>
           <Card.Header>Update Account Info</Card.Header>
           <Card.Body>

@@ -7,6 +7,7 @@ import {fetchInterviews} from '../store/actions/index'
 import { statement } from '@babel/template';
 import {Link} from 'react-router-dom';
 import {Card, Button} from 'react-bootstrap';
+import NavMain from "./NavMain";
 
 
 const TAG = "DASHBOARD_JS";
@@ -25,11 +26,8 @@ class Dashboard extends React.Component {
     console.log(TAG, "All interviews", this.props.interviews);
     console.log(TAG, "Selected interview", this.props.interview);
     return (
-        <div> <div className="heading1">
-          <Button className="button"> <Link to='/user'>
-            Back to Profile
-          </Link> </Button>
-          </div>
+      <div> 
+        <NavMain/>
         <div className="dashboard">
           {this.props.interviews.map(interview =><SingleInterview props = {interview}/>)}       
         </div>

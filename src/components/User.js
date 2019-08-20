@@ -7,6 +7,7 @@ import {Link} from 'react-router-dom';
 import BookedInterview from './BookedInterview';
 import {fetchInterviews} from '../store/actions/index';
 import {deleteUser, getUser, fetchUsers} from '../store/actions/index';
+import NavMain from "./NavMain";
 
 class User extends React.Component {
     constructor(props) {
@@ -35,12 +36,7 @@ class User extends React.Component {
     } 
     return (
       <div>
-      <Card>
-        <div>
-          <Button className="button" variant="primary"> <Link to='/dashboard'>
-            Dashboard
-          </Link> </Button>
-        </div> </Card> 
+        <NavMain/>
         <div className="userPage">
           <Row style={{margin: "10vh 0"}}>
             <Col md="auto" style={{marginLeft: "auto"}}>

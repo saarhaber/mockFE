@@ -3,6 +3,7 @@ import {Card, Form, Button, Alert} from 'react-bootstrap';
 import {Link, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {fetchUsers, login, getUser} from '../store/actions/index';
+import NavMain from "./NavMain";
 import './Login.css';
 
 const TAG = "COMPONENTS/LOGIN_JS";
@@ -46,6 +47,7 @@ class Login extends React.Component {
     }
     return (
       <div className="Login">
+        <NavMain/>
         <Card className="login-card">
           <Card.Header>Login</Card.Header>
           <Card.Body>

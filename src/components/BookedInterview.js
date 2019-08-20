@@ -7,18 +7,18 @@ class BookedInterview extends React.Component {
   return (
     <div className="SingleInterview">
       <Card style={{ width: '18rem', borderRadius: '20px'}}>
-          <Card.Body>
-            <Card.Text>
-              Time: time here;
-              <br></br>
-              Location: location here
-              <br></br>
-              Interviewer: name here
-             </Card.Text>
-             {/* This button will BOOK the meeting */}
-             <Button variant="primary">Remove</Button>
-           </Card.Body>
-        </Card>
+        <Card.Body>
+          <Card.Text>
+            Time: time here;
+            <br></br>
+            Location: location here
+            <br></br>
+            Interviewer: name here
+          </Card.Text>
+          {/* This button will BOOK the meeting */}
+          <Button variant="primary">Remove</Button>
+        </Card.Body>
+      </Card>
     </div>
   );
   }

@@ -6,6 +6,7 @@ import {signup} from '../store/actions/index';
 import './Login.css';
 import './Signup.css';
 import faker from 'faker';
+import NavMain from "./NavMain";
 
 
 const TAG = "COMPONENTS/SIGNUP_JS"
@@ -108,6 +109,7 @@ class Signup extends React.Component {
 
     return (
       <div className="Login">
+        <NavMain/>
         <Card className="login-card">
           <Card.Header>Create an Account</Card.Header>
           <Card.Body>
