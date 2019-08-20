@@ -4,6 +4,7 @@ import Landing from './components/Landing';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import User from './components/User';
+import EditAccount from './components/EditAccount';
 import SingleInterview from './components/SingleInterview';
 import Dashboard from './components/Dashboard';
 import {Route, BrowserRouter as Router} from 'react-router-dom';
@@ -31,6 +32,7 @@ class App extends Component {
           <Route path="/SingleInterview" component={SingleInterview} />
           <Route path="/dashboard" component={Dashboard} />
           <Route path="/user" component={User} />
+          <Route path="/editAccount" component={EditAccount} />
         </div>
       </Router> 
     );

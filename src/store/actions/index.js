@@ -2,11 +2,59 @@ import axios from 'axios';
 
 const TAG = "ACTIONS/INDEX_JS";
 
+// login
+export const login = (login) => {
+  return(dispatch) => {
+    axios.post('https://frozen-spire-39361.herokuapp.com/api/auth/login', login)
+    .then(response => {
+      dispatch({
+        type: 'SAVE_RESPONSE',
+        payload: response.data
+      })
+    })
+    .catch(error => {
+      console.log(TAG, "Cannot login", error);
+      dispatch({
+        type: 'SAVE_RESPONSE',
+        payload: {
+          message: 'Error communicating with server'
+        }
+      })
+    })
+  }
+}
+
+// Signup
+export const signup = (user) => {
+  return (dispatch) => {
+    axios.post('https://frozen-spire-39361.herokuapp.com/api/auth/signup', user)
+    .then(response => {
+      dispatch({
+        type: 'SAVE_RESPONSE',
+        payload: response.body
+      })
+    })
+    .catch(error => {
+      console.log(TAG, "Cannot create user", error);
+    })
+  }
+}
+
+// ---------- User action creators ----------
+
 // Stores an user
-export const selectUser = (user) => {
-  return {
-    type: "SELECT_USER",
-    payload: user,
+export const getUser = () => {
+  return (dispatch) => {
+    axios.get('https://frozen-spire-39361.herokuapp.com/api/auth/me')
+    .then(response => {
+      dispatch({
+        type: 'SELECT_USER',
+        payload: response.body
+      })
+    })
+    .catch(error => {
+      console.log(TAG, "Can't get user", error);
+    })
   }
 }
 
@@ -21,22 +69,6 @@ export const fetchUsers = () => {
     })
     .catch(error => {
       console.log(TAG, "Cannot fetch users from api", error);
-    })
-  }
-}
-
-// Adds a new user to the store
-export const addUser = (user) => {
-  return(dispatch) => {
-    axios.post('https://frozen-spire-39361.herokuapp.com/api/users/', user)
-    .then(response => {
-      dispatch({
-        type: "FETCH_USERS",
-        payload: response.data
-      })
-    })
-    .catch(error => {
-      console.log(TAG, "Cannot post user to api", error);
     })
   }
 }
