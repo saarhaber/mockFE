@@ -161,7 +161,7 @@ export const deleteInterview = (interview) => {
 // Edit an interview
 export const editInterview = (interview, newInterview) => {
   return(dispatch) => {
-    axios.put('https://frozen-spire-39361.herokuapp.com/api/interviews/' + interview.id, newInterview)
+    axios.put('https://localhost:5000/api/interviews/' + interview.id, newInterview)
     .then(response => {
       dispatch({
         type: "NONE",
