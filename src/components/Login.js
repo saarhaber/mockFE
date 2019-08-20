@@ -85,6 +85,10 @@ class Login extends React.Component {
 }
 
 const getStateToProps = (state) => {
+  console.log({
+    users: state.users,
+    user: state.user
+  })
   return {
     users: state.users,
     user: state.user,

@@ -5,7 +5,7 @@ const TAG = "ACTIONS/INDEX_JS";
 // login
 export const login = (login) => {
   return(dispatch) => {
-    axios.post('https://frozen-spire-39361.herokuapp.com/api/auth/login', login)
+    axios.put('http://localhost:5000/api/users', login)
     .then(response => {
       dispatch({
         type: 'SAVE_RESPONSE',
