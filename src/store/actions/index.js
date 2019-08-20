@@ -64,7 +64,7 @@ export const getUser = () => {
 
 export const fetchUsers = () => {
   return(dispatch) => {
-    axios.get('https://frozen-spire-39361.herokuapp.com/api/users/')
+    axios.get('http://localhost:5000/api/users/')
     .then(response => {
       dispatch({
         type: "FETCH_USERS",
