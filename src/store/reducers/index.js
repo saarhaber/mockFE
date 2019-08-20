@@ -50,15 +50,18 @@ const interviewSelectReducer = (interview = {}, action) => {
   switch(action.type) {
     case "SELECT_INTERVIEW":
       return action.payload;
+    case "BOOK_INTERVIEW":
+      return {...interview, studentId: action.payload}
     default:
       return interview;
   }
 }
+
 
 export default combineReducers({
   users: userReducer,
   user: userSelectReducer,
   interviews: interviewReducer,
   interview: interviewSelectReducer,
-  serverResponse: serverResponseReducer
+  serverResponse: serverResponseReducer,
 });

@@ -142,6 +142,10 @@ export const addInterview = (interview) => {
   }
 }
 
+export const bookInterview = (interviewId, studentId) => async dispatch => {
+
+}
+
 // Deletes an interview
 export const deleteInterview = (interview) => {
   return(dispatch) => {
