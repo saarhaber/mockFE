@@ -2,9 +2,14 @@ import React from 'react';
 import './SingleInterview.css';
 import {Card, Button} from 'react-bootstrap';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom'
 
 class BookedInterview extends React.Component {
+  constructor(props) {
+    super(props)
+  }
   render() {
+  console.log(this.props.interview_)
   return (
     <div className="SingleInterview">
       <Card style={{ width: '18rem', borderRadius: '20px'}}>
@@ -18,7 +23,7 @@ class BookedInterview extends React.Component {
           </Card.Text>
           {/* This button will BOOK the meeting */}
           <Button variant="primary" style={{ margin: '5px'}}>Remove</Button>
-          {this.props.user.isInterviewer ? <Button variant="primary">Edit</Button> : null}
+          {this.props.user.isInterviewer ? <Link to={"/interviews/" + this.props.interview_.id + "/editInterview"}>Edit</Link> : null}
         </Card.Body>
       </Card>
     </div>
@@ -28,10 +33,10 @@ class BookedInterview extends React.Component {
 
 const getStateToProps = (state) => {
   console.log({
-    user: state.user,
-  })
+    user: state.user
+    })
   return {
-    user: state.user,
+    user: state.user
   }
 }
 export default connect(getStateToProps)(BookedInterview);

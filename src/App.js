@@ -20,13 +20,8 @@ class App extends Component {
     }
   }
 
-  componentDidMount() {
-    console.log(this.props);
-  }
-
   render(){
     let component = this
-    console.log(this.props)
     return (
       <Router>
         <div>
@@ -37,18 +32,19 @@ class App extends Component {
           <Route path="/dashboard" component={Dashboard} />
           <Route path="/user" component={User} />
           <Route path="/editAccount" component={EditAccount} />
-          {
-            component.props.user.isInterviewer ?
-            this.props.interviews.filter(interview => interview.interviewerId == component.props.user.id).map(interview => {
-              console.log(interview)
-              return <Route path={"/interviews/" + interview.id + "/editInterview"} render={() => {
-                return <EditInterview interview_={interview} />
-              }} />
-            })
-            :
-            <div></div>
-          }
-          <Route path="/editInterview" component={EditAccount} />
+          {this.props.interviews.map(interview => {
+              return (
+                <Route exact path={"/interviews/" + interview.id + "/editInterview"} 
+                render={() => {
+                  return (
+                  <EditInterview
+                  interview_={interview}
+                  />
+                  )
+                }}
+                />
+              )
+            })}
         </div>
       </Router> 
     );

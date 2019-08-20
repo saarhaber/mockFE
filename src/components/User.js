@@ -78,7 +78,7 @@ class User extends React.Component {
                     <div style={{marginTop: "20px"}}>
                       {this.props.interviews.map(interview => (
                         <div style={{display: "inline-block"}}>
-                          <BookedInterview props={interview}/>
+                          <BookedInterview interview_={interview}/>
                         </div>
                       ))}
                     </div>
