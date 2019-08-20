@@ -64,7 +64,7 @@ class User extends React.Component {
                       Some quick example text to build on the card title and make up the bulk of
                       the card's content.
                     </Card.Text>
-                    <Card.Link href="#">Edit Account</Card.Link>
+                    <Card.Link href="/editAccount">Edit Account</Card.Link>
                     <Card.Link href="#" onClick={this.deleteUser}>Delete Account</Card.Link>
                   </Card.Body>
                 </Card>
