@@ -7,6 +7,7 @@ class SingleInterview extends React.Component {
   constructor(props) {
     super(props)
   }
+
   render() {
     console.log(this.props.users)
     const interviewer_ = "";
@@ -24,6 +25,9 @@ class SingleInterview extends React.Component {
             <Card.Body>
             <Card.Title>Interview</Card.Title>
               <Card.Text>
+                {(this.props.interview_.interviewDate == null) ?
+                "DATE OF INTERVIEW" : this.props.interview_.interviewDate}
+                <br></br>
                 {(this.props.interview_.interviewDate == null) ?
                 "DATE OF INTERVIEW" : this.props.interview_.interviewDate}
                 <br></br>
