@@ -10,6 +10,7 @@ import NewInterview from './components/NewInterview';
 import EditInterview from './components/EditInterview';
 import Dashboard from './components/Dashboard';
 import {Route, BrowserRouter as Router} from 'react-router-dom';
+import {connect} from 'react-redux'
 
 
 class App extends Component {
@@ -24,6 +25,8 @@ class App extends Component {
   }
 
   render(){
+    let component = this
+    console.log(this.props)
     return (
       <Router>
         <div>
@@ -34,6 +37,17 @@ class App extends Component {
           <Route path="/dashboard" component={Dashboard} />
           <Route path="/user" component={User} />
           <Route path="/editAccount" component={EditAccount} />
+          {
+            component.props.user.isInterviewer ?
+            this.props.interviews.filter(interview => interview.interviewerId == component.props.user.id).map(interview => {
+              console.log(interview)
+              return <Route path={"/interviews/" + interview.id + "/editInterview"} render={() => {
+                return <EditInterview interview_={interview} />
+              }} />
+            })
+            :
+            <div></div>
+          }
           <Route path="/editInterview" component={EditAccount} />
         </div>
       </Router> 
@@ -41,4 +55,13 @@ class App extends Component {
   }
 }
 
-export default App;
+const getStateToProps = state => {
+  return {
+    user: state.user,
+    users: state.users,
+    interview: state.interview,
+    interviews: state.interviews
+  }
+}
+
+export default connect(getStateToProps)(App)
