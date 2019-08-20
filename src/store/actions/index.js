@@ -11,6 +11,10 @@ export const login = (login) => {
         type: 'SAVE_RESPONSE',
         payload: response.data
       })
+      dispatch({//temporary
+        type: 'SELECT_USER',
+        payload: response.data
+      })
     })
     .catch(error => {
       console.log(TAG, "Cannot login", error);
