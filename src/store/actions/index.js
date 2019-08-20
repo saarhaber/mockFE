@@ -113,7 +113,7 @@ export const editUser = (user, newUser) => {
 
 export const fetchInterviews = () => {
   return(dispatch) => {
-    axios.get('https://frozen-spire-39361.herokuapp.com/api/interviews/')
+    axios.get('http://localhost:5000/api/interviews')
     .then(response => {
       dispatch({
         type: "FETCH_INTERVIEWS",
