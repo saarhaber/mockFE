@@ -12,6 +12,7 @@ class NavMain extends React.Component {
           <Nav className="mr-auto">
             <Link to="/user">Profile</Link>
             <Link to="/dashboard">Bulletin</Link>
+            {this.props.user.isInterviewer ? <Link to="/newInterview">Add</Link> : null}
           </Nav>
         </Navbar.Collapse>
         {this.props.user.id &&
