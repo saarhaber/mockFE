@@ -74,9 +74,11 @@ class User extends React.Component {
                   <Card.Body>
                     <Card.Title>My schedual</Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">Check your upcoming interviews</Card.Subtitle>
-                    <div style={{display: "flex"}}>
+                    <div style={{marginTop: "30px"}}>
                       {this.props.interviews.map(interview => (
-                        <BookedInterview style={{display: "inline-block"}} props={interview}/>
+                        <div style={{display: "inline-block"}}>
+                          <BookedInterview props={interview}/>
+                        </div>
                       ))}
                     </div>
                   </Card.Body>
