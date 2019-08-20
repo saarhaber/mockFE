@@ -129,15 +129,15 @@ export const fetchInterviews = () => {
 // Adds a new interview to the store
 export const addInterview = (interview) => {
   return(dispatch) => {
-    axios.post('https://frozen-spire-39361.herokuapp.com/api/interviews/', interview)
+    axios.post('http://localhost:5000/api/interviews', interview)
     .then(response => {
       dispatch({
-        type: "FETCH_INTERVIEWS",
+        type: "SERVER_RESPONSE",
         payload: response.data
       })
     })
     .catch(error => {
-      console.log(TAG, "Cannot POST  interview to api", error);
+      console.log(TAG, "Cannot POST interview to api", error);
     });
   }
 }

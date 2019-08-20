@@ -74,7 +74,8 @@ class User extends React.Component {
                   <Card.Body>
                     <Card.Title>My schedual</Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">Check your upcoming interviews</Card.Subtitle>
-                    <div style={{marginTop: "30px"}}>
+                    <Link to="/NewInterview">Add interview</Link>
+                    <div style={{marginTop: "20px"}}>
                       {this.props.interviews.map(interview => (
                         <div style={{display: "inline-block"}}>
                           <BookedInterview props={interview}/>

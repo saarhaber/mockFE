@@ -2,58 +2,68 @@ import React from 'react';
 import './NewInterview.css';
 import {Form, Button} from 'react-bootstrap';
 import {connect} from 'react-redux';
-import {addInterview} from '../store/actions/'
+import {addInterview} from '../store/actions/';
+import {Redirect} from 'react-router';
 
+const TAG = "NEWINTERVIEW_JS";
 class NewInterview extends React.Component {
-    constructor() {
-        super();
-      }
-    
-      handleSubmit(e) {
-          e.preventDefault();
-        this.props.addInterview(interview);
-        const interview = {
-            interviewTime: e.target.time.value,
-            interviewerId: e.target.user.id,
-            interviewDate: e.target.date.value
-          }
-          this.props.addInterview(interview);
-      }
-    
+  constructor() {
+    super();
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  
+  handleSubmit(e) {
+    e.preventDefault();
+    console.log(TAG, "Submitted");
+    const interview = {
+      interviewTime: e.target.time.value,
+      interviewerId: this.props.user.id,
+      interviewDate: e.target.date.value,
+      interviewLocation: e.target.location.value,
+    }
+    this.props.addInterview(interview);
+  }
+  
 
   render() {
-  return (
-    <div className="NewInterview">
-      <Form onSubmit={this.handleSubmit.bind.this}>
-      <Form.Group >
-    <Form.Label>Date</Form.Label>
-    <Form.Control type="date" placeholder="11:00 AM - 12:30 PM" />
-  </Form.Group>
-  <Form.Group >
-    <Form.Label>Time</Form.Label>
-    <Form.Control type="time" placeholder="11:00 AM - 12:30 PM" />
-  </Form.Group>
-  <Form.Group >
-    <Form.Label>Location</Form.Label>
-    <Form.Control type="string" placeholder="Google, 111 8th Avenue, NYC" />
-  </Form.Group>
-  <Button variant="primary" type="submit" >
-    Submit
-  </Button>
-</Form>
-    </div>
-  );
+    console.log(TAG, "Response:", this.props.serverResponse)
+    if (!this.props.user.id) {
+      return (
+        <Redirect to="/login"/>
+      );
+    } else if(!this.props.user.isInterviewer) {
+      return (
+        <Redirect to="/user"/>
+      );
+    }
+    return (
+      <div className="NewInterview">
+        <Form onSubmit={this.handleSubmit}>
+          <Form.Group >
+            <Form.Label>Date</Form.Label>
+            <Form.Control type="date" name="date" placeholder="11:00 AM - 12:30 PM" />
+          </Form.Group>
+          <Form.Group >
+            <Form.Label>Time</Form.Label>
+            <Form.Control type="time" name="time" placeholder="11:00 AM - 12:30 PM" />
+          </Form.Group>
+          <Form.Group >
+            <Form.Label>Location</Form.Label>
+            <Form.Control type="string" name="location" placeholder="Google, 111 8th Avenue, NYC" />
+          </Form.Group>
+          <Button variant="primary" type="submit" >
+            Submit
+          </Button>
+        </Form>
+      </div>
+    );
   }
 }
 
 const getStateToProps = (state) => {
-    console.log({
-      user: state.user,
-      interviews: state.interviews
-    })
     return {
       user: state.user,
-      interviews: state.interviews
+      serverResponse: state.serverResponse
     }
   }
   export default connect(getStateToProps, {addInterview})(NewInterview);
