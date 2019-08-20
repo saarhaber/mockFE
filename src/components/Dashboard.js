@@ -29,7 +29,7 @@ class Dashboard extends React.Component {
       <div> 
         <NavMain/>
         <div className="dashboard">
-          {this.props.interviews.map(interview =><SingleInterview props = {interview}/>)}       
+          {this.props.interviews.map(interview => <SingleInterview interview_={interview}/>)}       
         </div>
       </div>
     );

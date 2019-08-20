@@ -25,7 +25,7 @@ class App extends Component {
     return (
       <Router>
         <div>
-        <Route exact path="/" component={Landing} />
+          <Route exact path="/" component={Landing} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
           {/* the singleInterview link is temporary so we can see how the components looks like */}
