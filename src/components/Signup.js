@@ -110,6 +110,11 @@ class Signup extends React.Component {
         <Redirect to="/user"/>
       );
     }
+    if (this.state.redirect) {
+      return (
+      <Redirect to="/login"/>
+      );
+    }
     return (
       <div className="Login">
         <NavMain/>
