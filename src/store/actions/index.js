@@ -3,12 +3,12 @@ import axios from 'axios';
 const TAG = "ACTIONS/INDEX_JS";
 
 const dev_api = 'http://localhost:5000/api';
-const prod_api = 'https://frozen-spire-39361.herokuapp.com/api/';
+const prod_api = 'https://frozen-spire-39361.herokuapp.com/api';
 
 // login
 export const login = (login) => {
   return(dispatch) => {
-    axios.put(dev_api+'/auth/login', login)
+    axios.post(dev_api+'/auth/login', login, {withCredentials: true})
     .then(response => {
       dispatch({
         type: 'SAVE_RESPONSE',
@@ -70,7 +70,7 @@ export const signup = (user) => {
 // Stores an user
 export const getUser = () => {
   return (dispatch) => {
-    axios.get(dev_api + '/auth/me')
+    axios.get(dev_api + '/auth/me',{withCredentials: true})
     .then(response => {
       dispatch({
         type: 'SELECT_USER',
