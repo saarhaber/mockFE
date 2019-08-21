@@ -15,11 +15,13 @@ class BookedInterview extends React.Component {
       <Card style={{ width: '18rem', borderRadius: '20px'}}>
         <Card.Body>
           <Card.Text>
-            Time: time here;
+          {this.props.interview_.interviewDate}
             <br></br>
-            Location: location here
+            {this.props.interview_.interviewTime}
             <br></br>
-            Interviewer: name here
+            {this.props.interview_.interviewLocation}
+            <br></br>
+            {this.props.interview_.extraInfo}
           </Card.Text>
           {/* This button will BOOK the meeting */}
           {this.props.user.isInterviewer && 
