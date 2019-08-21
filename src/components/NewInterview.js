@@ -30,6 +30,7 @@ class NewInterview extends React.Component {
       interviewLocation: e.target.location.value,
     }
     this.props.addInterview(interview);
+    this.setState({redirect: true});
   }
   
 
@@ -59,7 +60,7 @@ class NewInterview extends React.Component {
             <Form.Label>Location</Form.Label>
             <Form.Control type="string" name="location" placeholder="Google, 111 8th Avenue, NYC" />
           </Form.Group>
-          <Button variant="primary" type="submit" onCLick={this.setState({redirect: true})}>
+          <Button variant="primary" type="submit">
             Submit
           </Button>
         </Form>
