@@ -200,9 +200,10 @@ export const deleteInterview = (interview) => {
 }
 
 // Edit an interview
-export const editInterview = (interview, newInterview) => {
+export const editInterview = (id, newInterview) => {
+  console.log("Calling edit interview")
   return(dispatch) => {
-    axios.put(prod_api + '/interviews/' + interview.id, newInterview)
+    axios.put(prod_api + '/interviews/' + id, newInterview)
     .then(response => {
       dispatch({
         type: "NONE",

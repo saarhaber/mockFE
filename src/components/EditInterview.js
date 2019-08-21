@@ -31,6 +31,11 @@ class EditInterview extends React.Component {
     this.setState({[e.target.name]: e.target.value});
   }
 
+  onSubmitHandler = event => {
+    event.preventDefault()
+    this.props.editInterview(this.props.interview_.id, this.state)
+  }
+
   render() {
     if (!this.props.user.id) {
       return (
@@ -47,7 +52,7 @@ class EditInterview extends React.Component {
         <Card className="edit-card" style={{margin: "10vh 20vh"}}>
           <Card.Header>Update Interview Info</Card.Header>
           <Card.Body>
-                <Form onSubmit={() => console.log("HELLO")}>
+                <Form onSubmit={this.onSubmitHandler}>
                     <Form.Group>
                       <Form.Label>Date</Form.Label>
                       <Form.Control name="interviewDate" type="date" value={this.state.interviewDate} onChange={this.handleChange}/>
