@@ -3,6 +3,8 @@ import {Card, Form, Button} from 'react-bootstrap';
 import {connect} from 'react-redux';
 import './EditInterview.css';
 import {editInterview} from '../store/actions/'
+import NavMain from './NavMain';
+import {Redirect} from 'react-router';
 
 class EditInterview extends React.Component {
   constructor(props) {
@@ -30,9 +32,18 @@ class EditInterview extends React.Component {
   }
 
   render() {
-    console.log(this.props.interview_)
+    if (!this.props.user.id) {
+      return (
+        <Redirect to="/login"/>
+      );
+    } else if(!this.props.user.isInterviewer) {
+      return (
+        <Redirect to="/user"/>
+      );
+    }
     return (
       <div className="editInterview">
+        <NavMain/>
         <Card className="edit-card" style={{margin: "10vh 20vh"}}>
           <Card.Header>Update Interview Info</Card.Header>
           <Card.Body>
@@ -66,7 +77,8 @@ class EditInterview extends React.Component {
 
 const getStateToProps = (state) => {
   return {
-    interview: state.interview
+    interview: state.interview,
+    user: state.user
   }
 }
 export default connect(getStateToProps, {editInterview})(EditInterview);

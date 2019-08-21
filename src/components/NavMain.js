@@ -19,13 +19,15 @@ class NavMain extends React.Component {
   render() {
     return(
       <Navbar bg="light" expand="lg">
-        <Navbar.Brand href="#home" style={{marginLeft: "7%", marginRight: "20px"}}>MockUp</Navbar.Brand>
+        <Navbar.Brand href="#home" style={{marginLeft: "7%", marginRight: "40px"}}>MockUp</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             <Nav.Link href="/user">Profile</Nav.Link>
             <Nav.Link href="/dashboard">Bulletin</Nav.Link>
-            {this.props.user.isInterviewer ? <Link to="/newInterview">Add</Link> : null}
+            {this.props.user.isInterviewer && 
+              <Nav.Link as={Link} to="/newInterview">Create Interview!</Nav.Link>
+            }
           </Nav>
         </Navbar.Collapse>
         {this.props.user.id &&

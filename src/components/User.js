@@ -10,21 +10,21 @@ import {deleteUser, getUser, fetchUsers} from '../store/actions/index';
 import NavMain from "./NavMain";
 
 class User extends React.Component {
-    constructor(props) {
-        super(props);
-        this.deleteUser = this.deleteUser.bind(this);
-    }
+  constructor(props) {
+    super(props);
+    this.deleteUser = this.deleteUser.bind(this);
+  }
 
-    componentDidMount() {
-      this.props.getUser();
-      this.props.fetchInterviews();
-    }
+  componentDidMount() {
+    this.props.getUser();
+    this.props.fetchInterviews();
+  }
 
-    deleteUser() {
-      this.props.deleteUser(this.props.user);
-      this.props.selectUser({});
-      this.props.fetchUsers();
-    }
+  deleteUser() {
+    this.props.deleteUser(this.props.user);
+    this.props.selectUser({});
+    this.props.fetchUsers();
+  }
 
 
   render() {
@@ -65,7 +65,7 @@ class User extends React.Component {
                       the card's content.
                     </Card.Text>
                     <Card.Link as={Link} to="/editAccount" style={{marginRight: "10px"}}>Edit Account</Card.Link>
-                    <Card.Link href="#" onClick={this.deleteUser}>Delete Account</Card.Link>
+                    <Card.Link href="#" onClick={this.deleteUser} style={{color: "#dc3545"}}>Delete Account</Card.Link>
                   </Card.Body>
                 </Card>
               </Row>
@@ -74,8 +74,7 @@ class User extends React.Component {
                   <Card.Body>
                     <Card.Title>My schedual</Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">Check your upcoming interviews</Card.Subtitle>
-                    <Card.Link as={Link} to="/NewInterview">Add interview</Card.Link>
-                    <div style={{marginTop: "20px"}}>
+                    <div style={{marginTop: "30px"}}>
                       {this.props.interviews.map(interview => (
                         <div style={{display: "inline-block"}}>
                           <BookedInterview interview_={interview}/>

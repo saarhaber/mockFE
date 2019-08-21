@@ -22,8 +22,12 @@ class BookedInterview extends React.Component {
             Interviewer: name here
           </Card.Text>
           {/* This button will BOOK the meeting */}
-          <Button variant="primary" style={{ margin: '5px'}}>Remove</Button>
-          {this.props.user.isInterviewer ? <Link to={"/interviews/" + this.props.interview_.id + "/editInterview"}>Edit</Link> : null}
+          {this.props.user.isInterviewer && 
+            <Button variant="primary" as={Link} to={"/interviews/" + this.props.interview_.id + "/editInterview"}>
+              Edit
+            </Button>
+          }
+          <Button variant="danger" style={{marginLeft: '5px'}}>Remove</Button>
         </Card.Body>
       </Card>
     </div>

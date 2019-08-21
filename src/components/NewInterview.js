@@ -4,6 +4,7 @@ import {Form, Button} from 'react-bootstrap';
 import {connect} from 'react-redux';
 import {addInterview, getUser} from '../store/actions/';
 import {Redirect} from 'react-router';
+import NavMain from './NavMain';
 
 const TAG = "NEWINTERVIEW_JS";
 class NewInterview extends React.Component {
@@ -39,6 +40,7 @@ class NewInterview extends React.Component {
     }
     return (
       <div className="NewInterview">
+        <NavMain/>
         <Form onSubmit={this.handleSubmit}>
           <Form.Group >
             <Form.Label>Date</Form.Label>
