@@ -2,10 +2,13 @@ import axios from 'axios';
 
 const TAG = "ACTIONS/INDEX_JS";
 
+const dev_api = 'http://localhost:5000/api';
+const prod_api = 'https://frozen-spire-39361.herokuapp.com/api/';
+
 // login
 export const login = (login) => {
   return(dispatch) => {
-    axios.put('http://localhost:5000/api/users', login)
+    axios.put(dev_api+'/auth/login', login)
     .then(response => {
       dispatch({
         type: 'SAVE_RESPONSE',
@@ -31,7 +34,7 @@ export const login = (login) => {
 // Signup
 export const signup = (user) => {
   return (dispatch) => {
-    axios.post('https://frozen-spire-39361.herokuapp.com/api/auth/signup', user)
+    axios.post(dev_api + '/auth/signup', user)
     .then(response => {
       dispatch({
         type: 'SAVE_RESPONSE',
@@ -49,7 +52,7 @@ export const signup = (user) => {
 // Stores an user
 export const getUser = () => {
   return (dispatch) => {
-    axios.get('https://frozen-spire-39361.herokuapp.com/api/auth/me')
+    axios.get(dev_api + '/auth/me')
     .then(response => {
       dispatch({
         type: 'SELECT_USER',
@@ -64,7 +67,7 @@ export const getUser = () => {
 
 export const fetchUsers = () => {
   return(dispatch) => {
-    axios.get('https://frozen-spire-39361.herokuapp.com/api/users/')
+    axios.get(dev_api+'/users/')
     .then(response => {
       dispatch({
         type: "FETCH_USERS",
@@ -80,7 +83,7 @@ export const fetchUsers = () => {
 // Deletes an user
 export const deleteUser = (user) => {
   return(dispatch) => {
-    axios.delete('https://frozen-spire-39361.herokuapp.com/api/users/' + user.id)
+    axios.delete(dev_api+'/users/' + user.id)
     .then(response => {
       dispatch({
         type: "NONE",
@@ -96,7 +99,7 @@ export const deleteUser = (user) => {
 // Edits an user
 export const editUser = (newUser) => {
   return(dispatch) => {
-    axios.put('http://localhost:5000/api/users/' + newUser.id, newUser)
+    axios.put(dev_api+'/users/' + newUser.id, newUser)
     .then(response => {
       dispatch({
         type: "SERVER_RESPONSE",
@@ -109,11 +112,20 @@ export const editUser = (newUser) => {
   }
 }
 
+export const getUserById = id => async dispatch => {
+  try {
+    let { data } = await axios.get(`${dev_api}/users/${id}`);
+    dispatch({type: "SELECT_USER", payload: data});
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 // ---------- Interview action creators ----------
 
 export const fetchInterviews = () => {
   return(dispatch) => {
-    axios.get('https://frozen-spire-39361.herokuapp.com/api/interviews/')
+    axios.get(dev_api+'/interviews/')
     .then(response => {
       dispatch({
         type: "FETCH_INTERVIEWS",
@@ -129,7 +141,7 @@ export const fetchInterviews = () => {
 // Adds a new interview to the store
 export const addInterview = (interview) => {
   return(dispatch) => {
-    axios.post('https://frozen-spire-39361.herokuapp.com/api/interviews/', interview)
+    axios.post(dev_api + '/interviews/', interview)
     .then(response => {
       dispatch({
         type: "FETCH_INTERVIEWS",
@@ -142,14 +154,20 @@ export const addInterview = (interview) => {
   }
 }
 
-export const bookInterview = (interviewId, studentId) => async dispatch => {
-
+export const bookInterview = (interviewId, body) => async dispatch => {
+  console.log("BOOK INTERVIEW CALLED")
+  try {
+    await axios.put(`${dev_api}/interviews/${interviewId}`, body);
+    dispatch({type: "BOOK_INTERVIEW", payload: body.studentId});
+  } catch (err) {
+    console.error(err)
+  }
 }
 
 // Deletes an interview
 export const deleteInterview = (interview) => {
   return(dispatch) => {
-    axios.delete('https://frozen-spire-39361.herokuapp.com/api/interviews/' + interview.id)
+    axios.delete(dev_api+'/interviews/' + interview.id)
     .then(response => {
       dispatch({
         type: "NONE",
@@ -165,7 +183,7 @@ export const deleteInterview = (interview) => {
 // Edit an interview
 export const editInterview = (interview, newInterview) => {
   return(dispatch) => {
-    axios.put('https://frozen-spire-39361.herokuapp.com/api/interviews/' + interview.id, newInterview)
+    axios.put(dev_api + '/interviews/' + interview.id, newInterview)
     .then(response => {
       dispatch({
         type: "NONE",
