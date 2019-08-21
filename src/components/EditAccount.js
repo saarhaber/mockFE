@@ -1,15 +1,11 @@
 import React from 'react';
 import {Card, Form, Button, Col, Alert, Tab, Tabs, Accordion} from 'react-bootstrap';
-import {Link, Redirect} from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {editUser, getUser} from '../store/actions/index';
 import './Login.css';
 import './Signup.css';
-import faker from 'faker';
 import NavMain from "./NavMain";
-
-
-const TAG = "COMPONENTS/SIGNUP_JS"
 
 class EditAccount extends React.Component {
   constructor(props) {

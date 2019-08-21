@@ -1,6 +1,6 @@
 import React from 'react';
 import './User.css';
-import {Card, Button, Row, Col, Image, ListGroup, ListGroupItem} from 'react-bootstrap';
+import {Card, Row, Col, ListGroup, ListGroupItem} from 'react-bootstrap';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router';
 import {Link} from 'react-router-dom';
