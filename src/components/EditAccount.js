@@ -48,6 +48,7 @@ class EditAccount extends React.Component {
   ];
 
   componentDidMount() {
+    this.props.getUser();
     this.setState({
       id: this.props.user.id,
       firstName: this.props.user.firstName,
@@ -139,7 +140,6 @@ class EditAccount extends React.Component {
   }
 
   render() {
-    this.props.getUser();
     if (!this.props.user.id) {
       return(
         <Redirect to="/login"/> 
