@@ -3,11 +3,20 @@ import './SingleInterview.css';
 import {Card, Button} from 'react-bootstrap';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom'
+import {deleteInterview} from '../store/actions'
 
 class BookedInterview extends React.Component {
   constructor(props) {
     super(props)
   }
+
+  removeInterview = event => {
+    event.preventDefault()
+    console.log("Starting remove")
+    this.props.deleteInterview(this.props.interview_)
+    console.log("Ending remove")
+  }
+
   render() {
   return (
     <div className="SingleInterview">
@@ -29,7 +38,15 @@ class BookedInterview extends React.Component {
             </Button>
           }
           <Button variant="primary" style={{marginLeft: '5px'}}>unbook</Button>
-          <Button variant="danger" style={{marginLeft: '5px'}}>Remove</Button>
+          {
+            this.props.user.isInterviewer ?
+            <Button 
+              variant="danger" 
+              style={{marginLeft: '5px'}} 
+              onClick={this.removeInterview}>Remove</Button>
+            :
+            null
+          }
         </Card.Body>
       </Card>
     </div>
@@ -42,5 +59,7 @@ const getStateToProps = (state) => {
     user: state.user
   }
 }
-export default connect(getStateToProps)(BookedInterview);
+export default connect(getStateToProps, {
+  deleteInterview
+})(BookedInterview);
 

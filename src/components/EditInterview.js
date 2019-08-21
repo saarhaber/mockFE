@@ -56,9 +56,9 @@ class EditInterview extends React.Component {
         <Redirect to="/user"/>
       );
     }
-    else if (this.state.redirect) {
+    if (this.state.redirect) {
       return (
-        <Redirect to="/user"/>
+        <Redirect to="/user" />
       );
     }
     else {
