@@ -9,17 +9,17 @@ class BookedInterview extends React.Component {
     super(props)
   }
   render() {
-  console.log(this.props.interview_)
+    console.log("BOOKEDDD" + this.props.interview_)
   return (
     <div className="SingleInterview">
       <Card style={{ width: '18rem', borderRadius: '20px'}}>
         <Card.Body>
           <Card.Text>
-            Time: time here;
+            {this.props.interview_.interviewDate}
             <br></br>
-            Location: location here
+            {this.props.interview_.interviewTime}
             <br></br>
-            Interviewer: name here
+            {this.props.interview_.interviewLocation}
           </Card.Text>
           {/* This button will BOOK the meeting */}
           {this.props.user.isInterviewer && 
@@ -36,9 +36,6 @@ class BookedInterview extends React.Component {
 }
 
 const getStateToProps = (state) => {
-  console.log({
-    user: state.user
-    })
   return {
     user: state.user
   }
