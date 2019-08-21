@@ -1,10 +1,8 @@
 import React from "react";
-import {Navbar, Nav, NavDropdown, Button} from "react-bootstrap";
+import {Navbar, Nav, Button} from "react-bootstrap";
 import {logout} from '../store/actions/'
 import {connect} from "react-redux";
 import {Link} from 'react-router-dom';
-
-const TAG = "NAVMAIN_JS";
 
 class NavMain extends React.Component {
   constructor(props) {

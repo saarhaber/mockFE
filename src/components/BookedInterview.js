@@ -9,7 +9,6 @@ class BookedInterview extends React.Component {
     super(props)
   }
   render() {
-  console.log(this.props.interview_)
   return (
     <div className="SingleInterview">
       <Card style={{ width: '18rem', borderRadius: '20px'}}>
@@ -39,9 +38,6 @@ class BookedInterview extends React.Component {
 }
 
 const getStateToProps = (state) => {
-  console.log({
-    user: state.user
-    })
   return {
     user: state.user
   }
