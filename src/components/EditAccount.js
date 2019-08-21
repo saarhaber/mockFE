@@ -150,8 +150,13 @@ class EditAccount extends React.Component {
       );
     }
 
+    if (this.state.redirect) {
+      return (
+        <Redirect to="/user"/>
+      )
+    }
+
     return (
-      !this.state.redirect ?
         <div className="Login">
           <NavMain/>
           <Card className="login-card" style={{margin: "10vh 20vh"}}>
@@ -325,8 +330,6 @@ class EditAccount extends React.Component {
             </Card.Body>
           </Card>
         </div>
-      :
-      <Redirect to="/user" />
     );
   }
 }
