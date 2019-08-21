@@ -69,6 +69,7 @@ export const signup = (user) => {
 
 // Stores an user
 export const getUser = () => {
+  console.log("calling getUser")
   return (dispatch) => {
     axios.get(prod_api + '/auth/me',{withCredentials: true})
     .then(response => {

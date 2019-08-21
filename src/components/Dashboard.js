@@ -18,7 +18,6 @@ class Dashboard extends React.Component {
   } 
 
   render () {
-    this.props.getUser();
     return (
       <div> 
         <NavMain/>
