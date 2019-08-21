@@ -64,7 +64,7 @@ class User extends React.Component {
                       Some quick example text to build on the card title and make up the bulk of
                       the card's content.
                     </Card.Text>
-                    <Link to="/editAccount" style={{marginRight: "10px"}}>Edit Account</Link>
+                    <Card.Link as={Link} to="/editAccount" style={{marginRight: "10px"}}>Edit Account</Card.Link>
                     <Card.Link href="#" onClick={this.deleteUser}>Delete Account</Card.Link>
                   </Card.Body>
                 </Card>
@@ -74,7 +74,7 @@ class User extends React.Component {
                   <Card.Body>
                     <Card.Title>My schedual</Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">Check your upcoming interviews</Card.Subtitle>
-                    <Link to="/NewInterview">Add interview</Link>
+                    <Card.Link as={Link} to="/NewInterview">Add interview</Card.Link>
                     <div style={{marginTop: "20px"}}>
                       {this.props.interviews.map(interview => (
                         <div style={{display: "inline-block"}}>

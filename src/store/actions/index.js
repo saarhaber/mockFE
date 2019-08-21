@@ -11,8 +11,26 @@ export const login = (login) => {
         type: 'SAVE_RESPONSE',
         payload: response.data
       })
-      dispatch({//temporary
-        type: 'SELECT_USER',
+    })
+    .catch(error => {
+      console.log(TAG, "Cannot login", error);
+      dispatch({
+        type: 'SAVE_RESPONSE',
+        payload: {
+          message: 'Error communicating with server'
+        }
+      })
+    })
+  }
+}
+
+// login
+export const logout = () => {
+  return(dispatch) => {
+    axios.delete('http://localhost:5000/api/users/me')
+    .then(response => {
+      dispatch({
+        type: 'SAVE_RESPONSE',
         payload: response.data
       })
     })
@@ -31,11 +49,11 @@ export const login = (login) => {
 // Signup
 export const signup = (user) => {
   return (dispatch) => {
-    axios.post('https://frozen-spire-39361.herokuapp.com/api/auth/signup', user)
+    axios.delete('http://localhost:5000/api/users/me')
     .then(response => {
       dispatch({
         type: 'SAVE_RESPONSE',
-        payload: response.body
+        payload: response.data
       })
     })
     .catch(error => {
@@ -49,11 +67,11 @@ export const signup = (user) => {
 // Stores an user
 export const getUser = () => {
   return (dispatch) => {
-    axios.get('https://frozen-spire-39361.herokuapp.com/api/auth/me')
+    axios.get('http://localhost:5000/api/users/me')
     .then(response => {
       dispatch({
         type: 'SELECT_USER',
-        payload: response.body
+        payload: response.data
       })
     })
     .catch(error => {
@@ -80,7 +98,7 @@ export const fetchUsers = () => {
 // Deletes an user
 export const deleteUser = (user) => {
   return(dispatch) => {
-    axios.delete('https://frozen-spire-39361.herokuapp.com/api/users/' + user.id)
+    axios.delete('http://localhost:5000/api/users/' + user.id)
     .then(response => {
       dispatch({
         type: "NONE",
@@ -145,7 +163,7 @@ export const addInterview = (interview) => {
 // Deletes an interview
 export const deleteInterview = (interview) => {
   return(dispatch) => {
-    axios.delete('https://frozen-spire-39361.herokuapp.com/api/interviews/' + interview.id)
+    axios.delete('http://localhost:5000/api/users/' + interview.id)
     .then(response => {
       dispatch({
         type: "NONE",

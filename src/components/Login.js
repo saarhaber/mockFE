@@ -31,13 +31,8 @@ class Login extends React.Component {
   }
 
   render() {
-    console.log(TAG, "users: ", this.props.users);
-    console.log(TAG, "response: ", this.props.serverResponse);
-
-    // Get user from api/auth/me
-    if (this.props.serverResponse) {
-      this.props.getUser();
-    }
+    // Get currently logged in user
+    this.props.getUser();
 
     // Redirect if already logged in
     if (this.props.user.id) {

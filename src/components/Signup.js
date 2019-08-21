@@ -2,7 +2,7 @@ import React from 'react';
 import {Card, Form, Button, Col, Alert} from 'react-bootstrap';
 import {Link, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {signup} from '../store/actions/index';
+import {signup, getUser} from '../store/actions/index';
 import './Login.css';
 import './Signup.css';
 import faker from 'faker';
@@ -101,12 +101,15 @@ class Signup extends React.Component {
   }
 
   render() {
-    if (this.state.redirect) {
+    // Get currently logged in user
+    this.props.getUser();
+
+    // Redirect if already logged in
+    if (this.props.user.id) {
       return(
-        <Redirect to="/login"/> 
+        <Redirect to="/user"/>
       );
     }
-
     return (
       <div className="Login">
         <NavMain/>
@@ -176,6 +179,8 @@ class Signup extends React.Component {
 
 const getStateToProps = (state) => {
   return {
-  users: state.users
-}}
-export default connect(getStateToProps, {signup})(Signup);
+    user: state.user,
+    users: state.users
+  }
+}
+export default connect(getStateToProps, {signup, getUser})(Signup);

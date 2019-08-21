@@ -2,7 +2,7 @@ import React from 'react';
 import {Card, Form, Button, Col, Alert, Tab, Tabs, Accordion} from 'react-bootstrap';
 import {Link, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {editUser} from '../store/actions/index';
+import {editUser, getUser} from '../store/actions/index';
 import './Login.css';
 import './Signup.css';
 import faker from 'faker';
@@ -52,6 +52,7 @@ class EditAccount extends React.Component {
   ];
 
   componentDidMount() {
+    this.props.getUser();
     this.setState({
       id: this.props.user.id,
       firstName: this.props.user.firstName,
@@ -328,4 +329,4 @@ const getStateToProps = (state) => {
     user: state.user
   }
 }
-export default connect(getStateToProps, {editUser})(EditAccount);
+export default connect(getStateToProps, {editUser, getUser})(EditAccount);

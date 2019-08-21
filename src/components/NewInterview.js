@@ -2,7 +2,7 @@ import React from 'react';
 import './NewInterview.css';
 import {Form, Button} from 'react-bootstrap';
 import {connect} from 'react-redux';
-import {addInterview} from '../store/actions/';
+import {addInterview, getUser} from '../store/actions/';
 import {Redirect} from 'react-router';
 
 const TAG = "NEWINTERVIEW_JS";
@@ -26,7 +26,8 @@ class NewInterview extends React.Component {
   
 
   render() {
-    console.log(TAG, "Response:", this.props.serverResponse)
+    this.props.getUser();
+
     if (!this.props.user.id) {
       return (
         <Redirect to="/login"/>
@@ -66,4 +67,5 @@ const getStateToProps = (state) => {
       serverResponse: state.serverResponse
     }
   }
-  export default connect(getStateToProps, {addInterview})(NewInterview);
+
+export default connect(getStateToProps, {addInterview, getUser})(NewInterview);
