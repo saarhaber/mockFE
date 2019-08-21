@@ -14,43 +14,19 @@ class SingleInterview extends React.Component {
   }
 
   componentDidMount() {
-    const dummy = this.props.getUser()
-     this.setState({user: dummy})
+    this.props.getUser()
   }
 
   handleSubmit(e) {
     e.preventDefault();
     
-    // const user = this.state.user;
-    // console.log("USER", user)
-    //this is a work around
-    //if getUser doesnt work
-    //uncomment below
-    const user = {
-      "id": 1,
-      "firstName": "Ajani",
-      "lastName": "Stewart",
-      "imageUrl": "http://i.imgur.com/AItCxSs.jpg",
-      "email": "ajani@email.com",
-      "organization": "Hunter College",
-      "description": "Student Web Developer paitentily waiting for the heat death of the universe",
-      "profession": "student",
-      "interviewAmount": 3,
-      "lastInterview": "2019-08-20T16:31:30.354Z",
-      "isInterviewer": false,
-      "googleId": null,
-      "createdAt": "2019-08-20T16:31:30.356Z",
-      "updatedAt": "2019-08-20T16:31:30.356Z"
-  }
+  const user = this.props.user;
     if (user) {
       if (user.isInterviewer) {
         console.log('interviewer cannot book interviews!');
       }
-      console.log("1")
       const interview = this.props.interview_;
-      console.log("2")
       interview.studentId = user.id;
-      console.log("3")
       this.props.bookInterview(interview.id, interview);
     } else {
       console.error('connection error')
@@ -94,7 +70,8 @@ class SingleInterview extends React.Component {
 
 const getStateToProps = state => {
   return {
-    users: state.users
+    users: state.users,
+    user: state.user
   }
 }
 

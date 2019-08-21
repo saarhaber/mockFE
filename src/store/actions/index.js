@@ -175,6 +175,7 @@ export const addInterview = (interview) => {
 export const bookInterview = (interviewId, body) => async dispatch => {
   console.log("BOOK INTERVIEW CALLED")
   try {
+    console.log("HELOOO" + body.studentId)
     await axios.put(`${prod_api}/interviews/${interviewId}`, body);
     dispatch({type: "BOOK_INTERVIEW", payload: body.studentId});
   } catch (err) {
