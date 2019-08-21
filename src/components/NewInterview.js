@@ -11,6 +11,13 @@ class NewInterview extends React.Component {
   constructor() {
     super();
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.state = {
+      redirect: false
+    }
+  }
+
+  componentDidMount() {
+    this.props.getUser();
   }
   
   handleSubmit(e) {
@@ -27,13 +34,11 @@ class NewInterview extends React.Component {
   
 
   render() {
-    this.props.getUser();
-
     if (!this.props.user.id) {
       return (
         <Redirect to="/login"/>
       );
-    } else if(!this.props.user.isInterviewer) {
+    } else if((!this.props.user.isInterviewer) || this.state.redirect) {
       return (
         <Redirect to="/user"/>
       );
@@ -54,7 +59,7 @@ class NewInterview extends React.Component {
             <Form.Label>Location</Form.Label>
             <Form.Control type="string" name="location" placeholder="Google, 111 8th Avenue, NYC" />
           </Form.Group>
-          <Button variant="primary" type="submit" >
+          <Button variant="primary" type="submit" onCLick={this.setState({redirect: true})}>
             Submit
           </Button>
         </Form>
