@@ -81,7 +81,16 @@ class EditAccount extends React.Component {
     }
 
     if (errorCodes.length == 0) {
-      this.props.editUser(this.state);
+      let component = this
+      console.log("Starting editUser")
+      this.props.editUser(component.state.id, {
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        description: this.state.description,
+        organization: this.state.organization,
+        profession: this.state.profession,
+        imageUrl: this.state.imageUrl
+      });
       this.setState({
         redirect: true
       })
@@ -148,7 +157,7 @@ class EditAccount extends React.Component {
 
     if (this.state.redirect) {
       return (
-        <Redirect to="/user"/>
+        <Redirect to="/login"/>
       )
     }
 

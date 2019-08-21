@@ -115,9 +115,12 @@ export const deleteUser = (user) => {
 }
 
 // Edits an user
-export const editUser = (newUser) => {
+export const editUser = (id, newUser) => {
+  console.log("starting action newUser")
   return(dispatch) => {
-    axios.put(prod_api+'/users/' + newUser.id, newUser)
+    axios.put(prod_api+'/users/' + id, newUser, {
+      withCredentials: true
+    })
     .then(response => {
       dispatch({
         type: "SERVER_RESPONSE",
