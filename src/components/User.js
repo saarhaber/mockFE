@@ -61,8 +61,8 @@ class User extends React.Component {
                   <ListGroupItem>Total Interviews: {this.props.user.interviewAmount}</ListGroupItem>
                 </ListGroup>
                 <Card.Body>
-                  <Card.Link href={this.props.user.email}>Email</Card.Link>
-                  <Card.Link href="linkedin.com">LinkedIn</Card.Link>
+                  <Card.Link href={"//" + this.props.user.email}>Email</Card.Link>
+                  <Card.Link href="//linkedin.com">LinkedIn</Card.Link>
                 </Card.Body>
               </Card>
             </Col>
