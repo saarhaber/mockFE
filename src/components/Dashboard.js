@@ -23,7 +23,10 @@ class Dashboard extends React.Component {
       <div> 
         <NavMain/>
         <div className="dashboard">
-          {this.props.interviews.map(interview => <SingleInterview interview_={interview}/>)}       
+          {
+            this.props.interviews.filter(interview => (interview.studentId === null))
+            .map(interview => <SingleInterview interview_={interview}/>)
+          }       
         </div>
       </div>
     );
