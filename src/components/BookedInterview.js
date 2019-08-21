@@ -27,6 +27,7 @@ class BookedInterview extends React.Component {
               Edit
             </Button>
           }
+          <Button variant="primary" style={{marginLeft: '5px'}}>unbook</Button>
           <Button variant="danger" style={{marginLeft: '5px'}}>Remove</Button>
         </Card.Body>
       </Card>
