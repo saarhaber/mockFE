@@ -1,6 +1,6 @@
 import React from 'react';
 import './User.css';
-import {Card, Button, Row, Col, Image} from 'react-bootstrap';
+import {Card, Button, Row, Col, Image, ListGroup, ListGroupItem} from 'react-bootstrap';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router';
 import {Link} from 'react-router-dom';
@@ -41,16 +41,28 @@ class User extends React.Component {
           <Row style={{margin: "10vh 0"}}>
             <Col md="auto" style={{marginLeft: "auto"}}>
               <Card style={{height: "750px", width: "300px", float: "right",}}>
-                <img src={this.props.user.imageUrl} />
+              <Card.Img variant="top" src={this.props.user.imageUrl} />
                 <Card.Body>
-                  <Card.Title>{this.props.user.firstName + " " + this.props.user.lastName}</Card.Title>
-                  <Card.Subtitle>{this.props.user.organization}</Card.Subtitle>
-                  <Card.Text style={{marginTop: "10px"}}>{this.props.user.description}</Card.Text>
-                  <div className="blob" style={{marginTop: "10px"}}>
-                    <Card.Text style={{margin: "0"}}>Company: {this.props.user.organization}</Card.Text>
-                    <Card.Text style={{margin: "0"}}>Email: {this.props.user.email}</Card.Text>
-                    <Card.Text style={{margin: "0"}}>Total Interviews: {this.props.user.interviewAmount}</Card.Text>
-                  </div>
+                  <Card.Title>
+                    {this.props.user.firstName + " " + this.props.user.lastName}
+                  </Card.Title>
+                  {this.props.user.isInterviewer ?
+                    <Card.Subtitle>Interviewer</Card.Subtitle> : 
+                    <Card.Subtitle>Interviewee</Card.Subtitle> 
+                  }
+                  <Card.Text style={{marginTop: "15px"}}>{this.props.user.description}</Card.Text>
+                </Card.Body>
+                <ListGroup className="list-group-flush">
+                  <ListGroupItem>{this.props.user.profession}</ListGroupItem>
+                  {this.props.user.isInterviewer ?
+                    <ListGroupItem>Company: {this.props.user.organization}</ListGroupItem> : 
+                    <ListGroupItem>University: {this.props.user.organization}</ListGroupItem> 
+                  }
+                  <ListGroupItem>Total Interviews: {this.props.user.interviewAmount}</ListGroupItem>
+                </ListGroup>
+                <Card.Body>
+                  <Card.Link href={this.props.user.email}>Email</Card.Link>
+                  <Card.Link href="linkedin.com">LinkedIn</Card.Link>
                 </Card.Body>
               </Card>
             </Col>
@@ -72,7 +84,7 @@ class User extends React.Component {
               <Row>
                 <Card style={{height: "570px", width: "650px"}}>
                   <Card.Body>
-                    <Card.Title>My schedual</Card.Title>
+                    <Card.Title>My schedule</Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">Check your upcoming interviews</Card.Subtitle>
                     <div style={{marginTop: "30px"}}>
                       {this.props.interviews.filter(interview => (
