@@ -56,14 +56,15 @@ class EditAccount extends React.Component {
       id: this.props.user.id,
       firstName: this.props.user.firstName,
       lastName: this.props.user.lastName,
-      imageUrl: this.props.user.lastName,
+      imageUrl: this.props.user.imageUrl,
       email: this.props.user.email,
       organization: this.props.user.organization,
       description: this.props.user.description,
       profession: this.props.user.profession,
       interviewAmount: this.props.user.interviewAmount,
       lastInterview: this.props.user.lastInterview,
-      isInterviewer: this.props.user.isInterviewer
+      isInterviewer: this.props.user.isInterviewer,
+      redirect: false
     })
   }
 
@@ -84,6 +85,9 @@ class EditAccount extends React.Component {
 
     if (errorCodes.length == 0) {
       this.props.editUser(this.state);
+      this.setState({
+        redirect: true
+      })
     } else {
       // Show 2 errors
       if (errorCodes.length > 2) {
@@ -147,179 +151,182 @@ class EditAccount extends React.Component {
     }
 
     return (
-      <div className="Login">
-        <NavMain/>
-        <Card className="login-card" style={{margin: "10vh 20vh"}}>
-          <Card.Header>Update Account Info</Card.Header>
-          <Card.Body>
-            <Tabs defaultActiveKey="profile">
-              <Tab eventKey="profile" title="Profile" className="profileTab">
-                <Form onSubmit={this.profileSubmit.bind(this)}>
-                  <Form.Row>
-                    <Form.Group as={Col}>
-                      <Form.Label>First Name</Form.Label>
-                      <Form.Control name="firstName" type="name" value={this.state.firstName} onChange={this.handleChange}/>
-                    </Form.Group>
-                    <Form.Group as={Col}>
-                      <Form.Label>Last Name</Form.Label>
-                      <Form.Control name="lastName" type="name" value={this.state.lastName} onChange={this.handleChange}/>
-                    </Form.Group>
-                  </Form.Row>
+      !this.state.redirect ?
+        <div className="Login">
+          <NavMain/>
+          <Card className="login-card" style={{margin: "10vh 20vh"}}>
+            <Card.Header>Update Account Info</Card.Header>
+            <Card.Body>
+              <Tabs defaultActiveKey="profile">
+                <Tab eventKey="profile" title="Profile" className="profileTab">
+                  <Form onSubmit={this.profileSubmit.bind(this)}>
+                    <Form.Row>
+                      <Form.Group as={Col}>
+                        <Form.Label>First Name</Form.Label>
+                        <Form.Control name="firstName" type="name" value={this.state.firstName} onChange={this.handleChange}/>
+                      </Form.Group>
+                      <Form.Group as={Col}>
+                        <Form.Label>Last Name</Form.Label>
+                        <Form.Control name="lastName" type="name" value={this.state.lastName} onChange={this.handleChange}/>
+                      </Form.Group>
+                    </Form.Row>
 
-                  <Form.Row>
-                    <Form.Group as={Col} controlId="formGridCity">
-                      <Form.Label>City</Form.Label>
-                      <Form.Control name="city"/>
-                    </Form.Group>
-                    <Form.Group as={Col} controlId="formGridState">
-                      <Form.Label>State</Form.Label>
-                      <Form.Control name="state" as="select">
-                        <option>Choose...</option>
-                        {
-                          this.states.map(state => (
-                            <option>{state}</option>
-                          ))
-                        }
-                      </Form.Control>
-                    </Form.Group>
-                    <Form.Group as={Col} controlId="formGridZip">
-                      <Form.Label>Zip</Form.Label>
-                      <Form.Control name="zip"/>
-                    </Form.Group>
-                  </Form.Row>
+                    <Form.Row>
+                      <Form.Group as={Col} controlId="formGridCity">
+                        <Form.Label>City</Form.Label>
+                        <Form.Control name="city"/>
+                      </Form.Group>
+                      <Form.Group as={Col} controlId="formGridState">
+                        <Form.Label>State</Form.Label>
+                        <Form.Control name="state" as="select">
+                          <option>Choose...</option>
+                          {
+                            this.states.map(state => (
+                              <option>{state}</option>
+                            ))
+                          }
+                        </Form.Control>
+                      </Form.Group>
+                      <Form.Group as={Col} controlId="formGridZip">
+                        <Form.Label>Zip</Form.Label>
+                        <Form.Control name="zip"/>
+                      </Form.Group>
+                    </Form.Row>
 
-                  <Form.Row>
-                    <Form.Group as={Col} controlId="exampleForm.ControlTextarea1">
-                      <Form.Label>Bio</Form.Label>
-                      <Form.Control name="description" as="textarea" rows="3" value={this.state.description} onChange={this.handleChange}/>
-                    </Form.Group>
-                  </Form.Row>
+                    <Form.Row>
+                      <Form.Group as={Col} controlId="exampleForm.ControlTextarea1">
+                        <Form.Label>Bio</Form.Label>
+                        <Form.Control name="description" as="textarea" rows="3" value={this.state.description} onChange={this.handleChange}/>
+                      </Form.Group>
+                    </Form.Row>
 
-                  <Form.Row>
-                    <Form.Group as={Col}>
-                      <Form.Label>Organization</Form.Label>
-                      <Form.Control name="organization" type="text" value={this.state.organization} onChange={this.handleChange}/>
-                    </Form.Group>
-                    <Form.Group as={Col}>
-                      <Form.Label>Profession</Form.Label>
-                      <Form.Control name="profession" type="text" value={this.state.profession} onChange={this.handleChange}/>
-                    </Form.Group>
-                  </Form.Row>
-                  <Form.Row>
-                    <Form.Group as={Col}>
-                      <Form.Label>Resume</Form.Label>
-                      <Form.Control name="resume" type="file" />
-                    </Form.Group>
-                  </Form.Row>
-                  <Form.Row>
-                    <Form.Group as={Col}>
-                      <Accordion defaultActiveKey="0" style={{marginTop: "30px"}}>
-                        <Card>
-                          <Card.Header>
-                            <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                              Image Upload
-                            </Accordion.Toggle>
-                          </Card.Header>
-                          <Accordion.Collapse eventKey="0">
-                            <Card.Body>
-                              <Form.Control name="image" type="file" />
-                            </Card.Body>
-                          </Accordion.Collapse>
-                        </Card>
-                        <Card>
-                          <Card.Header>
-                            <Accordion.Toggle as={Button} variant="link" eventKey="1">
-                              Image URL
-                            </Accordion.Toggle>
-                          </Card.Header>
-                          <Accordion.Collapse eventKey="1">
-                            <Card.Body>
-                              <Form.Label>Link to Image</Form.Label>
-                              <Form.Control name="imageUrl" type="text" value={this.state.imageUrl} onChange={this.handleChange}/>
-                            </Card.Body>
-                          </Accordion.Collapse>
-                        </Card>
-                      </Accordion>
-                    </Form.Group>
-                  </Form.Row>
-                  {this.state.profileErrors.map(errorCode => (
-                    <Alert variant={"warning"}>
-                      {this.errors[errorCode]}
-                    </Alert>
-                  ))}
-                  <Button variant="primary" type="submit" className="edit-form-btn">
-                    Submit
-                  </Button>
-                </Form>
-              </Tab>
-              <Tab eventKey="contact" title="Contact" className="profileTab">
-                <Form onSubmit={this.contactSubmit.bind(this)}>
-                  <Form.Row>
-                    <Form.Group as={Col} controlId="formGroupEmail">
-                      <Form.Label>Email address</Form.Label>
-                      <Form.Control name="email" type="email" value={this.state.email} name="email" onChange={this.handleChange} />
-                      <Form.Text className="text-muted" style={{marginLeft: '3px'}}>
-                        We'll never share your email with anyone.
-                      </Form.Text>
-                    </Form.Group>
-                  </Form.Row>
+                    <Form.Row>
+                      <Form.Group as={Col}>
+                        <Form.Label>Organization</Form.Label>
+                        <Form.Control name="organization" type="text" value={this.state.organization} onChange={this.handleChange}/>
+                      </Form.Group>
+                      <Form.Group as={Col}>
+                        <Form.Label>Profession</Form.Label>
+                        <Form.Control name="profession" type="text" value={this.state.profession} onChange={this.handleChange}/>
+                      </Form.Group>
+                    </Form.Row>
+                    <Form.Row>
+                      <Form.Group as={Col}>
+                        <Form.Label>Resume</Form.Label>
+                        <Form.Control name="resume" type="file" />
+                      </Form.Group>
+                    </Form.Row>
+                    <Form.Row>
+                      <Form.Group as={Col}>
+                        <Accordion defaultActiveKey="0" style={{marginTop: "30px"}}>
+                          <Card>
+                            <Card.Header>
+                              <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                                Image Upload
+                              </Accordion.Toggle>
+                            </Card.Header>
+                            <Accordion.Collapse eventKey="0">
+                              <Card.Body>
+                                <Form.Control name="image" type="file" />
+                              </Card.Body>
+                            </Accordion.Collapse>
+                          </Card>
+                          <Card>
+                            <Card.Header>
+                              <Accordion.Toggle as={Button} variant="link" eventKey="1">
+                                Image URL
+                              </Accordion.Toggle>
+                            </Card.Header>
+                            <Accordion.Collapse eventKey="1">
+                              <Card.Body>
+                                <Form.Label>Link to Image</Form.Label>
+                                <Form.Control name="imageUrl" type="text" value={this.state.imageUrl} onChange={this.handleChange}/>
+                              </Card.Body>
+                            </Accordion.Collapse>
+                          </Card>
+                        </Accordion>
+                      </Form.Group>
+                    </Form.Row>
+                    {this.state.profileErrors.map(errorCode => (
+                      <Alert variant={"warning"}>
+                        {this.errors[errorCode]}
+                      </Alert>
+                    ))}
+                    <Button variant="primary" type="submit" className="edit-form-btn">
+                      Submit
+                    </Button>
+                  </Form>
+                </Tab>
+                <Tab eventKey="contact" title="Contact" className="profileTab">
+                  <Form onSubmit={this.contactSubmit.bind(this)}>
+                    <Form.Row>
+                      <Form.Group as={Col} controlId="formGroupEmail">
+                        <Form.Label>Email address</Form.Label>
+                        <Form.Control name="email" type="email" value={this.state.email} name="email" onChange={this.handleChange} />
+                        <Form.Text className="text-muted" style={{marginLeft: '3px'}}>
+                          We'll never share your email with anyone.
+                        </Form.Text>
+                      </Form.Group>
+                    </Form.Row>
 
-                  <Form.Row>
-                    <Form.Group as={Col}>
-                      <Form.Label>Phone</Form.Label>
-                      <Form.Control name="phone" type="tel" />
-                    </Form.Group>
-                  </Form.Row>
+                    <Form.Row>
+                      <Form.Group as={Col}>
+                        <Form.Label>Phone</Form.Label>
+                        <Form.Control name="phone" type="tel" />
+                      </Form.Group>
+                    </Form.Row>
 
-                  <Form.Row>
-                    <Form.Group as={Col} controlId="a">
-                      <Form.Label>LinkedIn</Form.Label>
-                      <Form.Control name="linkedin" type="text" />
-                    </Form.Group>
-                  </Form.Row>
+                    <Form.Row>
+                      <Form.Group as={Col} controlId="a">
+                        <Form.Label>LinkedIn</Form.Label>
+                        <Form.Control name="linkedin" type="text" />
+                      </Form.Group>
+                    </Form.Row>
 
-                  {this.state.contactErrors.map(errorCode => (
-                    <Alert variant={"warning"}>
-                      {this.errors[errorCode]}
-                    </Alert>
-                  ))}
-                  <Button variant="primary" type="submit" className="edit-form-btn">
-                    Submit
-                  </Button>
-                </Form>
-              </Tab>
-              <Tab eventKey="security" title="Security" className="profileTab">
-                <Form onSubmit={this.passwordSubmit.bind(this)}>
-                  <Form.Row>
-                    <Form.Group as={Col} controlId="formBasicPassword">
-                      <Form.Label>Current Password</Form.Label>
-                      <Form.Control className="form-element" name="passwordold" type="password"/>
-                    </Form.Group>
-                  </Form.Row>
-                  <Form.Row>
-                    <Form.Group as={Col} controlId="formBasicPassword">
-                      <Form.Label>New Password</Form.Label>
-                      <Form.Control className="form-element" name="password" type="password"/>
-                    </Form.Group>
-                    <Form.Group as={Col} controlId="formBasicPassword">
-                      <Form.Label>Confirm Password</Form.Label>
-                      <Form.Control className="form-element" name="confirm" type="password"/>
-                    </Form.Group>
-                  </Form.Row>
-                  {this.state.passwordErrors.map(errorCode => (
-                    <Alert variant={"warning"}>
-                      {this.errors[errorCode]}
-                    </Alert>
-                  ))}
-                  <Button variant="primary" type="submit" className="edit-form-btn">
-                    Submit
-                  </Button>
-                </Form>
-              </Tab>
-            </Tabs>
-          </Card.Body>
-        </Card>
-      </div>
+                    {this.state.contactErrors.map(errorCode => (
+                      <Alert variant={"warning"}>
+                        {this.errors[errorCode]}
+                      </Alert>
+                    ))}
+                    <Button variant="primary" type="submit" className="edit-form-btn">
+                      Submit
+                    </Button>
+                  </Form>
+                </Tab>
+                <Tab eventKey="security" title="Security" className="profileTab">
+                  <Form onSubmit={this.passwordSubmit.bind(this)}>
+                    <Form.Row>
+                      <Form.Group as={Col} controlId="formBasicPassword">
+                        <Form.Label>Current Password</Form.Label>
+                        <Form.Control className="form-element" name="passwordold" type="password"/>
+                      </Form.Group>
+                    </Form.Row>
+                    <Form.Row>
+                      <Form.Group as={Col} controlId="formBasicPassword">
+                        <Form.Label>New Password</Form.Label>
+                        <Form.Control className="form-element" name="password" type="password"/>
+                      </Form.Group>
+                      <Form.Group as={Col} controlId="formBasicPassword">
+                        <Form.Label>Confirm Password</Form.Label>
+                        <Form.Control className="form-element" name="confirm" type="password"/>
+                      </Form.Group>
+                    </Form.Row>
+                    {this.state.passwordErrors.map(errorCode => (
+                      <Alert variant={"warning"}>
+                        {this.errors[errorCode]}
+                      </Alert>
+                    ))}
+                    <Button variant="primary" type="submit" className="edit-form-btn">
+                      Submit
+                    </Button>
+                  </Form>
+                </Tab>
+              </Tabs>
+            </Card.Body>
+          </Card>
+        </div>
+      :
+      <Redirect to="/user" />
     );
   }
 }
