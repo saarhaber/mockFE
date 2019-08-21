@@ -25,7 +25,7 @@ class Dashboard extends React.Component {
         <div className="dashboard">
           {
             this.props.interviews.filter(interview => (interview.studentId === null))
-            .map(interview => <SingleInterview interview_={interview}/>)
+            .map(interview => <SingleInterview interview={interview}/>)
           }       
         </div>
       </div>
