@@ -99,7 +99,9 @@ class User extends React.Component {
                         </div>
                       ))}
                     </div>
-                    <Card.Link as={Link} to="/userInterviews">All intervews</Card.Link>
+                    <div style={{marginTop: "15px"}}>
+                      <Card.Link as={Link} to="/userInterviews">All intervews</Card.Link>
+                    </div>
                   </Card.Body>
                 </Card>
               </Row>
