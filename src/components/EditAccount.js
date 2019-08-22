@@ -113,7 +113,11 @@ class EditAccount extends React.Component {
       errorCodes.push(3);
     }
 
-    if (errorCodes.length === 0) {
+
+    if (errorCodes.length == 0) {
+      this.setState({
+        redirect: true
+      });
     } else {
       // Show 2 errors
       if (errorCodes.length > 2) {
@@ -134,7 +138,11 @@ class EditAccount extends React.Component {
       errorCodes.push(1);
     }
 
-    if (errorCodes.length === 0) {
+
+    if (errorCodes.length == 0) {
+      this.setState({
+        redirect: true
+      })
     } else {
       // Show 2 errors
       if (errorCodes.length > 2) {

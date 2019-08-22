@@ -17,7 +17,7 @@ class NavMain extends React.Component {
   render() {
     return(
       <Navbar bg="light" expand="lg">
-        <Navbar.Brand href="#home" style={{marginLeft: "7%", marginRight: "40px"}}>MockUp</Navbar.Brand>
+        <Navbar.Brand href="/" style={{marginLeft: "7%", marginRight: "40px"}}>MockUp</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
@@ -28,13 +28,22 @@ class NavMain extends React.Component {
             }
           </Nav>
         </Navbar.Collapse>
-        {this.props.user.id &&
+        {this.props.user.id ?
           <Navbar.Collapse className="justify-content-end">
             <Navbar.Text>
               Signed in as: {this.props.user.firstName + " " + this.props.user.lastName}
             </Navbar.Text>
-            <Button variant="outline-primary" style={{marginLeft: "15px", marginRight: "7%"}} value="submit" onClick={this.logout}>
+            <Button variant="outline-primary" style={{marginLeft: "15px", marginRight: "10%"}} value="submit" onClick={this.logout}>
               Logout
+            </Button>
+          </Navbar.Collapse>
+          :
+          <Navbar.Collapse className="justify-content-end">
+            <Navbar.Text>
+              Not logged in
+            </Navbar.Text>
+            <Button as={Link} to="/login" variant="outline-primary" style={{marginLeft: "15px", marginRight: "10%"}}>
+              Login
             </Button>
           </Navbar.Collapse>
         }
