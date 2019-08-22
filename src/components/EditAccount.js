@@ -114,6 +114,9 @@ class EditAccount extends React.Component {
     }
 
     if (errorCodes.length == 0) {
+      this.setState({
+        redirect: true
+      });
     } else {
       // Show 2 errors
       if (errorCodes.length > 2) {
@@ -135,6 +138,9 @@ class EditAccount extends React.Component {
     }
 
     if (errorCodes.length == 0) {
+      this.setState({
+        redirect: true
+      })
     } else {
       // Show 2 errors
       if (errorCodes.length > 2) {
