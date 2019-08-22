@@ -22,7 +22,6 @@ class User extends React.Component {
 
   deleteUser() {
     this.props.deleteUser(this.props.user);
-    this.props.selectUser({});
     this.props.fetchUsers();
   }
 
@@ -34,6 +33,7 @@ class User extends React.Component {
         <Redirect to="/login"></Redirect>
       )
     } 
+    console.log(this.props.interviews)
     return (
       <div>
         <NavMain/>
@@ -90,9 +90,9 @@ class User extends React.Component {
                       {this.props.interviews.filter(interview => (
                         Number(this.props.user.id) === Number(interview.studentId) ||
                         Number(this.props.user.id) === Number(interview.interviewerId)
-                      )).map(interview => (
+                      )).map(filteredInterview => (
                         <div style={{display: "inline-block"}}>
-                          <BookedInterview interview_={interview}/>
+                          <BookedInterview interview_={filteredInterview}/>
                         </div>
                       ))}
                     </div>
