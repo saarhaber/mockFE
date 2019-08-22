@@ -38,7 +38,7 @@ class User extends React.Component {
       <div>
         <NavMain/>
         <div className="userPage">
-          <Row style={{margin: "10vh 0"}}>
+          <Row style={{margin: "5vh 0"}}>
             <Col md="auto" style={{marginLeft: "auto"}}>
               <Card style={{height: "700px", width: "300px", float: "right",}}>
               <Card.Img variant="top" src={this.props.user.imageUrl} />
@@ -70,11 +70,12 @@ class User extends React.Component {
               <Row>
                 <Card style={{height: "180px", width: "650px", float: "left"}}>
                   <Card.Body>
-                    <Card.Title>My account</Card.Title>
-                    <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>
+                    <Card.Title>Account Dashboard</Card.Title>
+                    <Card.Subtitle className="mb-2 text-muted">
+                      Welcome back!
+                    </Card.Subtitle>
                     <Card.Text>
-                      Some quick example text to build on the card title and make up the bulk of
-                      the card's content.
+                      From your account dashboard, you can update profile information, view scheduel and manage interviews.
                     </Card.Text>
                     <Card.Link as={Link} to="/editAccount" style={{marginRight: "10px"}}>Edit Account</Card.Link>
                     <Card.Link href="#" onClick={this.deleteUser} style={{color: "#dc3545"}}>Delete Account</Card.Link>
@@ -99,7 +100,7 @@ class User extends React.Component {
                       ))}
                     </div>
                     <div style={{marginTop: "15px"}}>
-                      <Card.Link as={Link} to="/userInterviews">All intervews</Card.Link>
+                      <Card.Link as={Link} to="/userInterviews">All my intervews</Card.Link>
                     </div>
                   </Card.Body>
                 </Card>
