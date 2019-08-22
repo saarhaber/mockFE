@@ -9,6 +9,7 @@ import NavMain from "./NavMain";
 class Dashboard extends React.Component {
   componentWillMount() {
     this.props.fetchInterviews();
+
   } 
 
   render () {
@@ -29,7 +30,7 @@ class Dashboard extends React.Component {
 const getStateToProps = (state) => {
   return {
     interviews: state.interviews,
-    interview: state.interview
+    interview: state.interview,
   }
 }
 
