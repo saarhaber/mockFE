@@ -3,21 +3,26 @@ import './SingleInterview.css';
 import {Card, Button} from 'react-bootstrap';
 import {connect} from 'react-redux'
 import { bookInterview, getUser, getUserById } from '../store/actions'
+import { withRouter } from 'react-router-dom'
 
 class SingleInterview extends React.Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.isLoggedIn = null;
   }
 
   componentDidMount() {
-    this.props.getUser()
+    this.props.getUser();
+    this.isLoggedIn = Boolean(this.props.user.id);
   }
 
   handleSubmit(e) {
     e.preventDefault();
     const user = this.props.user;
-    
+    if (!this.isLoggedIn) {
+      return this.props.history.push("/login");
+    }
     if (user) {
       if (user.isInterviewer) {
         return console.log('interviewer cannot book interviews!');
@@ -81,5 +86,5 @@ const mapDispatch = dispatch => {
   }
 }
 
-export default connect(getStateToProps,mapDispatch)(SingleInterview);
+export default withRouter(connect(getStateToProps,mapDispatch)(SingleInterview));
 

@@ -2,7 +2,7 @@ import React from "react";
 import {Navbar, Nav, Button} from "react-bootstrap";
 import {logout, getUser} from '../store/actions/'
 import {connect} from "react-redux";
-import {Link} from 'react-router-dom';
+import {Link, withRouter } from 'react-router-dom';
 
 class NavMain extends React.Component {
   constructor(props) {
@@ -19,12 +19,12 @@ class NavMain extends React.Component {
   render() {
     return(
       <Navbar bg="light" expand="lg">
-        <Navbar.Brand href="/" style={{marginLeft: "7%", marginRight: "40px"}}>MockUp</Navbar.Brand>
+        <Navbar.Brand onClick={() => this.props.history.push("/")} style={{marginLeft: "7%", marginRight: "40px"}}>MockUp</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link href="/user">Profile</Nav.Link>
-            <Nav.Link href="/dashboard">Bulletin</Nav.Link>
+            <Nav.Link onClick={() => this.props.history.push("/user")}>Profile</Nav.Link>
+            <Nav.Link onClick={() => this.props.history.push("/dashboard")}>Bulletin</Nav.Link>
             {this.props.user.isInterviewer && 
               <Nav.Link as={Link} to="/newInterview">Create Interview!</Nav.Link>
             }
@@ -67,4 +67,4 @@ const mapDispatch = dispatch => {
   }
 }
 
-export default connect(getStateToProps, mapDispatch)(NavMain);
+export default withRouter(connect(getStateToProps, mapDispatch)(NavMain));
