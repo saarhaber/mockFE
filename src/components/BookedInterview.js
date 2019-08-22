@@ -30,37 +30,54 @@ class BookedInterview extends React.Component {
   }
 
   render() {
-  return (
-    <div className="SingleInterview">
-      <Card style={{ width: '18rem', borderRadius: '20px'}}>
-        <Card.Body>
-          <Card.Text>
-          {this.props.interview_.interviewDate}
-            <br></br>
-            {this.props.interview_.interviewTime}
-            <br></br>
-            {this.props.interview_.interviewLocation}
-            <br></br>
-            {this.props.interview_.extraInfo}
-          </Card.Text>
-          {/* This button will BOOK the meeting */}
-          {this.props.user.isInterviewer && 
-            <Button variant="primary" as={Link} to={"/interviews/" + this.props.interview_.id + "/editInterview"}>
-              Edit
-            </Button>
-          }
-          <Button variant="primary" style={{marginLeft: '5px'}} onClick={this.unbook}>unbook</Button>
-          <Button variant="danger" style={{marginLeft: '5px'}}>Remove</Button>
-        </Card.Body>
-      </Card>
-    </div>
-  );
+    let student;
+    for (let i = 0; i < this.props.users.length; i++) {
+      if (this.props.users[i].id == this.props.interview_.studentId) {
+        student = this.props.users[i]
+        break
+      }
+    }
+
+    return (
+      <div className="SingleInterview">
+        <Card style={{ width: '18rem', borderRadius: '20px'}}>
+          <Card.Body>
+            {
+              student == undefined ?
+              null
+              :
+              <div>
+                <p>{student.firstName} {student.lastName}</p>
+                <img src={student.imageUrl} style={{"border-radius": "50%"}} />
+              </div>
+            }
+            <Card.Text>
+            {this.props.interview_.interviewDate}
+              <br></br>
+              {this.props.interview_.interviewTime}
+              <br></br>
+              {this.props.interview_.interviewLocation}
+              <br></br>
+              {this.props.interview_.extraInfo}
+            </Card.Text>
+            {/* This button will BOOK the meeting */}
+            {this.props.user.isInterviewer && 
+              <Button variant="primary" as={Link} to={"/interviews/" + this.props.interview_.id + "/editInterview"}>
+                Edit
+              </Button>
+            }
+            <Button variant="danger" style={{marginLeft: '5px'}}>Remove</Button>
+          </Card.Body>
+        </Card>
+      </div>
+    );
   }
 }
 
 const getStateToProps = (state) => {
   return {
-    user: state.user
+    user: state.user,
+    users: state.users
   }
 }
 
