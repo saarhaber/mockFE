@@ -6,7 +6,7 @@ import {fetchUsers, login, getUser} from '../store/actions/index';
 import NavMain from "./NavMain";
 import './Login.css';
 
-const TAG = "COMPONENTS/LOGIN_JS";
+// const TAG = "COMPONENTS/LOGIN_JS";
 
 class Login extends React.Component {
   constructor() {

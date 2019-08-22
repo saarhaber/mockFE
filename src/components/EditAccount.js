@@ -80,7 +80,7 @@ class EditAccount extends React.Component {
       errorCodes.push(5);
     }
 
-    if (errorCodes.length == 0) {
+    if (errorCodes.length === 0) {
       let component = this
       console.log("Starting editUser")
       this.props.editUser(component.state.id, {
@@ -113,7 +113,7 @@ class EditAccount extends React.Component {
       errorCodes.push(3);
     }
 
-    if (errorCodes.length == 0) {
+    if (errorCodes.length === 0) {
     } else {
       // Show 2 errors
       if (errorCodes.length > 2) {
@@ -129,12 +129,12 @@ class EditAccount extends React.Component {
     // Check inputs
     let errorCodes= [];
 
-    if(e.target.password.value == e.target.confirm.value) {
+    if(e.target.password.value === e.target.confirm.value) {
     } else {
       errorCodes.push(1);
     }
 
-    if (errorCodes.length == 0) {
+    if (errorCodes.length === 0) {
     } else {
       // Show 2 errors
       if (errorCodes.length > 2) {
@@ -272,7 +272,7 @@ class EditAccount extends React.Component {
                     <Form.Row>
                       <Form.Group as={Col} controlId="formGroupEmail">
                         <Form.Label>Email address</Form.Label>
-                        <Form.Control name="email" type="email" value={this.state.email} name="email" onChange={this.handleChange} />
+                        <Form.Control name="email" type="email" value={this.state.email} onChange={this.handleChange} />
                         <Form.Text className="text-muted" style={{marginLeft: '3px'}}>
                           We'll never share your email with anyone.
                         </Form.Text>

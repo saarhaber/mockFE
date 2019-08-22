@@ -72,7 +72,7 @@ class Signup extends React.Component {
 
     // Check passwords
     if(e.target.password) {
-      if (e.target.confirm.value != e.target.password.value) {
+      if (e.target.confirm.value !== e.target.password.value) {
         errorCodes.push(1);
       } else {
         newUser.password = e.target.password.value;
@@ -88,7 +88,7 @@ class Signup extends React.Component {
     }
 
     // If a valid input is received, create user
-    if (errorCodes.length == 0) {
+    if (errorCodes.length === 0) {
       this.props.signup(newUser);
       this.setState({redirect: true});
     } else {

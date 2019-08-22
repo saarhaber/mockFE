@@ -88,8 +88,8 @@ class User extends React.Component {
                     <Card.Subtitle className="mb-2 text-muted">Check your upcoming interviews</Card.Subtitle>
                     <div style={{marginTop: "30px"}}>
                       {this.props.interviews.filter(interview => (
-                        this.props.user.id == interview.studentId ||
-                        this.props.user.id == interview.interviewerId
+                        Number(this.props.user.id) === Number(interview.studentId) ||
+                        Number(this.props.user.id) === Number(interview.interviewerId)
                       )).map(interview => (
                         <div style={{display: "inline-block"}}>
                           <BookedInterview interview_={interview}/>

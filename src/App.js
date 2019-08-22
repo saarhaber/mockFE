@@ -5,7 +5,6 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import User from './components/User';
 import EditAccount from './components/EditAccount';
-import SingleInterview from './components/SingleInterview';
 import NewInterview from './components/NewInterview';
 import EditInterview from './components/EditInterview';
 import Dashboard from './components/Dashboard';
@@ -14,14 +13,7 @@ import {connect} from 'react-redux'
 
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-    }
-  }
-
   render(){
-    let component = this
     return (
       <Router>
         <div>
@@ -34,11 +26,12 @@ class App extends Component {
           <Route path="/editAccount" component={EditAccount} />
           {this.props.interviews.map(interview => {
               return (
-                <Route exact path={"/interviews/" + interview.id + "/editInterview"} 
+                <Route key={interview.id} exact path={"/interviews/" + interview.id + "/editInterview"} 
                 render={() => {
                   return (
                   <EditInterview
                     interview_={interview}
+                    key={interview.id}
                   />
                   )
                 }}
