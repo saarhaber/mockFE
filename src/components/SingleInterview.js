@@ -20,13 +20,11 @@ class SingleInterview extends React.Component {
     
     if (user) {
       if (user.isInterviewer) {
-        console.log('interviewer cannot book interviews!');
+        return console.log('interviewer cannot book interviews!');
       }
-      console.log("1")
       const interview = this.props.interview_;
-      console.log("2")
       interview.studentId = user.id;
-      console.log("3")
+      interview.isBooked = true;
       this.props.bookInterview(interview.id, interview);
     } else {
       console.error('connection error')

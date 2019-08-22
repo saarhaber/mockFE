@@ -13,7 +13,20 @@ class BookedInterview extends React.Component {
 
   unbook(e) {
     e.preventDefault();
-
+    
+    const user = this.props.user;
+    if(user) {
+      if (user.isInterviewer) {
+        return console.error("Interviewers cannot unbook interviews!");
+      } else {
+        const interview = this.props.interview_;
+        interview.studentId = null;
+        interview.isBooked = false;
+        this.props.unbook(interview.id,interview);
+      }
+    } else {
+      console.error("Not signed in");
+    }
   }
 
   render() {

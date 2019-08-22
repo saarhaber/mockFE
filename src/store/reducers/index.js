@@ -51,7 +51,6 @@ const interviewSelectReducer = (interview = {}, action) => {
     case "SELECT_INTERVIEW":
       return action.payload;
     case "BOOK_INTERVIEW":
-      console.log("BOOK INTERVIEW REDUCER CALLED")
       return {...interview, studentId: action.payload}
     case "UNBOOK_INTERVIEW":
       return {...interview, studentId: null}
