@@ -102,7 +102,7 @@ class BookedInterview extends React.Component {
             }
             {this.props.user.isInterviewer
             ?
-            <Button variant="danger" style={{marginLeft: '5px'}}>Remove</Button>
+            <Button variant="danger" style={{marginLeft: '5px'}} onClick={this.removeInterview}>Remove</Button>
             : null}
             </Card.Body>
         </Card>
