@@ -79,5 +79,12 @@ const getStateToProps = (state) => {
   }
 }
 
-export default connect(getStateToProps, {selectInterview, unbookInterview})(BookedInterview);
+const mapDispatch = dispatch => {
+  return {
+    unbook: (interviewId, body) => dispatch(unbookInterview(interviewId,body)),
+    selectInterview: (interview) => dispatch(selectInterview(interview))
+  }
+}
+
+export default connect(getStateToProps, mapDispatch)(BookedInterview);
 

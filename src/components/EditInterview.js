@@ -66,10 +66,11 @@ class EditInterview extends React.Component {
       return (
         <div className="editInterview">
           <NavMain/>
-          <Card className="edit-card" style={{margin: "10vh 20vh"}}>
-            <Card.Header>Update Interview Info</Card.Header>
-            <Card.Body>
-              <Form onSubmit={this.onSubmitHandler}>
+          <div className="login" style={{width: "1000px"}}>
+            <Card className="edit-card" style={{margin: "10vh 20vh"}}>
+              <Card.Header>Update Interview Info</Card.Header>
+              <Card.Body>
+                <Form onSubmit={this.onSubmitHandler}>
                   <Form.Group>
                     <Form.Label>Date</Form.Label>
                     <Form.Control name="interviewDate" type="date" value={this.state.interviewDate} onChange={this.handleChange}/>
@@ -86,12 +87,13 @@ class EditInterview extends React.Component {
                     <Form.Label>Description</Form.Label>
                     <Form.Control name="extraInfo" type="loction" value={this.state.extraInfo} onChange={this.handleChange}/>
                   </Form.Group>
-                <Button variant="primary" type="submit" className="edit-form-btn">
-                  Submit
-                </Button>
-              </Form>
+                  <Button variant="primary" type="submit" className="edit-form-btn">
+                    Submit
+                  </Button>
+                </Form>
               </Card.Body>
-           </Card>
+            </Card>
+          </div>
         </div>
       );
     }
