@@ -2,13 +2,13 @@ import axios from 'axios';
 
 const TAG = "ACTIONS/INDEX_JS";
 
-const dev_api = 'http://localhost:5000/api';
+// const dev_api = 'http://localhost:5000/api';
 const prod_api = 'https://frozen-spire-39361.herokuapp.com/api';
 
 // login
 export const login = (login) => {
   return(dispatch) => {
-    axios.post(dev_api +'/auth/login', login, {withCredentials: true})
+    axios.post(prod_api +'/auth/login', login, {withCredentials: true})
     .then(response => {
       dispatch({
         type: 'SAVE_RESPONSE',
@@ -30,7 +30,7 @@ export const login = (login) => {
 // login
 export const logout = () => {
   return(dispatch) => {
-    axios.post(dev_api + '/auth/logout/', {}, {withCredentials: true})
+    axios.post(prod_api + '/auth/logout/', {}, {withCredentials: true})
     .then(response => {
       dispatch({
         type: 'SAVE_RESPONSE',
@@ -52,7 +52,7 @@ export const logout = () => {
 // Signup
 export const signup = (user) => {
   return (dispatch) => {
-    axios.post(dev_api + '/auth/signup', user)
+    axios.post(prod_api + '/auth/signup', user)
     .then(response => {
       dispatch({
         type: 'SAVE_RESPONSE',
@@ -70,7 +70,7 @@ export const signup = (user) => {
 // Stores an user
 export const getUser = () => {
   return (dispatch) => {
-    axios.get(dev_api + '/auth/me',{withCredentials: true})
+    axios.get(prod_api + '/auth/me',{withCredentials: true})
     .then(response => {
       dispatch({
         type: 'SELECT_USER',
@@ -85,7 +85,7 @@ export const getUser = () => {
 
 export const fetchUsers = () => {
   return(dispatch) => {
-    axios.get(dev_api +'/users/')
+    axios.get(prod_api +'/users/')
     .then(response => {
       dispatch({
         type: "FETCH_USERS",
@@ -101,7 +101,7 @@ export const fetchUsers = () => {
 // Deletes an user
 export const deleteUser = (user) => {
   return(dispatch) => {
-    axios.delete(dev_api +'/users/' + user.id)
+    axios.delete(prod_api +'/users/' + user.id)
     .then(response => {
       dispatch({
         type: "NONE",
@@ -118,7 +118,7 @@ export const deleteUser = (user) => {
 export const editUser = (id, newUser) => {
   console.log("starting action newUser")
   return(dispatch) => {
-    axios.put(dev_api+'/users/' + id, newUser, {
+    axios.put(prod_api+'/users/' + id, newUser, {
       withCredentials: true
     })
     .then(response => {
@@ -135,7 +135,7 @@ export const editUser = (id, newUser) => {
 
 export const getUserById = id => async dispatch => {
   try {
-    let { data } = await axios.get(`${dev_api}/users/${id}`);
+    let { data } = await axios.get(`${prod_api}/users/${id}`);
     dispatch({type: "SELECT_USER", payload: data});
   } catch (err) {
     console.error(err);
@@ -146,7 +146,7 @@ export const getUserById = id => async dispatch => {
 
 export const fetchInterviews = () => {
   return(dispatch) => {
-    axios.get(dev_api+'/interviews/')
+    axios.get(prod_api+'/interviews/')
     .then(response => {
       dispatch({
         type: "FETCH_INTERVIEWS",
@@ -162,7 +162,7 @@ export const fetchInterviews = () => {
 // Adds a new interview to the store
 export const addInterview = (interview) => {
   return(dispatch) => {
-    axios.post(dev_api + '/interviews/', interview)
+    axios.post(prod_api + '/interviews/', interview)
     .then(response => {
       dispatch({
         type: "SERVER_RESPONSE",
@@ -177,7 +177,7 @@ export const addInterview = (interview) => {
 
 export const bookInterview = (interviewId, body) => async dispatch => {
   try {
-    await axios.put(`${dev_api}/interviews/${interviewId}`, body);
+    await axios.put(`${prod_api}/interviews/${interviewId}`, body);
     dispatch({type: "BOOK_INTERVIEW", payload: body.studentId});
   } catch (err) {
     console.error(err)
@@ -186,7 +186,7 @@ export const bookInterview = (interviewId, body) => async dispatch => {
 
 export const unbookInterview = (interviewId, body) => async dispatch => {
   try {
-    await axios.put(`${dev_api}/interviews/${interviewId}`, body);
+    await axios.put(`${prod_api}/interviews/${interviewId}`, body);
     dispatch({type: "UNBOOK_INTERVIEW"});
   } catch (err) {
     console.log(err)
@@ -196,7 +196,7 @@ export const unbookInterview = (interviewId, body) => async dispatch => {
 // Deletes an interview
 export const deleteInterview = (interview) => {
   return(dispatch) => {
-    axios.delete(dev_api+'/interviews/' + interview.id)
+    axios.delete(prod_api+'/interviews/' + interview.id)
     .then(response => {
       dispatch({
         type: "NONE",
@@ -213,7 +213,7 @@ export const deleteInterview = (interview) => {
 export const editInterview = (id, newInterview) => {
   console.log("Calling edit interview")
   return(dispatch) => {
-    axios.put(dev_api + '/interviews/' + id, newInterview)
+    axios.put(prod_api + '/interviews/' + id, newInterview)
     .then(response => {
       dispatch({
         type: "NONE",
