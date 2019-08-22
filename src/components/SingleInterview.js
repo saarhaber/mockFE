@@ -1,6 +1,6 @@
 import React from 'react';
 import './SingleInterview.css';
-import {Card, Button} from 'react-bootstrap';
+import {Card, Button, Toast } from 'react-bootstrap';
 import {connect} from 'react-redux'
 import { bookInterview, getUser, getUserById } from '../store/actions'
 import { withRouter } from 'react-router-dom'
@@ -32,7 +32,7 @@ class SingleInterview extends React.Component {
       interview.isBooked = true;
       this.props.bookInterview(interview.id, interview);
     } else {
-      console.error('connection error')
+      console.error('connection error');
     }
   }
 
@@ -61,7 +61,6 @@ class SingleInterview extends React.Component {
                 <br></br>
                 {this.props.interview_.extraInfo}
               </Card.Text>
-              {/* This button will BOOK the meeting */}
               <Button variant="primary" type="button" onClick={this.handleSubmit}>BOOK</Button>
             </Card.Body>
           </Card>
