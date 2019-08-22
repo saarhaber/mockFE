@@ -100,14 +100,14 @@ export const fetchUsers = () => {
 
 // Deletes an user
 export const deleteUser = (user) => {
+  console.log("ASDASDASDASd")
   return(dispatch) => {
-    axios.delete(prod_api +'/users/' + user.id)
-    .then(response => {
+    axios.delete(prod_api +'/users/' + user.id, {withCredentials: true})
+    .then(
       dispatch({
-        type: "NONE",
-        payload: response.data
+        type: "DELETE_USER",
       })
-    })
+    )
     .catch(error => {
       console.log(TAG, "Cannot post user to api", error);
     })
