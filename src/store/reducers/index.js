@@ -18,6 +18,8 @@ const userSelectReducer = (user = {}, action) => {
   switch(action.type) {
     case "SELECT_USER":
       return action.payload;
+    case "DELETE_USER":
+      return {};
     default:
       return user;
   }

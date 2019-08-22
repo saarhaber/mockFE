@@ -30,6 +30,9 @@ class BookedInterview extends React.Component {
       } else {
       console.error("Not signed in");
     }
+    this.setState({
+      redirectToLogin: true
+    })
   }
 
   removeInterview = event => {
@@ -92,10 +95,14 @@ class BookedInterview extends React.Component {
                 Edit
               </Button>
             }
+            {this.props.interview_.studentId
+            ?
             <Button variant="primary" style={{marginLeft: '5px'}} onClick={this.unbook}>Unbook</Button>
+            : null
+            }
             {this.props.user.isInterviewer
             ?
-            <Button variant="danger" style={{marginLeft: '5px'}}>Remove</Button>
+            <Button variant="danger" style={{marginLeft: '5px'}} onClick={this.removeInterview}>Remove</Button>
             : null}
             </Card.Body>
         </Card>

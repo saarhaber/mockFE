@@ -2,11 +2,9 @@ import React from 'react';
 import './User.css';
 import {Card, Row, Col, ListGroup, ListGroupItem} from 'react-bootstrap';
 import {connect} from 'react-redux';
-import {Redirect} from 'react-router';
-import {Link} from 'react-router-dom';
+import {Link, Redirect, withRouter} from 'react-router-dom';
 import BookedInterview from './BookedInterview';
-import {fetchInterviews} from '../store/actions/index';
-import {deleteUser, getUser, fetchUsers} from '../store/actions/index';
+import {deleteUser, getUser, fetchUsers, fetchInterviews, logout} from '../store/actions/index';
 import NavMain from "./NavMain";
 
 class User extends React.Component {
@@ -18,11 +16,13 @@ class User extends React.Component {
   componentDidMount() {
     this.props.getUser();
     this.props.fetchInterviews();
+    
   }
 
   deleteUser() {
+    this.props.logout();
     this.props.deleteUser(this.props.user);
-    this.props.fetchUsers();
+    this.props.history.push("/");
   }
 
 
@@ -32,7 +32,7 @@ class User extends React.Component {
       return (
         <Redirect to="/login"></Redirect>
       )
-    } 
+    }
     console.log(this.props.interviews)
     return (
       <div>
@@ -86,15 +86,20 @@ class User extends React.Component {
                   <Card.Body>
                     <Card.Title>My schedule</Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">Check your upcoming interviews</Card.Subtitle>
-                    <div style={{marginTop: "30px"}}>
+                    <div style={{marginTop: "30px", marginBotton: "10px"}}>
                       {this.props.interviews.filter(interview => (
                         Number(this.props.user.id) === Number(interview.studentId) ||
                         Number(this.props.user.id) === Number(interview.interviewerId)
-                      )).map(filteredInterview => (
+                      ))
+                      .slice(0, 4)
+                      .map(filteredInterview => (
                         <div style={{display: "inline-block"}}>
                           <BookedInterview interview_={filteredInterview}/>
                         </div>
                       ))}
+                    </div>
+                    <div style={{marginTop: "15px"}}>
+                      <Card.Link as={Link} to="/userInterviews">All intervews</Card.Link>
                     </div>
                   </Card.Body>
                 </Card>
@@ -115,4 +120,4 @@ const getStateToProps = (state) => {
   }
 }
 
-export default connect(getStateToProps, {fetchInterviews, deleteUser, getUser, fetchUsers})(User);
+export default withRouter(connect(getStateToProps, {fetchInterviews, deleteUser, getUser, fetchUsers, logout})(User));
