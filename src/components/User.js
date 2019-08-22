@@ -2,11 +2,9 @@ import React from 'react';
 import './User.css';
 import {Card, Row, Col, ListGroup, ListGroupItem} from 'react-bootstrap';
 import {connect} from 'react-redux';
-import {Redirect} from 'react-router';
-import {Link} from 'react-router-dom';
+import {Link, Redirect, withRouter} from 'react-router-dom';
 import BookedInterview from './BookedInterview';
-import {fetchInterviews} from '../store/actions/index';
-import {deleteUser, getUser, fetchUsers} from '../store/actions/index';
+import {deleteUser, getUser, fetchUsers, fetchInterviews, logout} from '../store/actions/index';
 import NavMain from "./NavMain";
 
 class User extends React.Component {
@@ -22,8 +20,9 @@ class User extends React.Component {
   }
 
   deleteUser() {
+    this.props.logout();
     this.props.deleteUser(this.props.user);
-    this.props.fetchUsers();
+    this.props.history.push("/");
   }
 
 
@@ -121,4 +120,4 @@ const getStateToProps = (state) => {
   }
 }
 
-export default connect(getStateToProps, {fetchInterviews, deleteUser, getUser, fetchUsers})(User);
+export default withRouter(connect(getStateToProps, {fetchInterviews, deleteUser, getUser, fetchUsers, logout})(User));
