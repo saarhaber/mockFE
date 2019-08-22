@@ -6,7 +6,7 @@ import {fetchUsers, login, getUser} from '../store/actions/index';
 import NavMain from "./NavMain";
 import './Login.css';
 
-const TAG = "COMPONENTS/LOGIN_JS";
+// const TAG = "COMPONENTS/LOGIN_JS";
 
 class Login extends React.Component {
   constructor() {
@@ -18,7 +18,7 @@ class Login extends React.Component {
     this.props.fetchUsers();
   }
 
-  async authenticateLogin(e) {
+  authenticateLogin(e) {
     e.preventDefault();
 
     const loginInfo = {
@@ -27,7 +27,7 @@ class Login extends React.Component {
     }
 
     // make a post request using the action creator
-    await this.props.login(loginInfo);
+    this.props.login(loginInfo);
   }
 
   render() {

@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const TAG = "ACTIONS/INDEX_JS";
 
-const dev_api = 'http://localhost:5000/api';
+// const dev_api = 'http://localhost:5000/api';
 const prod_api = 'https://frozen-spire-39361.herokuapp.com/api';
 
 // login
@@ -176,13 +176,20 @@ export const addInterview = (interview) => {
 }
 
 export const bookInterview = (interviewId, body) => async dispatch => {
-  console.log("BOOK INTERVIEW CALLED")
   try {
-    console.log("HELOOO" + body.studentId)
     await axios.put(`${prod_api}/interviews/${interviewId}`, body);
     dispatch({type: "BOOK_INTERVIEW", payload: body.studentId});
   } catch (err) {
     console.error(err)
+  }
+}
+
+export const unbookInterview = (interviewId, body) => async dispatch => {
+  try {
+    await axios.put(`${prod_api}/interviews/${interviewId}`, body);
+    dispatch({type: "UNBOOK_INTERVIEW"});
+  } catch (err) {
+    console.log(err)
   }
 }
 
