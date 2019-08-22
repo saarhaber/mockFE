@@ -56,8 +56,11 @@ class SingleInterview extends React.Component {
                 <br></br>
                 {this.props.interview_.extraInfo}
               </Card.Text>
-              {/* This button will BOOK the meeting */}
-              <Button variant="primary" type="button" onClick={this.handleSubmit}>BOOK</Button>
+              {
+                this.props.user.isInterviewer
+                ? <Button variant="secondary">BOOK</Button>
+                : <Button variant="primary" type="button" onClick={this.handleSubmit}>BOOK</Button>
+              }
             </Card.Body>
           </Card>
       </div>
