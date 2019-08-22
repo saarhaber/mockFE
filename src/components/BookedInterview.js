@@ -39,16 +39,32 @@ class BookedInterview extends React.Component {
     this.setState({redirectToEdit: true});
   }
   render() {
+    let student;
+    for (let i = 0; i < this.props.users.length; i++) {
+      if (this.props.users[i].id == this.props.interview_.studentId) {
+        student = this.props.users[i]
+        break
+      }
+    }
+
     if (this.state.redirectToEdit) {
       return(
         <Redirect to="editInterview"/>
       );
     }
-    console.log("Inrender", this.props);
     return (
       <div className="SingleInterview">
         <Card style={{ width: '18rem', borderRadius: '20px'}}>
           <Card.Body>
+            {
+              student == undefined ?
+              null
+              :
+              <div>
+                <p>{student.firstName} {student.lastName}</p>
+                <img src={student.imageUrl} style={{"border-radius": "50%"}} />
+              </div>
+            }
             <Card.Text>
             {this.props.interview_.interviewDate}
               <br></br>
@@ -75,7 +91,8 @@ class BookedInterview extends React.Component {
 
 const getStateToProps = (state) => {
   return {
-    user: state.user
+    user: state.user,
+    users: state.users
   }
 }
 
