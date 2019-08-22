@@ -4,16 +4,18 @@ import {Card, Button} from 'react-bootstrap';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {Redirect} from 'react-router';
-import { unbookInterview, selectInterview} from '../store/actions';
+import {unbookInterview, selectInterview, deleteInterview} from '../store/actions';
 
 class BookedInterview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      redirectToEdit: false
+      redirectToEdit: false,
+      redirectToLogin: false
     }
     this.unbook = this.unbook.bind(this);
     this.editInterview = this.editInterview.bind(this);
+    this.removeInterview = this.removeInterview.bind(this)
   }
 
   unbook(e) {
@@ -30,10 +32,19 @@ class BookedInterview extends React.Component {
     }
   }
 
+  removeInterview = event => {
+    event.preventDefault()
+    this.props.deleteInterview(this.props.interview_)
+    this.setState({
+      redirectToLogin: true
+    })
+  }
+
   editInterview() {
     this.props.selectInterview(this.props.interview_);
     this.setState({redirectToEdit: true});
   }
+
   render() {
     let student;
     for (let i = 0; i < this.props.users.length; i++) {
@@ -46,6 +57,11 @@ class BookedInterview extends React.Component {
     if (this.state.redirectToEdit) {
       return(
         <Redirect to="editInterview"/>
+      );
+    }
+    else if (this.state.redirectToLogin) {
+      return(
+        <Redirect to="/login"/>
       );
     }
     return (
@@ -77,7 +93,7 @@ class BookedInterview extends React.Component {
               </Button>
             }
             <Button variant="primary" style={{marginLeft: '5px'}} onClick={this.unbook}>Unbook</Button>
-            <Button variant="danger" style={{marginLeft: '5px'}}>Remove</Button>
+            <Button variant="danger" style={{marginLeft: '5px'}} onClick={this.removeInterview}>Remove</Button>
           </Card.Body>
         </Card>
       </div>
@@ -95,7 +111,8 @@ const getStateToProps = (state) => {
 const mapDispatch = dispatch => {
   return {
     unbook: (interviewId, body) => dispatch(unbookInterview(interviewId,body)),
-    selectInterview: (interview) => dispatch(selectInterview(interview))
+    selectInterview: (interview) => dispatch(selectInterview(interview)),
+    deleteInterview: (interview) => dispatch(deleteInterview(interview))
   }
 }
 
