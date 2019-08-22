@@ -10,20 +10,20 @@ class EditInterview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      interviewDate: this.props.interview_.interviewDate,
-      interviewTime: this.props.interview_.interviewTime,
-      interviewLocation: this.props.interview_.interviewLocation,
-      extraInfo: this.props.interview_.extraInfo,
+      interviewDate: undefined,
+      interviewTime: undefined,
+      interviewLocation: undefined,
+      extraInfo: undefined,
       redirect: false
     }
     this.handleChange = this.handleChange.bind(this);
   }
   componentDidMount() {
     this.setState({
-      interviewDate: this.props.interviewDate,
-      interviewTime: this.props.interviewTime,
-      interviewLocation: this.props.interviewLocation,
-      extraInfo: this.props.extraInfo
+      interviewDate: this.props.interview.interviewDate,
+      interviewTime: this.props.interview.interviewTime,
+      interviewLocation: this.props.interview.interviewLocation,
+      extraInfo: this.props.interview.extraInfo
     })
   }
 
@@ -34,7 +34,7 @@ class EditInterview extends React.Component {
 
   onSubmitHandler = event => {
     event.preventDefault()
-    this.props.editInterview(this.props.interview_.id, {
+    this.props.editInterview(this.props.interview.id, {
       interviewDate: this.state.interviewDate,
       interviewTime: this.state.interviewTime,
       interviewLocation: this.state.interviewLocation,
@@ -46,6 +46,7 @@ class EditInterview extends React.Component {
   }
 
   render() {
+    console.log(this.props.interview);
     if (!this.props.user.id) {
       return (
         <Redirect to="/login"/>
@@ -65,32 +66,34 @@ class EditInterview extends React.Component {
       return (
         <div className="editInterview">
           <NavMain/>
-          <Card className="edit-card" style={{margin: "10vh 20vh"}}>
-            <Card.Header>Update Interview Info</Card.Header>
-            <Card.Body>
-                  <Form onSubmit={this.onSubmitHandler}>
-                      <Form.Group>
-                        <Form.Label>Date</Form.Label>
-                        <Form.Control name="interviewDate" type="date" value={this.state.interviewDate} onChange={this.handleChange}/>
-                      </Form.Group>
-                      <Form.Group >
-                        <Form.Label>Time</Form.Label>
-                        <Form.Control name="interviewTime" type="time" value={this.state.interviewTime} onChange={this.handleChange}/>
-                      </Form.Group>
-                      <Form.Group>
-                        <Form.Label>Location</Form.Label>
-                        <Form.Control name="interviewLocation" type="loction" value={this.state.interviewLocation} onChange={this.handleChange}/>
-                      </Form.Group>
-                      <Form.Group>
-                        <Form.Label>Description</Form.Label>
-                        <Form.Control name="extraInfo" type="loction" value={this.state.extraInfo} onChange={this.handleChange}/>
-                      </Form.Group>
-                    <Button variant="primary" type="submit" className="edit-form-btn">
-                      Submit
-                    </Button>
-                  </Form>
+          <div className="login" style={{width: "1000px"}}>
+            <Card className="edit-card" style={{margin: "10vh 20vh"}}>
+              <Card.Header>Update Interview Info</Card.Header>
+              <Card.Body>
+                <Form onSubmit={this.onSubmitHandler}>
+                  <Form.Group>
+                    <Form.Label>Date</Form.Label>
+                    <Form.Control name="interviewDate" type="date" value={this.state.interviewDate} onChange={this.handleChange}/>
+                  </Form.Group>
+                  <Form.Group >
+                    <Form.Label>Time</Form.Label>
+                    <Form.Control name="interviewTime" type="time" value={this.state.interviewTime} onChange={this.handleChange}/>
+                  </Form.Group>
+                  <Form.Group>
+                    <Form.Label>Location</Form.Label>
+                    <Form.Control name="interviewLocation" type="loction" value={this.state.interviewLocation} onChange={this.handleChange}/>
+                  </Form.Group>
+                  <Form.Group>
+                    <Form.Label>Description</Form.Label>
+                    <Form.Control name="extraInfo" type="loction" value={this.state.extraInfo} onChange={this.handleChange}/>
+                  </Form.Group>
+                  <Button variant="primary" type="submit" className="edit-form-btn">
+                    Submit
+                  </Button>
+                </Form>
               </Card.Body>
-           </Card>
+            </Card>
+          </div>
         </div>
       );
     }

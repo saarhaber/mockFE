@@ -28,6 +28,7 @@ class NewInterview extends React.Component {
       interviewerId: this.props.user.id,
       interviewDate: e.target.date.value,
       interviewLocation: e.target.location.value,
+      extraInfo: e.target.description.value,
     }
     this.props.addInterview(interview);
     this.setState({redirect: true});
@@ -60,6 +61,10 @@ class NewInterview extends React.Component {
           <Form.Group >
             <Form.Label>Location</Form.Label>
             <Form.Control type="string" name="location" placeholder="Google, 111 8th Avenue, NYC" />
+          </Form.Group>
+          <Form.Group >
+            <Form.Label>Description</Form.Label>
+            <Form.Control type="string" name="description" placeholder="Bring laptop" />
           </Form.Group>
           <Button variant="primary" type="submit">
             Submit
