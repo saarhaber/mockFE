@@ -24,20 +24,7 @@ class App extends Component {
           <Route path="/dashboard" component={Dashboard} />
           <Route path="/user" component={User} />
           <Route path="/editAccount" component={EditAccount} />
-          {this.props.interviews.map(interview => {
-              return (
-                <Route key={interview.id} exact path={"/interviews/" + interview.id + "/editInterview"} 
-                render={() => {
-                  return (
-                  <EditInterview
-                    interview_={interview}
-                    key={interview.id}
-                  />
-                  )
-                }}
-                />
-              )
-            })}
+          <Route path="/editInterview" component={EditInterview}/>
         </div>
       </Router> 
     );
