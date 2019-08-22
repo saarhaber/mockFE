@@ -41,7 +41,7 @@ class User extends React.Component {
         <div className="userPage">
           <Row style={{margin: "10vh 0"}}>
             <Col md="auto" style={{marginLeft: "auto"}}>
-              <Card style={{height: "750px", width: "300px", float: "right",}}>
+              <Card style={{height: "700px", width: "300px", float: "right",}}>
               <Card.Img variant="top" src={this.props.user.imageUrl} />
                 <Card.Body>
                   <Card.Title>
@@ -83,7 +83,7 @@ class User extends React.Component {
                 </Card>
               </Row>
               <Row>
-                <Card style={{height: "570px", width: "650px"}}>
+                <Card style={{height: "520px", width: "650px"}}>
                   <Card.Body>
                     <Card.Title>My schedule</Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">Check your upcoming interviews</Card.Subtitle>
@@ -92,7 +92,7 @@ class User extends React.Component {
                         Number(this.props.user.id) === Number(interview.studentId) ||
                         Number(this.props.user.id) === Number(interview.interviewerId)
                       ))
-                      .slice(0, 4)
+                      .slice(0, 3)
                       .map(filteredInterview => (
                         <div style={{display: "inline-block"}}>
                           <BookedInterview interview_={filteredInterview}/>

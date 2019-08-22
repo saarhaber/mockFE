@@ -69,42 +69,48 @@ class BookedInterview extends React.Component {
     }
     return (
       <div className="SingleInterview">
-        <Card style={{ width: '18rem', borderRadius: '20px'}}>
-          <Card.Body>
+        <Card style={{ width: '12rem', borderRadius: '20px'}}>
+          <Card.Body style={{textAlign: "center"}}>
             {
               student == undefined ?
-              null
+              <div>
+                <img src={"https://static.thenounproject.com/png/40364-200.png"} style={{"border-radius": "50%", height: "100px", width: "100px"}} />
+                <Card.Subtitle style={{margin: "10px"}}>Not booked</Card.Subtitle>
+              </div>
               :
               <div>
-                <p>{student.firstName} {student.lastName}</p>
-                <img src={student.imageUrl} style={{"border-radius": "50%"}} />
+                <img src={student.imageUrl} style={{"border-radius": "50%", height: "100px", width: "100px"}} />
+                <Card.Subtitle style={{margin: "10px"}}>{student.firstName} {student.lastName}</Card.Subtitle>
               </div>
             }
             <Card.Text>
-            {this.props.interview_.interviewDate}
+              Date: {this.props.interview_.interviewDate}
               <br></br>
-              {this.props.interview_.interviewTime}
+              Time: {this.props.interview_.interviewTime}
               <br></br>
-              {this.props.interview_.interviewLocation}
-              <br></br>
-              {this.props.interview_.extraInfo}
+              Location: {this.props.interview_.interviewLocation}
             </Card.Text>
             {/* This button will BOOK the meeting */}
-            {this.props.user.isInterviewer && 
-              <Button variant="primary" onClick={this.editInterview}>
-                Edit
-              </Button>
-            }
-            {this.props.interview_.studentId
-            ?
-            <Button variant="primary" style={{marginLeft: '5px'}} onClick={this.unbook}>Unbook</Button>
-            : null
-            }
-            {this.props.user.isInterviewer
-            ?
-            <Button variant="danger" style={{marginLeft: '5px'}} onClick={this.removeInterview}>Remove</Button>
-            : null}
-            </Card.Body>
+            <div>
+              {this.props.user.isInterviewer && 
+                <Button variant="primary" onClick={this.editInterview}>
+                  Edit
+                </Button>
+              }
+              {this.props.interview_.studentId?
+                <Button variant="primary" style={{marginLeft: '5px'}} onClick={this.unbook}>Unbook</Button>
+                :
+                <Button variant="primary" style={{marginLeft: '5px'}} disabled> Unbook </Button>
+              }
+            </div>
+            <div>
+              {this.props.user.isInterviewer ?
+                <Button variant="danger" style={{marginTop: "5px"}} onClick={this.removeInterview}>Remove</Button>
+                : 
+                null
+              }
+            </div>
+          </Card.Body>
         </Card>
       </div>
     );
