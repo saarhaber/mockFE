@@ -1,6 +1,6 @@
 import React from "react";
 import {Navbar, Nav, Button} from "react-bootstrap";
-import {logout} from '../store/actions/'
+import {logout, getUser} from '../store/actions/'
 import {connect} from "react-redux";
 import {Link} from 'react-router-dom';
 
@@ -9,7 +9,9 @@ class NavMain extends React.Component {
     super(props);
     this.logout = this.logout.bind(this);
   }
-
+  componentDidMount() {
+    this.props.getUser();
+  }
   logout() {
     this.props.logout();
     window.location.reload();
@@ -58,4 +60,11 @@ const getStateToProps = (state) => {
   }
 }
 
-export default connect(getStateToProps, {logout})(NavMain);
+const mapDispatch = dispatch => {
+  return {
+    getUser: () => dispatch(getUser()),
+    logout: () => dispatch(logout())
+  }
+}
+
+export default connect(getStateToProps, mapDispatch)(NavMain);
