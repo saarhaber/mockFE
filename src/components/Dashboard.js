@@ -17,9 +17,11 @@ class Dashboard extends React.Component {
       <div> 
         <NavMain/>
         <div className="dashboard">
-          {
+          {this.props.interviews.length > 0 ?
             this.props.interviews.filter(interview => (interview.studentId == null))
             .map(interview => <SingleInterview key={interview.id} interview_={interview}/>)
+            :
+            <div className="mb-2 text-muted">You have no interviews</div>
           }       
         </div>
       </div>
