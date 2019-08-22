@@ -57,6 +57,14 @@ class BookedInterview extends React.Component {
       }
     }
 
+    let interviewer;
+    for (let i = 0; i < this.props.users.length; i++) {
+      if (this.props.users[i].id == this.props.interview_.interviewerId) {
+        interviewer = this.props.users[i]
+        break
+      }
+    }
+
     if (this.state.redirectToEdit) {
       return(
         <Redirect to="editInterview"/>
@@ -71,16 +79,35 @@ class BookedInterview extends React.Component {
       <div className="SingleInterview">
         <Card style={{ width: '12rem', borderRadius: '20px'}}>
           <Card.Body style={{textAlign: "center"}}>
-            {
-              student == undefined ?
+            {this.props.user.isInterviewer ?
               <div>
-                <img src={"https://static.thenounproject.com/png/40364-200.png"} style={{"border-radius": "50%", height: "100px", width: "100px"}} />
-                <Card.Subtitle style={{margin: "10px"}}>Not booked</Card.Subtitle>
+                {
+                  student == undefined ?
+                  <div>
+                    <img src={"https://static.thenounproject.com/png/40364-200.png"} style={{"border-radius": "50%", height: "100px", width: "100px"}} />
+                    <Card.Subtitle style={{margin: "10px"}}>Not booked</Card.Subtitle>
+                  </div>
+                  :
+                  <div>
+                    <img src={student.imageUrl} style={{"border-radius": "50%", height: "100px", width: "100px"}} />
+                    <Card.Subtitle style={{margin: "10px"}}>{student.firstName} {student.lastName}</Card.Subtitle>
+                  </div>
+                }
               </div>
               :
               <div>
-                <img src={student.imageUrl} style={{"border-radius": "50%", height: "100px", width: "100px"}} />
-                <Card.Subtitle style={{margin: "10px"}}>{student.firstName} {student.lastName}</Card.Subtitle>
+                {
+                  interviewer == undefined ?
+                  <div>
+                    <img src={"https://static.thenounproject.com/png/40364-200.png"} style={{"border-radius": "50%", height: "100px", width: "100px"}} />
+                    <Card.Subtitle style={{margin: "10px"}}>Not booked</Card.Subtitle>
+                  </div>
+                  :
+                  <div>
+                    <img src={interviewer.imageUrl} style={{"border-radius": "50%", height: "100px", width: "100px"}} />
+                    <Card.Subtitle style={{margin: "10px"}}>{interviewer.firstName} {interviewer.lastName}</Card.Subtitle>
+                  </div>
+                }
               </div>
             }
             <Card.Text>
