@@ -1,6 +1,6 @@
 import React from 'react';
 import './NewInterview.css';
-import {Form, Button} from 'react-bootstrap';
+import {Form, Button, Card} from 'react-bootstrap';
 import {connect} from 'react-redux';
 import {addInterview, getUser} from '../store/actions/';
 import {Redirect} from 'react-router';
@@ -49,27 +49,34 @@ class NewInterview extends React.Component {
     return (
       <div className="NewInterview">
         <NavMain/>
-        <Form onSubmit={this.handleSubmit}>
-          <Form.Group >
-            <Form.Label>Date</Form.Label>
-            <Form.Control type="date" name="date" placeholder="11:00 AM - 12:30 PM" />
-          </Form.Group>
-          <Form.Group >
-            <Form.Label>Time</Form.Label>
-            <Form.Control type="time" name="time" placeholder="11:00 AM - 12:30 PM" />
-          </Form.Group>
-          <Form.Group >
-            <Form.Label>Location</Form.Label>
-            <Form.Control type="string" name="location" placeholder="Google, 111 8th Avenue, NYC" />
-          </Form.Group>
-          <Form.Group >
-            <Form.Label>Description</Form.Label>
-            <Form.Control type="string" name="description" placeholder="Bring laptop" />
-          </Form.Group>
-          <Button variant="primary" type="submit">
-            Submit
-          </Button>
-        </Form>
+        <div className="login" style={{width: "1000px"}}>
+          <Card className="edit-card" style={{margin: "10vh 20vh"}}>
+            <Card.Header>Update Interview Info</Card.Header>
+            <Card.Body>
+              <Form onSubmit={this.handleSubmit}>
+                <Form.Group>
+                  <Form.Label>Date</Form.Label>
+                  <Form.Control type="date" name="date" placeholder="11:00 AM - 12:30 PM"/>
+                </Form.Group>
+                <Form.Group >
+                  <Form.Label>Time</Form.Label>
+                  <Form.Control type="time" name="time" placeholder="11:00 AM - 12:30 PM" />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label>Location</Form.Label>
+                  <Form.Control type="string" name="location" placeholder="Google, 111 8th Avenue, NYC" />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label>Description</Form.Label>
+                  <Form.Control type="string" name="description" placeholder="Bring laptop" />
+                </Form.Group>
+                <Button variant="primary" type="submit" className="edit-form-btn">
+                  Submit
+                </Button>
+              </Form>
+            </Card.Body>
+          </Card>
+        </div>
       </div>
     );
   }
