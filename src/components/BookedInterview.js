@@ -97,7 +97,7 @@ class BookedInterview extends React.Component {
                   Edit
                 </Button>
               }
-              {this.props.interview_.studentId?
+              {this.props.interview_.isBooked?
                 <Button variant="primary" style={{marginLeft: '5px'}} onClick={this.unbook}>Unbook</Button>
                 :
                 <Button variant="primary" style={{marginLeft: '5px'}} disabled> Unbook </Button>
