@@ -91,6 +91,7 @@ export const fetchUsers = () => {
         type: "FETCH_USERS",
         payload: response.data
       })
+      console.log(response.data)
     })
     .catch(error => {
       console.log(TAG, "Cannot fetch users from api", error);
