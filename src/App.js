@@ -8,6 +8,7 @@ import EditAccount from './components/EditAccount';
 import NewInterview from './components/NewInterview';
 import EditInterview from './components/EditInterview';
 import Dashboard from './components/Dashboard';
+import UserDashboard from './components/UserDashboard';
 import {Route, BrowserRouter as Router} from 'react-router-dom';
 import {connect} from 'react-redux'
 
@@ -22,6 +23,7 @@ class App extends Component {
           <Route path="/signup" component={Signup} />
           <Route path="/NewInterview" component={NewInterview} />
           <Route path="/dashboard" component={Dashboard} />
+          <Route path="/userdashboard" component={UserDashboard} />
           <Route path="/user" component={User} />
           <Route path="/editAccount" component={EditAccount} />
           <Route path="/editInterview" component={EditInterview}/>

@@ -104,7 +104,7 @@ class User extends React.Component {
                         Number(this.props.user.id) === Number(interview.studentId) ||
                         Number(this.props.user.id) === Number(interview.interviewerId)
                       )).length > 0 ?
-                        <Card.Link as={Link} to="/userInterviews">All my intervews</Card.Link>
+                        <Card.Link as={Link} to="/userdashboard">All my intervews</Card.Link>
                         :
                         <Card.Text className="mb-2 text-muted">You have no interviews</Card.Text>
                       }
