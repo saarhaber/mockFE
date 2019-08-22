@@ -31,6 +31,7 @@ class NewInterview extends React.Component {
     }
     this.props.addInterview(interview);
     this.setState({redirect: true});
+    window.location.reload()
   }
   
 

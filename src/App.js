@@ -38,7 +38,7 @@ class App extends Component {
                 render={() => {
                   return (
                   <EditInterview
-                  interview_={interview}
+                    interview_={interview}
                   />
                   )
                 }}
