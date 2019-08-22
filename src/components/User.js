@@ -18,6 +18,7 @@ class User extends React.Component {
   componentDidMount() {
     this.props.getUser();
     this.props.fetchInterviews();
+    
   }
 
   deleteUser() {
@@ -32,7 +33,7 @@ class User extends React.Component {
       return (
         <Redirect to="/login"></Redirect>
       )
-    } 
+    }
     console.log(this.props.interviews)
     return (
       <div>
@@ -86,16 +87,19 @@ class User extends React.Component {
                   <Card.Body>
                     <Card.Title>My schedule</Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">Check your upcoming interviews</Card.Subtitle>
-                    <div style={{marginTop: "30px"}}>
+                    <div style={{marginTop: "30px", marginBotton: "10px"}}>
                       {this.props.interviews.filter(interview => (
                         Number(this.props.user.id) === Number(interview.studentId) ||
                         Number(this.props.user.id) === Number(interview.interviewerId)
-                      )).map(filteredInterview => (
+                      ))
+                      .slice(0, 4)
+                      .map(filteredInterview => (
                         <div style={{display: "inline-block"}}>
                           <BookedInterview interview_={filteredInterview}/>
                         </div>
                       ))}
                     </div>
+                    <Card.Link as={Link} to="/userInterviews">All intervews</Card.Link>
                   </Card.Body>
                 </Card>
               </Row>
