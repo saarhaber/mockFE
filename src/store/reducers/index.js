@@ -53,11 +53,12 @@ const interviewSelectReducer = (interview = {}, action) => {
     case "BOOK_INTERVIEW":
       console.log("BOOK INTERVIEW REDUCER CALLED")
       return {...interview, studentId: action.payload}
+    case "UNBOOK_INTERVIEW":
+      return {...interview, studentId: null}
     default:
       return interview;
   }
 }
-
 
 export default combineReducers({
   users: userReducer,

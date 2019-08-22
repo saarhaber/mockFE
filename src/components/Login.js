@@ -18,7 +18,7 @@ class Login extends React.Component {
     this.props.fetchUsers();
   }
 
-  async authenticateLogin(e) {
+  authenticateLogin(e) {
     e.preventDefault();
 
     const loginInfo = {
@@ -27,7 +27,7 @@ class Login extends React.Component {
     }
 
     // make a post request using the action creator
-    await this.props.login(loginInfo);
+    this.props.login(loginInfo);
   }
 
   render() {

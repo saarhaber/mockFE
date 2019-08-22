@@ -3,11 +3,19 @@ import './SingleInterview.css';
 import {Card, Button} from 'react-bootstrap';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom'
+import { unbookInterview } from '../store/actions'
 
 class BookedInterview extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
+    this.unbook = this.unbook.bind(this);
   }
+
+  unbook(e) {
+    e.preventDefault();
+
+  }
+
   render() {
   return (
     <div className="SingleInterview">
@@ -28,7 +36,7 @@ class BookedInterview extends React.Component {
               Edit
             </Button>
           }
-          <Button variant="primary" style={{marginLeft: '5px'}}>unbook</Button>
+          <Button variant="primary" style={{marginLeft: '5px'}} onClick={this.unbook}>unbook</Button>
           <Button variant="danger" style={{marginLeft: '5px'}}>Remove</Button>
         </Card.Body>
       </Card>
@@ -42,5 +50,11 @@ const getStateToProps = (state) => {
     user: state.user
   }
 }
-export default connect(getStateToProps)(BookedInterview);
+
+const mapDispatch = dispatch => {
+  return {
+    unbook: (interviewId, body) => dispatch(unbookInterview(interviewId,body))
+  }
+}
+export default connect(getStateToProps, mapDispatch)(BookedInterview);
 
