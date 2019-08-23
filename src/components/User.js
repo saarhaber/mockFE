@@ -62,7 +62,7 @@ class User extends React.Component {
                 </ListGroup>
                 <Card.Body>
                   <Card.Link href={"//" + this.props.user.email}>Email</Card.Link>
-                  <Card.Link href="//linkedin.com">LinkedIn</Card.Link>
+                  <Card.Link href={this.props.user.linkedInLink ? this.props.user.linkedInLink : "#"}>LinkedIn</Card.Link>
                 </Card.Body>
               </Card>
             </Col>
@@ -75,7 +75,7 @@ class User extends React.Component {
                       Welcome back!
                     </Card.Subtitle>
                     <Card.Text>
-                      From your account dashboard, you can update profile information, view scheduel and manage interviews.
+                      From your account dashboard, you can update profile information, view schedule and manage interviews.
                     </Card.Text>
                     <Card.Link as={Link} to="/editAccount" style={{marginRight: "10px"}}>Edit Account</Card.Link>
                     <Card.Link href="#" onClick={this.deleteUser} style={{color: "#dc3545"}}>Delete Account</Card.Link>

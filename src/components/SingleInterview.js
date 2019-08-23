@@ -70,7 +70,7 @@ class SingleInterview extends React.Component {
                 "DATE OF INTERVIEW" : this.props.interview_.interviewDate}
                 <br></br>
                 {(this.props.interview_.interviewDate == null) ?
-                "TIME OF INTERVIEW" : this.props.interview_.interviewDate}
+                "TIME OF INTERVIEW" : this.props.interview_.interviewTime}
                 <br></br>
                 {this.props.interview_.interviewLocation == null ?
                 "LOCATION OF INTERVIEW" : this.props.interview_.interviewLocation}
