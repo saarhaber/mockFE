@@ -2,7 +2,6 @@ import React from 'react';
 import './SingleInterview.css';
 import {Card, Button} from 'react-bootstrap';
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
 import {Redirect} from 'react-router';
 import {unbookInterview, selectInterview, deleteInterview} from '../store/actions';
 
@@ -49,21 +48,8 @@ class BookedInterview extends React.Component {
   }
 
   render() {
-    let student;
-    for (let i = 0; i < this.props.users.length; i++) {
-      if (this.props.users[i].id == this.props.interview_.studentId) {
-        student = this.props.users[i]
-        break
-      }
-    }
-
-    let interviewer;
-    for (let i = 0; i < this.props.users.length; i++) {
-      if (this.props.users[i].id == this.props.interview_.interviewerId) {
-        interviewer = this.props.users[i]
-        break
-      }
-    }
+    let student = this.props.users.find(user => Number(user.id) === Number(this.props.interview_.studentId));
+    let interviewer = this.props.users.find(user => Number(user.id) === Number(this.props.interview_.interviewerId));
 
     if (this.state.redirectToEdit) {
       return(
@@ -82,14 +68,15 @@ class BookedInterview extends React.Component {
             {this.props.user.isInterviewer ?
               <div>
                 {
-                  student == undefined ?
+                  // ternary operators are the devil
+                  student ?
                   <div>
-                    <img src={"https://static.thenounproject.com/png/40364-200.png"} style={{"border-radius": "50%", height: "100px", width: "100px"}} />
+                    <img src={"https://static.thenounproject.com/png/40364-200.png"} alt="" style={{"border-radius": "50%", height: "100px", width: "100px"}} />
                     <Card.Subtitle style={{margin: "10px"}}>Not booked</Card.Subtitle>
                   </div>
                   :
                   <div>
-                    <img src={student.imageUrl} style={{"border-radius": "50%", height: "100px", width: "100px"}} />
+                    <img src={student.imageUrl} alt="" style={{"border-radius": "50%", height: "100px", width: "100px"}} />
                     <Card.Subtitle style={{margin: "10px"}}>{student.firstName} {student.lastName}</Card.Subtitle>
                   </div>
                 }
@@ -97,14 +84,14 @@ class BookedInterview extends React.Component {
               :
               <div>
                 {
-                  interviewer == undefined ?
+                  interviewer ?
                   <div>
-                    <img src={"https://static.thenounproject.com/png/40364-200.png"} style={{"border-radius": "50%", height: "100px", width: "100px"}} />
+                    <img src={"https://static.thenounproject.com/png/40364-200.png"} alt="" style={{"border-radius": "50%", height: "100px", width: "100px"}} />
                     <Card.Subtitle style={{margin: "10px"}}>Not booked</Card.Subtitle>
                   </div>
                   :
                   <div>
-                    <img src={interviewer.imageUrl} style={{"border-radius": "50%", height: "100px", width: "100px"}} />
+                    <img src={interviewer.imageUrl} alt="" style={{"border-radius": "50%", height: "100px", width: "100px"}} />
                     <Card.Subtitle style={{margin: "10px"}}>{interviewer.firstName} {interviewer.lastName}</Card.Subtitle>
                   </div>
                 }
