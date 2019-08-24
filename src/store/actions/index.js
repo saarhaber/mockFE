@@ -27,7 +27,7 @@ export const login = (login) => {
   }
 }
 
-// login
+// logout
 export const logout = () => {
   return(dispatch) => {
     axios.post(prod_api + '/auth/logout/', {}, {withCredentials: true})

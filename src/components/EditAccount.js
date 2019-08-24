@@ -114,7 +114,7 @@ class EditAccount extends React.Component {
     }
 
 
-    if (errorCodes.length == 0) {
+    if (errorCodes.length === 0) {
       this.setState({
         redirect: true
       });
@@ -139,7 +139,7 @@ class EditAccount extends React.Component {
     }
 
 
-    if (errorCodes.length == 0) {
+    if (errorCodes.length === 0) {
       this.setState({
         redirect: true
       })

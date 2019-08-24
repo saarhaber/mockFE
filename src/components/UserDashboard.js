@@ -18,7 +18,8 @@ class UserDashboard extends React.Component {
         <NavMain/>
         <div className="dashboard">
           {this.props.interviews.length > 0 ?
-            this.props.interviews.filter(interview => (interview.studentId == this.props.user.id || interview.interviewerId == this.props.user.id))
+            this.props.interviews.filter(interview => (Number(interview.studentId) === Number(this.props.user.id) || 
+              Number(interview.interviewerId) === Number(this.props.user.id)))
             .map(interview => <SingleInterview key={interview.id} interview_={interview}/>)
             :
             <div className="mb-2 text-muted">You have no interviews</div>

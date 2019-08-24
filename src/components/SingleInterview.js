@@ -1,6 +1,6 @@
 import React from 'react';
 import './SingleInterview.css';
-import {Card, Button, Toast } from 'react-bootstrap';
+import {Card, Button} from 'react-bootstrap';
 import {connect} from 'react-redux'
 import { bookInterview, getUser, getUserById, fetchUsers } from '../store/actions'
 import { withRouter } from 'react-router-dom'
@@ -18,18 +18,13 @@ class SingleInterview extends React.Component {
   async componentDidMount() {
     this.props.getUser();
     await this.props.fetchUsers()
-    console.log(this.props.users)
-    //console.log("Interview ID !!!", this.props.interview_.interviewerId)
     for (let i = 0; i < this.props.users.length; i++) {
-      console.log("RUNNNING FOR", this.props.users[i].id)
-      if (this.props.users[i].id == this.props.interview_.interviewerId) {
-        console.log("RUNNNING IF STATEMNT")
+      if (Number(this.props.users[i].id) === Number(this.props.interview_.interviewerId)) {
         this.setState({
           interviewer: this.props.users[i]
         })
       }
     }
-    console.log("end of forloop in DidMount!!!", this.state.interviewer)
     this.isLoggedIn = Boolean(this.props.user.id);
   }
 
@@ -53,17 +48,12 @@ class SingleInterview extends React.Component {
   }
 
   render() {
-    let interviewer__;
-    for (let i = 0; i < this.props.users.length; i++) {
-      if (this.props.users[i].id == this.props.interview_.interviewerId) {
-        interviewer__ = this.props.users[i]
-      }
-    }
+    let interviewer__ = this.props.users.find(user => Number(user.id) === Number(this.props.interview_.interviewerId));
     return (
       <div className="SingleInterview">
         <Card style={{ width: '18rem', borderRadius: '20px'}}>
             <Card.Body>
-              {interviewer__ ? <img src={interviewer__.imageUrl} style={{"width": "100px", "border-radius": "50%"}} /> : null}
+              {interviewer__ ? <img src={interviewer__.imageUrl} alt="" style={{"width": "100px", "border-radius": "50%"}} /> : null}
             <Card.Title>Interview with <strong>{interviewer__ ? interviewer__.firstName : null} {interviewer__ ? interviewer__.lastName : null}</strong></Card.Title>
               <Card.Text>
                 {(this.props.interview_.interviewDate == null) ?

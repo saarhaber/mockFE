@@ -35,21 +35,6 @@ class Landing extends React.Component {
   }
 }
 
-{/* <Card.Text className="headtext"><h3>Welcome to MockUp</h3>
-<h6 style={{color}}> Where you can book mock technical interviews with experienced volunteers from the tech industry </h6>
-</Card.Text>
-<Button className="button1" variant="primary">
-<Link to='/login'>
-	Login
-</Link>
-</Button>
-<Button className="button1" variant="primary">
-<Link to='/signup'>
-	Sign Up
-</Link>
-</Button>
-</div> */}
-
 const getStateToProps = (state) => {
 	return {
 		user: state.user
