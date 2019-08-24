@@ -69,7 +69,7 @@ class BookedInterview extends React.Component {
               <div>
                 {
                   // ternary operators are the devil
-                  student ?
+                  !student ?
                   <div>
                     <img src={"https://static.thenounproject.com/png/40364-200.png"} alt="" style={{"border-radius": "50%", height: "100px", width: "100px"}} />
                     <Card.Subtitle style={{margin: "10px"}}>Not booked</Card.Subtitle>
@@ -84,7 +84,7 @@ class BookedInterview extends React.Component {
               :
               <div>
                 {
-                  interviewer ?
+                  !interviewer ?
                   <div>
                     <img src={"https://static.thenounproject.com/png/40364-200.png"} alt="" style={{"border-radius": "50%", height: "100px", width: "100px"}} />
                     <Card.Subtitle style={{margin: "10px"}}>Not booked</Card.Subtitle>
