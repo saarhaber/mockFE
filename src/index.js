@@ -9,12 +9,6 @@ import reducers from './store/reducers/index.js';
 import thunk from 'redux-thunk';
 
 
-var http = require("http");
-
-setInterval(function() {
-    http.get("http://<your app name>.herokuapp.com");
-}, 600000);
-
 // See the routing object
 ReactDOM.render(<Provider store={createStore(reducers, applyMiddleware(thunk))}><App/></Provider>, document.getElementById('root'));
 
