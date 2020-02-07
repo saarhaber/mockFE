@@ -3,7 +3,7 @@ import axios from 'axios';
 const TAG = "ACTIONS/INDEX_JS";
 
 // const dev_api = 'http://localhost:5000/api';
-const prod_api = 'https://frozen-spire-39361.herokuapp.com/api';
+const prod_api = 'https://mock-me-backend.herokuapp.com/api';
 
 // login
 export const login = (login) => {
@@ -100,7 +100,6 @@ export const fetchUsers = () => {
 
 // Deletes an user
 export const deleteUser = (user) => {
-  console.log("ASDASDASDASd")
   return(dispatch) => {
     axios.delete(prod_api +'/users/' + user.id, {withCredentials: true})
     .then(
